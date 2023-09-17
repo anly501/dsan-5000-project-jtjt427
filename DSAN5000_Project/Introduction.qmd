@@ -1,0 +1,44 @@
+---
+title: "Introduction"
+format:
+  html:
+    toc: true
+---
+
+In 2019/2020, Australia was struck by a severe bushfire, leading to more than 19 million hectares of land burnt, more than 3,000 homes destroyed and 33 people died [@filkov2020impact]. As a recent study carried out by the University of Maryland, wildfires are currently responsible for an additional 3 million hectares of tree cover loss annually compared to the year 2001. This increase amounts to an area roughly equivalent to the size of Belgium. Remarkably, wildfires have contributed to over a quarter of all tree cover loss observed in the pasttwo decades [@tyukavina2022global]. Wildfires are a significant environmental challenge with far-reaching consequences, impacting ecosystems, human lives, and economies. In contrast to other natural hazards like earthquakes or volcanic eruptions, fire is generally seen as a preventable risk. Therefore, predicting and mitigating wildfires is of paramount importance to reduce their devastating effects. This research aims to explore and contribute to the ongoing efforts to better understand wildfire dynamics and improve predictive models for early detection and mitigation.
+
+## The Importance of Predicting and Mitigating Wildfires
+
+Wildfires pose serious threats to both natural environments and human settlements. They lead to ecological damage, air pollution, loss of biodiversity, and economic costs associated with firefighting efforts and property damage. Wildfire smoke, in particular, comprises a blend of dangerous airborne substances, including PM2.5, NO2, ozone, aromatic hydrocarbons, and lead. Beyond polluting the atmosphere with harmful pollutants, wildfires also have a simultaneous effect on the climate by emitting substantial amounts of carbon dioxide and other greenhouse gases into the air [^1]. Reducing the risk of wildfire is crucial for safeguarding our ecosystems, reducing the risk to communities, and managing resources effectively. 
+
+[^1]: https://www.who.int/health-topics/wildfires#tab=tab_1
+
+## Previous Researches and Points of Views
+
+Multiple reports, spanning from mainstream media to peer-reviewed scientific journals, have fostered a prevailing belief that fires have experienced an escalation or intensification on a global scale in recent years. These reports frequently present quantitative findings, yet they frequently rely on limited timeframes and localized datasets concerning fire occurrence or burned areas. Such narrow perspectives may not accurately capture the broader temporal and spatial complexities of the situation. Previous researches have indeed delved into various facets of wildfires, encompassing their origins, patterns, and the creation of predictive models. They reveals diverse perspectives on wildfire prediction and mitigation. Some researchers emphasize the role of climate change[^2] in exacerbating fire risks, while others focus on the importance of land management practices and early warning systems. There are ongoing debates about the most effective strategies for firefighting and how to balance prevention and response efforts.
+
+[^2]: https://www.wri.org/insights/global-trends-forest-fires
+
+## Research Goals:
+
+In this study, I aim to address several key questions related to wildfires. Our primary goals are:
+
+- To develop an accurate predictive model for wildfire occurrence and spread.
+- To investigate the impact of climate factors, including temperature, humidity, and wind, on wildfire behavior.
+- To assess the effectiveness of early warning systems and their integration into wildfire management strategies.
+- To examine the economic and ecological costs of wildfires and the potential benefits of proactive mitigation.
+
+## Research Questions:
+
+To achieve my research goals, I will address the following questions:
+
+- How can historical wildfire data be used to train and validate predictive models?
+- What are the most influential climate and weather factors in predicting wildfire occurrence and behavior?
+- How can machine learning and data analytics techniques be applied to improve prediction accuracy?
+- What are the strengths and limitations of existing early warning systems for wildfires?
+- How can remote sensing and satellite imagery assist in real-time monitoring and detection?
+- What are the economic and ecological consequences of wildfires in different regions?
+- What mitigation strategies have been most effective in reducing the impact of wildfires?
+- How can community engagement and public awareness initiatives enhance wildfire prevention efforts?
+- What ethical considerations are involved in wildfire prediction and mitigation research?
+- What are the implications of our findings for policymakers and forest management practices?

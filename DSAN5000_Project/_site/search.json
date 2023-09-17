@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DSAN5000_Project",
+    "section": "",
+    "text": "Jiatong Liu NetID: jl3081"
+  },
+  {
+    "objectID": "About_Me.html",
+    "href": "About_Me.html",
+    "title": "About Me",
+    "section": "",
+    "text": "Jiatong Liu is a recent graduate with a Bachelor of Science degree in Agriculture Resource and Economics and a minor in Statistics from the University of Maryland. She is currently pursuing a Master’s degree in data science and analytics at Georgetown University, driven by a clear career goal of becoming a Data Scientist, with a specific focus on opportunities in the DMV (Washington, D.C., Maryland, and Virginia) area.\n\n\n\n\nThroughout her academic journey, Jiatong has honed her practical skills and knowledge through a series of enriching internships. Her most recent role as a Data Analyst Intern at Guotai Junan Securities Co., Ltd. (06/2022 - 08/2022) showcased her exceptional capabilities in data retrieval, overseas investment information collection, research report organization, and the application of mathematical models in R for analyzing financial market data. This experience has endowed her with a robust foundation in data analysis, statistical modeling, and financial research, positioning her well for her future career pursuits.In addition to her internships, Jiatong undertook a significant individual project titled “Assessing the Relationship Between Aviation Kerosene Price and Demand for Air Transportation” during the spring of 2022. In this project, she collected extensive data from reputable sources, rigorously cleaned and prepared datasets to ensure data quality and coherence, and conducted three distict visual analyses. Jiatong employed advanced data visualization techniques to uncover the patterns and trends within the aviation kerosene price dynamics and its consequential effects on the ebb and flow of air transportation demand. This project not only highlighted Jiatong’s proficiency in data collection, preparation, and statistical analysis but also underscored her capacity to tackle complex research questions with diligence and sophistication, reinforcing her foundation in data-driven decision-making.\n\n\n\n\n\n\n09/2019 - 06/2021 China Agriculture University\n09/2021 - 06/2023 University of Maryland - College Park\n08/2023 - 06/2025 Georgetown University"
+  },
+  {
+    "objectID": "About_Me.html#background",
+    "href": "About_Me.html#background",
+    "title": "About Me",
+    "section": "",
+    "text": "Jiatong Liu is a recent graduate with a Bachelor of Science degree in Agriculture Resource and Economics and a minor in Statistics from the University of Maryland. She is currently pursuing a Master’s degree in data science and analytics at Georgetown University, driven by a clear career goal of becoming a Data Scientist, with a specific focus on opportunities in the DMV (Washington, D.C., Maryland, and Virginia) area.\n\n\n\n\nThroughout her academic journey, Jiatong has honed her practical skills and knowledge through a series of enriching internships. Her most recent role as a Data Analyst Intern at Guotai Junan Securities Co., Ltd. (06/2022 - 08/2022) showcased her exceptional capabilities in data retrieval, overseas investment information collection, research report organization, and the application of mathematical models in R for analyzing financial market data. This experience has endowed her with a robust foundation in data analysis, statistical modeling, and financial research, positioning her well for her future career pursuits.In addition to her internships, Jiatong undertook a significant individual project titled “Assessing the Relationship Between Aviation Kerosene Price and Demand for Air Transportation” during the spring of 2022. In this project, she collected extensive data from reputable sources, rigorously cleaned and prepared datasets to ensure data quality and coherence, and conducted three distict visual analyses. Jiatong employed advanced data visualization techniques to uncover the patterns and trends within the aviation kerosene price dynamics and its consequential effects on the ebb and flow of air transportation demand. This project not only highlighted Jiatong’s proficiency in data collection, preparation, and statistical analysis but also underscored her capacity to tackle complex research questions with diligence and sophistication, reinforcing her foundation in data-driven decision-making.\n\n\n\n\n\n\n09/2019 - 06/2021 China Agriculture University\n09/2021 - 06/2023 University of Maryland - College Park\n08/2023 - 06/2025 Georgetown University"
+  },
+  {
+    "objectID": "About_Me.html#skills-and-expertise",
+    "href": "About_Me.html#skills-and-expertise",
+    "title": "About Me",
+    "section": "Skills and Expertise",
+    "text": "Skills and Expertise\n\n\n\nTechnical Skills\n\nProgramming Languages: Python, R, SQL, JAVA, STATA, SAS\nLibraries: Pandas, Numpy, Matplotlib, Seaborn, TensorFlow, Scikit, Tidyverse, ggplot, dplyr\n\n\n\n\nSoft Skills\n\nCommunication\nTeam-work\nProblem Solving\nAttention to Detail"
+  },
+  {
+    "objectID": "Introduction.html",
+    "href": "Introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "In 2019/2020, Australia was struck by a severe bushfire, leading to more than 19 million hectares of land burnt, more than 3,000 homes destroyed and 33 people died (Filkov et al. 2020). As a recent study carried out by the University of Maryland, wildfires are currently responsible for an additional 3 million hectares of tree cover loss annually compared to the year 2001. This increase amounts to an area roughly equivalent to the size of Belgium. Remarkably, wildfires have contributed to over a quarter of all tree cover loss observed in the pasttwo decades (Tyukavina et al. 2022). Wildfires are a significant environmental challenge with far-reaching consequences, impacting ecosystems, human lives, and economies. In contrast to other natural hazards like earthquakes or volcanic eruptions, fire is generally seen as a preventable risk. Therefore, predicting and mitigating wildfires is of paramount importance to reduce their devastating effects. This research aims to explore and contribute to the ongoing efforts to better understand wildfire dynamics and improve predictive models for early detection and mitigation."
+  },
+  {
+    "objectID": "Introduction.html#the-importance-of-predicting-and-mitigating-wildfires",
+    "href": "Introduction.html#the-importance-of-predicting-and-mitigating-wildfires",
+    "title": "Introduction",
+    "section": "The Importance of Predicting and Mitigating Wildfires",
+    "text": "The Importance of Predicting and Mitigating Wildfires\nWildfires pose serious threats to both natural environments and human settlements. They lead to ecological damage, air pollution, loss of biodiversity, and economic costs associated with firefighting efforts and property damage. Wildfire smoke, in particular, comprises a blend of dangerous airborne substances, including PM2.5, NO2, ozone, aromatic hydrocarbons, and lead. Beyond polluting the atmosphere with harmful pollutants, wildfires also have a simultaneous effect on the climate by emitting substantial amounts of carbon dioxide and other greenhouse gases into the air 1. Reducing the risk of wildfire is crucial for safeguarding our ecosystems, reducing the risk to communities, and managing resources effectively."
+  },
+  {
+    "objectID": "Introduction.html#footnotes",
+    "href": "Introduction.html#footnotes",
+    "title": "Introduction",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://www.who.int/health-topics/wildfires#tab=tab_1↩︎\nhttps://www.wri.org/insights/global-trends-forest-fires↩︎"
+  },
+  {
+    "objectID": "Introduction.html#previous-researches-and-points-of-views",
+    "href": "Introduction.html#previous-researches-and-points-of-views",
+    "title": "Introduction",
+    "section": "Previous Researches and Points of Views",
+    "text": "Previous Researches and Points of Views\nMultiple reports, spanning from mainstream media to peer-reviewed scientific journals, have fostered a prevailing belief that fires have experienced an escalation or intensification on a global scale in recent years. These reports frequently present quantitative findings, yet they frequently rely on limited timeframes and localized datasets concerning fire occurrence or burned areas. Such narrow perspectives may not accurately capture the broader temporal and spatial complexities of the situation. Previous researches have indeed delved into various facets of wildfires, encompassing their origins, patterns, and the creation of predictive models. They reveals diverse perspectives on wildfire prediction and mitigation. Some researchers emphasize the role of climate change2 in exacerbating fire risks, while others focus on the importance of land management practices and early warning systems. There are ongoing debates about the most effective strategies for firefighting and how to balance prevention and response efforts."
+  },
+  {
+    "objectID": "Introduction.html#research-goals",
+    "href": "Introduction.html#research-goals",
+    "title": "Introduction",
+    "section": "Research Goals:",
+    "text": "Research Goals:\nIn this study, I aim to address several key questions related to wildfires. Our primary goals are:\n\nTo develop an accurate predictive model for wildfire occurrence and spread.\nTo investigate the impact of climate factors, including temperature, humidity, and wind, on wildfire behavior.\nTo assess the effectiveness of early warning systems and their integration into wildfire management strategies.\nTo examine the economic and ecological costs of wildfires and the potential benefits of proactive mitigation."
+  },
+  {
+    "objectID": "Introduction.html#research-questions",
+    "href": "Introduction.html#research-questions",
+    "title": "Introduction",
+    "section": "Research Questions:",
+    "text": "Research Questions:\nTo achieve my research goals, I will address the following questions:\n\nHow can historical wildfire data be used to train and validate predictive models?\nWhat are the most influential climate and weather factors in predicting wildfire occurrence and behavior?\nHow can machine learning and data analytics techniques be applied to improve prediction accuracy?\nWhat are the strengths and limitations of existing early warning systems for wildfires?\nHow can remote sensing and satellite imagery assist in real-time monitoring and detection?\nWhat are the economic and ecological consequences of wildfires in different regions?\nWhat mitigation strategies have been most effective in reducing the impact of wildfires?\nHow can community engagement and public awareness initiatives enhance wildfire prevention efforts?\nWhat ethical considerations are involved in wildfire prediction and mitigation research?\nWhat are the implications of our findings for policymakers and forest management practices?"
+  }
+]

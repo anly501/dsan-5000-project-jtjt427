@@ -1,0 +1,45 @@
+project:
+  type: website
+
+website:
+  title: "DSAN5000_Project"
+  navbar:
+    left:
+      - href: About_Me.qmd
+        text: About Me
+      - href: https://github.com/anly501/dsan-5000-project-jtjt427/tree/main/codes
+        text: Code
+      - href: Data.qmd
+        text: Data
+      - href: Introduction.qmd
+        text: Introduction
+      - href: Data_Gathering.qmd
+        text: Data Gathering
+      - href: Data_Cleaning.qmd
+        text: Data Cleaning
+      - href: Data_Exploration.qmd
+        text: Data Exploration
+      - href: Clustering.qmd
+        text: Clustering
+      - href: Dimensionality_Reduction.qmd
+        text: Dimensionality Reduction
+      - text: Decision Trees
+        menu: 
+          - href: Classification.qmd
+            text: Classification
+          - href: Regression.qmd
+            text: Regression
+      - href: ARM.qmd
+        text: ARM
+      - href: Conclusions.qmd
+        text: Conclusions
+bibliography: references.bib
+      
+
+format:
+  html:
+    theme: flatly
+    toc: true
+
+
+
