@@ -87,6 +87,16 @@ for _, article in articles.iterrows():
     cleaned_data.append(tmp)
     index += 1
 
+# Define a filter condition to check for "[removed]" in column 5
+filter_condition = lambda article: article[5] != "[removed]"
+
+# Use a list comprehension to create a new cleaned_data list with rows that satisfy the condition
+cleaned_data_filtered = [article for article in cleaned_data if filter_condition(article)]
+
+df = pd.DataFrame(cleaned_data_filtered)
+
+# Save the DataFrame to a CSV file
+df.to_csv("../data/cleaned-data/cleaned_text_data.csv", index=False)
 
 def apply_count_vectorizer(text_data):
     # Create an instance of CountVectorizer
@@ -103,6 +113,41 @@ def apply_count_vectorizer(text_data):
     
     return count_matrix
 # Apply CountVectorizer to article contents
-description_data = [article[4] for article in cleaned_data] 
-description_count_matrix = apply_count_vectorizer(description_data)
-print(description_count_matrix)
+content_data = [article[5] for article in cleaned_data_filtered] 
+content_count_matrix = apply_count_vectorizer(content_data)
+print(content_count_matrix)
+
+from nltk.sentiment import SentimentIntensityAnalyzer 
+
+# Initialize the SentimentIntensityAnalyzer
+sia = SentimentIntensityAnalyzer()
+
+# Analyze the sentiment of each article's content and store the sentiment scores
+sentiments = []
+
+for content in content_data:
+    sentiment_score = sia.polarity_scores(content)
+    sentiments.append(sentiment_score)
+
+# Create a DataFrame for the sentiment scores
+sentiments_df = pd.DataFrame(sentiments)
+
+cleaned_text_data = pd.read_csv("../data/cleaned-data/cleaned_text_data.csv")
+# Combine the sentiment scores with the original article DataFrame
+articles_with_sentiment = pd.concat([cleaned_text_data, sentiments_df], axis=1)
+
+# Rename columns
+articles_with_sentiment = articles_with_sentiment.rename(columns={
+    '...1': 'index',
+    '0': 'source',
+    '1': 'author',
+    '2': 'title',
+    '3': 'description',
+    '4': 'date',
+    '5': 'content'
+})
+
+# Print the DataFrame to verify the changes
+print(articles_with_sentiment)
+
+articles_with_sentiment.to_csv("../data/cleaned-data/articles_with_sentiment.csv")

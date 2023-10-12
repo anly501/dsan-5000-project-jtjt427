@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DSAN5000_Project – code</title>
+<title>DSAN5000_Project - Naive Bayes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./About_Me.html" rel="" target="">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
@@ -101,11 +101,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Data Gathering</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data_Cleaning.html" rel="" target="">
+    <a class="nav-link" href="./Cleaning.html" rel="" target="">
  <span class="menu-text">Data Cleaning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data_Exploration.html" rel="" target="">
+    <a class="nav-link" href="./Data_Exploration.ipynb" rel="" target="">
  <span class="menu-text">Data Exploration</span></a>
   </li>  
   <li class="nav-item">
@@ -139,6 +139,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./Conclusions.html" rel="" target="">
  <span class="menu-text">Conclusions</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./Naive_Bayes.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Naive_Bayes</span></a>
+  </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
 </div>
@@ -151,15 +155,64 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#how-naive-bayes-works" id="toc-how-naive-bayes-works" class="nav-link" data-scroll-target="#how-naive-bayes-works">How Naive Bayes Works:</a></li>
+  <li><a href="#objectives-of-naive-bayes-classification" id="toc-objectives-of-naive-bayes-classification" class="nav-link" data-scroll-target="#objectives-of-naive-bayes-classification">Objectives of Naive Bayes Classification:</a></li>
+  <li><a href="#different-variants-of-naive-bayes" id="toc-different-variants-of-naive-bayes" class="nav-link" data-scroll-target="#different-variants-of-naive-bayes">Different Variants of Naive Bayes:</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Naive Bayes</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Naive Bayes(NB) classification is a probabilistic machine learning technique based on Bayes’ theorem. It’s widely used for various classification tasks, such as spam detection, sentiment analysis, and more. Its primary objective is to predict the class or category of a given data point based on the observed features. For the purpose of this study, I will perform NB on a recorded dataset(<code>Cali20_climate_fire</code>) and a text dataset(<code>articles_with_sentiment</code>).</p>
+<section id="how-naive-bayes-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-naive-bayes-works">How Naive Bayes Works:</h3>
+<ol type="1">
+<li><p><strong>Probabilistic Nature</strong>: Naive Bayes is probabilistic in nature because it estimates the probability of a data point belonging to a particular class or category. It does this by calculating the conditional probabilities of the features given the class.</p></li>
+<li><p><strong>Bayes’ Theorem Foundation</strong>: It’s built upon Bayes’ theorem, which describes how to update the probability for a hypothesis based on new evidence. In classification, it’s used to calculate the probability of a class given the observed features. The “Naive” part of Naive Bayes is the assumption that the features are conditionally independent, which simplifies the calculations.</p></li>
+</ol>
+</section>
+<section id="objectives-of-naive-bayes-classification" class="level3">
+<h3 class="anchored" data-anchor-id="objectives-of-naive-bayes-classification">Objectives of Naive Bayes Classification:</h3>
+<p>In both datasets, the objective is to classify or predict something based on the given features. In the first dataset, I aim to predict the occurrence of a fire based on weather variable precipitation. In the second dataset, I want to classify the sentiment of text based on the content of the article.</p>
+</section>
+<section id="different-variants-of-naive-bayes" class="level3">
+<h3 class="anchored" data-anchor-id="different-variants-of-naive-bayes">Different Variants of Naive Bayes:</h3>
+<ol type="1">
+<li><strong>Gaussian Naive Bayes</strong>: Use this when features are continuous and have a Gaussian (normal) distribution.</li>
+<li><strong>Multinomial Naive Bayes</strong>: Suitable for discrete data, often used for text classification with features like word counts. I am using this model predicting sentiments basing on the contents of the articles for the text dataset.</li>
+<li><strong>Bernoulli Naive Bayes</strong>: Appropriate when dealing with binary or Boolean features. It’s often used for binary text classification where the presence or absence of words matters.</li>
+</ol>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

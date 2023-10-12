@@ -5,6 +5,8 @@ format:
     toc: true
 ---
 
+[![Australia Bushfire](images/AustraliaBushfire.png)](https://www.bbc.com/news/in-pictures-50971879)
+
 In 2019/2020, Australia was struck by a severe bushfire, leading to more than 19 million hectares of land burnt, more than 3,000 homes destroyed and 33 people died [@filkov2020impact]. As a recent study carried out by the University of Maryland, wildfires are currently responsible for an additional 3 million hectares of tree cover loss annually compared to the year 2001. This increase amounts to an area roughly equivalent to the size of Belgium. Remarkably, wildfires have contributed to over a quarter of all tree cover loss observed in the pasttwo decades [@tyukavina2022global]. Wildfires are a significant environmental challenge with far-reaching consequences, impacting ecosystems, human lives, and economies. In contrast to other natural hazards like earthquakes or volcanic eruptions, fire is generally seen as a preventable risk. Therefore, predicting and mitigating wildfires is of paramount importance to reduce their devastating effects. This research aims to explore and contribute to the ongoing efforts to better understand wildfire dynamics and improve predictive models for early detection and mitigation.
 
 ## The Importance of Predicting and Mitigating Wildfires
@@ -19,7 +21,7 @@ Multiple reports, spanning from mainstream media to peer-reviewed scientific jou
 
 [^2]: https://www.wri.org/insights/global-trends-forest-fires
 
-## Research Goals:
+## Research Goals
 
 In this study, I aim to address several key questions related to wildfires. Our primary goals are:
 
@@ -28,7 +30,7 @@ In this study, I aim to address several key questions related to wildfires. Our 
 - To assess the effectiveness of early warning systems and their integration into wildfire management strategies.
 - To examine the economic and ecological costs of wildfires and the potential benefits of proactive mitigation.
 
-## Research Questions:
+## Research Questions
 
 To achieve my research goals, I will address the following questions:
 

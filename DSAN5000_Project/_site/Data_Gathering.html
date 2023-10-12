@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DSAN5000_Project – data_gathering</title>
+<title>DSAN5000_Project - Data Gathering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,7 +61,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -82,11 +81,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./About_Me.html" rel="" target="">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Code.html" rel="" target="">
+    <a class="nav-link" href="https://github.com/anly501/dsan-5000-project-jtjt427/tree/main/codes" rel="" target="">
  <span class="menu-text">Code</span></a>
   </li>  
   <li class="nav-item">
@@ -102,11 +101,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Data Gathering</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data_Cleaning.html" rel="" target="">
+    <a class="nav-link" href="./Cleaning.html" rel="" target="">
  <span class="menu-text">Data Cleaning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data_Exploration.html" rel="" target="">
+    <a class="nav-link" href="./Data_Exploration.ipynb" rel="" target="">
  <span class="menu-text">Data Exploration</span></a>
   </li>  
   <li class="nav-item">
@@ -114,13 +113,24 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Clustering</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Dimensionality_reduction.html" rel="" target="">
- <span class="menu-text">Dimensionality reduction</span></a>
+    <a class="nav-link" href="./Dimensionality_Reduction.html" rel="" target="">
+ <span class="menu-text">Dimensionality Reduction</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Decision_Trees.html" rel="" target="">
- <span class="menu-text">Decision Trees</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-decision-trees" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Decision Trees</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-decision-trees">    
+        <li>
+    <a class="dropdown-item" href="./Classification.html" rel="" target="">
+ <span class="dropdown-text">Classification</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Regression.html" rel="" target="">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./ARM.html" rel="" target="">
  <span class="menu-text">ARM</span></a>
@@ -128,6 +138,10 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="./Conclusions.html" rel="" target="">
  <span class="menu-text">Conclusions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Naive_Bayes.html" rel="" target="">
+ <span class="menu-text">Naive_Bayes</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
@@ -141,17 +155,224 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#wildfire-statitics" id="toc-wildfire-statitics" class="nav-link active" data-scroll-target="#wildfire-statitics">Wildfire Statitics</a>
+  <ul class="collapse">
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data Source</a></li>
+  <li><a href="#gathering-method" id="toc-gathering-method" class="nav-link" data-scroll-target="#gathering-method">Gathering Method</a></li>
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data Description</a></li>
+  </ul></li>
+  <li><a href="#california-2020-wildfire-statistics" id="toc-california-2020-wildfire-statistics" class="nav-link" data-scroll-target="#california-2020-wildfire-statistics">California 2020 Wildfire Statistics</a>
+  <ul class="collapse">
+  <li><a href="#data-source-1" id="toc-data-source-1" class="nav-link" data-scroll-target="#data-source-1">Data Source</a></li>
+  <li><a href="#gathering-method-1" id="toc-gathering-method-1" class="nav-link" data-scroll-target="#gathering-method-1">Gathering Method</a></li>
+  <li><a href="#data-description-1" id="toc-data-description-1" class="nav-link" data-scroll-target="#data-description-1">Data Description</a></li>
+  </ul></li>
+  <li><a href="#california-weather-data" id="toc-california-weather-data" class="nav-link" data-scroll-target="#california-weather-data">California Weather Data</a>
+  <ul class="collapse">
+  <li><a href="#data-source-2" id="toc-data-source-2" class="nav-link" data-scroll-target="#data-source-2">Data Source</a></li>
+  <li><a href="#gathering-method-2" id="toc-gathering-method-2" class="nav-link" data-scroll-target="#gathering-method-2">Gathering Method</a></li>
+  <li><a href="#data-description-2" id="toc-data-description-2" class="nav-link" data-scroll-target="#data-description-2">Data Description</a></li>
+  </ul></li>
+  <li><a href="#articles-on-wildfire-prevention" id="toc-articles-on-wildfire-prevention" class="nav-link" data-scroll-target="#articles-on-wildfire-prevention">Articles on Wildfire Prevention</a>
+  <ul class="collapse">
+  <li><a href="#data-source-3" id="toc-data-source-3" class="nav-link" data-scroll-target="#data-source-3">Data Source</a></li>
+  <li><a href="#gathering-method-3" id="toc-gathering-method-3" class="nav-link" data-scroll-target="#gathering-method-3">Gathering Method</a></li>
+  <li><a href="#data-description-3" id="toc-data-description-3" class="nav-link" data-scroll-target="#data-description-3">Data Description</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Gathering</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="wildfire-statitics" class="level2">
+<h2 class="anchored" data-anchor-id="wildfire-statitics">Wildfire Statitics</h2>
+<section id="data-source" class="level3">
+<h3 class="anchored" data-anchor-id="data-source">Data Source</h3>
+<p>The National Interagency Fire Center (NIFC)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, established in 1965, is a pivotal institution in the United States responsible for coordinating and supporting wildfire management, suppression efforts, and wildland fire prevention initiatives. The NIFC’s work is of paramount importance in the United States due to the increasing frequency and severity of wildfires. It serves as a critical hub for wildfire information, resource coordination, and expertise, contributing to the safety of communities and the protection of natural resources.</p>
+</section>
+<section id="gathering-method" class="level3">
+<h3 class="anchored" data-anchor-id="gathering-method">Gathering Method</h3>
+<p>To obtain the data from NIFC, I followed these steps:</p>
+<ol type="1">
+<li><strong>Access Permission</strong>: visited the NIFC website (https://www.nifc.gov/) to review their data sharing policies and ensure compliance with their terms of use.</li>
+<li><strong>Data Download</strong>: accessed the datasets directly from the NIFC’s data repository, which provides downloadable CSV files for public use.</li>
+<li><strong>Data Storage</strong>: The downloaded data files were securely stored in the project’s data repository for further analysis and processing.</li>
+</ol>
+</section>
+<section id="data-description" class="level3">
+<h3 class="anchored" data-anchor-id="data-description">Data Description</h3>
+<p>I utilized the following datasets obtained from the NIFC for the analysis:</p>
+<ul>
+<li><strong>HumanCausedAcres.csv</strong>
+<ul>
+<li>This dataset contains information about the total acreage affected by human-caused wildfires.</li>
+<li>Key columns: <code>Year</code>, <code>Northern California</code>,<code>Southern California</code>, <code>Total</code> <img src="images/2023-10-04-17-57-04.png" class="img-fluid"></li>
+</ul></li>
+<li><strong>HumanCausedFires.csv</strong>
+<ul>
+<li>Complementary to the HumanCausedAcres dataset, this file provides details about individual human-caused wildfires.</li>
+<li>Key columns: <code>Year</code>, <code>Northern California</code>,<code>Southern California</code>, <code>Total</code> <img src="images/2023-10-04-18-12-29.png" class="img-fluid"></li>
+</ul></li>
+<li><strong>LighteningAcres.csv</strong>
+<ul>
+<li>This dataset contains information on the acreage affected by wildfires caused by lightning strikes.</li>
+<li>Key columns: <code>Year</code>, <code>Northern California</code>,<code>Southern California</code>, <code>Total</code> <img src="images/2023-10-04-18-14-43.png" class="img-fluid"></li>
+</ul></li>
+<li><strong>LightningFires.csv</strong>
+<ul>
+<li>Complementary to the LightningAcres dataset, this dataset provides detailed information about individual lightning-caused wildfires.</li>
+<li>Key Columns: <code>Year</code>, <code>Northern California</code>,<code>Southern California</code>, <code>Total</code> <img src="images/2023-10-04-18-16-36.png" class="img-fluid"></li>
+</ul></li>
+<li><strong>SuppCosts.csv</strong>
+<ul>
+<li>This dataset contains information about the costs associated with wildfire suppression efforts.</li>
+<li>Key Columns: <code>Year</code>, <code>Fires</code>,<code>Acres</code>, <code>Total</code> <img src="images/2023-10-04-18-18-05.png" class="img-fluid"></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="california-2020-wildfire-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="california-2020-wildfire-statistics">California 2020 Wildfire Statistics</h2>
+<section id="data-source-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-source-1">Data Source</h3>
+<p>The California Department of Forestry and Fire Protection (CAL FIRE)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is the primary source of wildfire data for the state of California. CAL FIRE plays a critical role in wildfire management, suppression efforts, and public safety. Their data is essential for understanding and mitigating the impact of wildfires on California’s communities and natural resources.</p>
+</section>
+<section id="gathering-method-1" class="level3">
+<h3 class="anchored" data-anchor-id="gathering-method-1">Gathering Method</h3>
+<p>To acquire the wildfire data from CAL FIRE, the following steps were taken:</p>
+<ol type="1">
+<li><p><strong>Access Permission</strong>: visited the CAL FIRE website to review their data sharing policies and ensure compliance with their terms of use.</p></li>
+<li><p><strong>Data Collection</strong>: The datasets were obtained directly from CAL FIRE’s data repository. CAL FIRE provides accessible and downloadable data files, making it a valuable resource for wildfire-related information.</p></li>
+<li><p><strong>Data Storage</strong>: The downloaded data files were securely stored in the project’s data repository, ready for further analysis and processing.</p></li>
+</ol>
+</section>
+<section id="data-description-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-description-1">Data Description</h3>
+<p>The dataset used for this analysis is sourced from CAL FIRE and provides information on large wildfires (greater than 400 acres) in California for the year 2020. The dataset includes the following key columns:</p>
+<ul>
+<li><code>Incident #</code>: A unique identifier for each wildfire incident.</li>
+<li><code>County</code>: The county in California where the wildfire occurred.</li>
+<li><code>FireName</code>: The name assigned to the wildfire.</li>
+<li><code>StartDate</code>: The date when the wildfire started.</li>
+<li><code>EndDate</code>: The date when the wildfire was extinguished.</li>
+<li><code>Acres Burned</code>: The total acreage affected by the wildfire.</li>
+<li><code>VegType</code>: The type of vegetation involved in the wildfire.</li>
+<li><code>Cause</code>: The cause of the wildfire.</li>
+<li><code>StructureDest.</code>: The number of structures destroyed due to the wildfire.</li>
+<li><code>StructureDam.</code>: The number of structures damaged due to the wildfire.</li>
+<li><code>FirePersonnelDeath</code>: The number of firefighting personnel deaths associated with the wildfire.</li>
+<li><code>CivilDeath</code>: The number of civilian deaths related to the wildfire.</li>
+</ul>
+<p><img src="images/2023-10-05-23-26-02.png" class="img-fluid"></p>
+<p>This dataset provides valuable insights into wildfires in California, including their locations, sizes, causes, and impact on structures and lives. It serves as a fundamental resource for understanding the climate influence on wildfires in California.</p>
+</section>
+</section>
+<section id="california-weather-data" class="level2">
+<h2 class="anchored" data-anchor-id="california-weather-data">California Weather Data</h2>
+<section id="data-source-2" class="level3">
+<h3 class="anchored" data-anchor-id="data-source-2">Data Source</h3>
+<p>The weather data for California was obtained from the Visual Crossing Weather API<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Visual Crossing Weather is a weather data service that provides historical weather information, including temperature, precipitation, wind, and other meteorological data. This data source was chosen to gather historical weather data for the analysis of its potential correlation with wildfire incidents.</p>
+</section>
+<section id="gathering-method-2" class="level3">
+<h3 class="anchored" data-anchor-id="gathering-method-2">Gathering Method</h3>
+<p>To obtain historical weather data for California, the following steps were followed:</p>
+<ol type="1">
+<li><strong>Access Permission</strong>: The Visual Crossing Weather API was accessed to review their data sharing policies and ensure compliance with their terms of use.</li>
+<li><strong>Data Retrieval</strong>: A Python script using the <code>requests</code> library was utilized to send a GET request to the Visual Crossing Weather API. The API endpoint was configured to retrieve weather data for California for specific date ranges.</li>
+<li><strong>Data Conversion</strong>: The API response, received in JSON format, was parsed to extract the weather data. The JSON data was converted into a Pandas DataFrame for easier analysis.</li>
+<li><strong>Data Storage</strong>: The resulting weather data for California in each year was stored in separate CSV files. These files were securely saved in the project’s data repository for further analysis and integration into the project.</li>
+</ol>
+</section>
+<section id="data-description-2" class="level3">
+<h3 class="anchored" data-anchor-id="data-description-2">Data Description</h3>
+<p>Weather data was gathered for the following years: 2020, 2017, 2015, 2014, 2010, and 2001. The data includes various meteorological parameters for each day in the specified years. Below is a description of the common columns present in the weather datasets, represented here using data from the “Cali_2020.csv” dataset as an example:</p>
+<ul>
+<li><code>datetime</code>: The date of the recorded data.</li>
+<li><code>datetimeEpoch</code>: The Unix epoch timestamp corresponding to the date.</li>
+<li><code>tempmax</code>: The maximum temperature in Celsius for the day.</li>
+<li><code>tempmin</code>: The minimum temperature in Celsius for the day.</li>
+<li><code>temp</code>: The average temperature in Celsius for the day.</li>
+<li><code>feelslikemax</code>: The maximum “feels like” temperature in Celsius for the day.</li>
+<li><code>feelslikemin</code>: The minimum “feels like” temperature in Celsius for the day.</li>
+<li><code>feelslike</code>: The average “feels like” temperature in Celsius for the day.</li>
+<li><code>dew</code>: Dew point temperature in Celsius.</li>
+<li><code>humidity</code>: Relative humidity as a percentage.</li>
+<li><code>precip</code>: Total precipitation in millimeters.</li>
+<li><code>precipprob</code>: Probability of precipitation as a percentage.</li>
+</ul>
+<p>The datasets also include additional columns providing information on various weather-related parameters, such as wind speed, cloud cover, and sunrise/sunset times, among others.</p>
+<p><img src="images/2023-10-04-18-36-33.png" class="img-fluid"></p>
+<p>These weather datasets will be used to analyze weather patterns and their potential impact on wildfire incidents in California as part of the project’s data analysis and modeling efforts.</p>
+</section>
+</section>
+<section id="articles-on-wildfire-prevention" class="level2">
+<h2 class="anchored" data-anchor-id="articles-on-wildfire-prevention">Articles on Wildfire Prevention</h2>
+<section id="data-source-3" class="level3">
+<h3 class="anchored" data-anchor-id="data-source-3">Data Source</h3>
+<p>The articles data on wildfire prevention was obtained from the News API<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. News API is a service that provides access to a wide range of news articles from various sources, including news websites and publications. This data source was chosen to gather news articles related to wildfire prevention for analysis and research purposes.</p>
+</section>
+<section id="gathering-method-3" class="level3">
+<h3 class="anchored" data-anchor-id="gathering-method-3">Gathering Method</h3>
+<p>To obtain news articles on wildfire prevention, the following steps were followed:</p>
+<ol type="1">
+<li><strong>API Access</strong>: An API key from News API was obtained, which allowed access to their news article database.</li>
+<li><strong>API Request</strong>: A Python script was used to send an HTTP GET request to the News API endpoint. The request included parameters such as the API key, the topic “wildfire prevention,” and sorting by relevancy.</li>
+<li><strong>Response Parsing</strong>: The API response, received as JSON data, was parsed using the <code>jsonlite</code> library in R. This transformed the JSON data into a structured format for further analysis.</li>
+<li><strong>Data Storage</strong>: The extracted news articles were saved in a JSON file named “articles.json” for subsequent data processing and analysis.</li>
+</ol>
+</section>
+<section id="data-description-3" class="level3">
+<h3 class="anchored" data-anchor-id="data-description-3">Data Description</h3>
+<p>The dataset consists of news articles related to wildfire prevention. Each article includes the following information:</p>
+<ul>
+<li><code>source</code>: Information about the source of the article, including its name and ID.</li>
+<li><code>author</code>: The author(s) of the article.</li>
+<li><code>title</code>: The title of the article.</li>
+<li><code>description</code>: A brief description or summary of the article.</li>
+<li><code>url</code>: The URL where the full article can be accessed.</li>
+<li><code>urlToImage</code>: An image associated with the article.</li>
+<li><code>publishedAt</code>: The date and time when the article was published.</li>
+<li><code>content</code>: The full content of the article.</li>
+</ul>
+<p>The articles cover various aspects of wildfire prevention, including strategies, initiatives, and insights on combating wildfires. This dataset will be used for text analysis and exploration of wildfire prevention topics as part of the project’s research and analysis efforts.</p>
 
 
-</main> <!-- /main -->
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>National Interagency Fire Center - <a href="https://www.nifc.gov">Link</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>California Department of Forestry and Fire Protection - <a href="https://www.fire.ca.gov/">Link</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Visual Crossing Weather API - <a href="https://weather.visualcrossing.com">Link</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>News API - <a href="https://newsapi.org">Link</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DSAN5000_Project – data_cleaning</title>
+<title>DSAN5000_Project - Data Cleaning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,11 +81,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./About_Me.html" rel="" target="">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Code.html" rel="" target="">
+    <a class="nav-link" href="https://github.com/anly501/dsan-5000-project-jtjt427/tree/main/codes" rel="" target="">
  <span class="menu-text">Code</span></a>
   </li>  
   <li class="nav-item">
@@ -101,11 +101,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Data Gathering</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./Data_Cleaning.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./Cleaning.html" rel="" target="">
  <span class="menu-text">Data Cleaning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data_Exploration.html" rel="" target="">
+    <a class="nav-link" href="./Data_Exploration.ipynb" rel="" target="">
  <span class="menu-text">Data Exploration</span></a>
   </li>  
   <li class="nav-item">
@@ -113,13 +113,24 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Clustering</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Dimensionality_reduction.html" rel="" target="">
- <span class="menu-text">Dimensionality reduction</span></a>
+    <a class="nav-link" href="./Dimensionality_Reduction.html" rel="" target="">
+ <span class="menu-text">Dimensionality Reduction</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Decision_Trees.html" rel="" target="">
- <span class="menu-text">Decision Trees</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-decision-trees" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Decision Trees</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-decision-trees">    
+        <li>
+    <a class="dropdown-item" href="./Classification.html" rel="" target="">
+ <span class="dropdown-text">Classification</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Regression.html" rel="" target="">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./ARM.html" rel="" target="">
  <span class="menu-text">ARM</span></a>
@@ -127,6 +138,10 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="./Conclusions.html" rel="" target="">
  <span class="menu-text">Conclusions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Naive_Bayes.html" rel="" target="">
+ <span class="menu-text">Naive_Bayes</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
@@ -140,17 +155,175 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#wildfire-statistics" id="toc-wildfire-statistics" class="nav-link active" data-scroll-target="#wildfire-statistics">Wildfire Statistics</a>
+  <ul class="collapse">
+  <li><a href="#data-loading" id="toc-data-loading" class="nav-link" data-scroll-target="#data-loading">Data Loading</a></li>
+  <li><a href="#subset-columns" id="toc-subset-columns" class="nav-link" data-scroll-target="#subset-columns">Subset Columns</a></li>
+  <li><a href="#create-new-column-and-remove-unnecessary-columns" id="toc-create-new-column-and-remove-unnecessary-columns" class="nav-link" data-scroll-target="#create-new-column-and-remove-unnecessary-columns">Create New Column and Remove Unnecessary Columns</a></li>
+  <li><a href="#rename-columns" id="toc-rename-columns" class="nav-link" data-scroll-target="#rename-columns">Rename Columns</a></li>
+  <li><a href="#merge-data-frames" id="toc-merge-data-frames" class="nav-link" data-scroll-target="#merge-data-frames">Merge Data Frames</a></li>
+  <li><a href="#save-cleaned-data" id="toc-save-cleaned-data" class="nav-link" data-scroll-target="#save-cleaned-data">Save Cleaned Data</a></li>
+  </ul></li>
+  <li><a href="#suppression-cost-statistics" id="toc-suppression-cost-statistics" class="nav-link" data-scroll-target="#suppression-cost-statistics">Suppression Cost Statistics</a></li>
+  <li><a href="#data-loading-1" id="toc-data-loading-1" class="nav-link" data-scroll-target="#data-loading-1">Data Loading</a></li>
+  <li><a href="#subset-columns-1" id="toc-subset-columns-1" class="nav-link" data-scroll-target="#subset-columns-1">Subset Columns</a></li>
+  <li><a href="#remove-rows-and-convert-columns" id="toc-remove-rows-and-convert-columns" class="nav-link" data-scroll-target="#remove-rows-and-convert-columns">Remove Rows and Convert Columns</a></li>
+  <li><a href="#rename-columns-1" id="toc-rename-columns-1" class="nav-link" data-scroll-target="#rename-columns-1">Rename Columns</a></li>
+  <li><a href="#calculate-combined-score" id="toc-calculate-combined-score" class="nav-link" data-scroll-target="#calculate-combined-score">Calculate Combined Score</a></li>
+  <li><a href="#sort-data" id="toc-sort-data" class="nav-link" data-scroll-target="#sort-data">Sort Data</a></li>
+  <li><a href="#save-cleaned-data-1" id="toc-save-cleaned-data-1" class="nav-link" data-scroll-target="#save-cleaned-data-1">Save Cleaned Data</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Cleaning</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this section, I will walk through the data cleaning process for my wildfire prediction and mitidation project. The primary goal is to prepare the raw data for analysis and modeling. I use R code to clean record, labeled data that has both qualitative and quantitative variables, and python code to clean text data. To access the original data cleaning codes, please visit the Github link here <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<section id="wildfire-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="wildfire-statistics">Wildfire Statistics</h2>
+<section id="data-loading" class="level3">
+<h3 class="anchored" data-anchor-id="data-loading">Data Loading</h3>
+<p>I start by loading the raw data from CSV files, including HumanCausedAcres.csv, HumanCausedFires.csv, LighteningAcres.csv, and LightningFires.csv. These files contain various data related to wildfires statistics across the states.</p>
+<p>Note that the four raw datasets share an extremely similiar data structure, except that HumanCausedAcres.csv and LighteningAcres.csv are the statistics on wildfire <strong>acres</strong> caused by human and lightening, whereas HumanCausedFires.csv and LightningFires.csv are the statistics on the <strong>number</strong> of wildfires caused by human and lightening.(Details on the raw datasets are demonstrated under the Data Cleaning tab). Therefore, I will use HumanCausedAcres.csv as an example to illustrate on the data cleaning process, and the rest of the three datasets follow the exact same cleaning goal and process.</p>
+</section>
+<section id="subset-columns" class="level3">
+<h3 class="anchored" data-anchor-id="subset-columns">Subset Columns</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2023-10-06-13-45-28.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Before Subsetting</figcaption>
+</figure>
+</div>
+<p><strong>Column Selection</strong>: Initially, I have all columns from the raw data. However, for my analysis, I need a subset of columns that are relevant. These typically include <code>Year</code>, <code>Northern California</code>, <code>Southern California</code>, and <code>Total</code>. The columns are chosen to focus on the analysis on the trend of wildfire across the states.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2023-10-06-13-46-32.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">After Subsetting</figcaption>
+</figure>
+</div>
+</section>
+<section id="create-new-column-and-remove-unnecessary-columns" class="level3">
+<h3 class="anchored" data-anchor-id="create-new-column-and-remove-unnecessary-columns">Create New Column and Remove Unnecessary Columns</h3>
+<p><strong>Consolidating Acreage</strong>: To simplify the representation of acreage data, I create a new column called <code>California_Acres</code> in the <code>HumanCausedAcres</code> data frame. This new column represents the combined acreage for both Northern and Southern California.</p>
+<p><strong>Streamlining Data</strong>: After creating the <code>California_Acres</code> column, I remove the <code>Northern California</code> and <code>Southern California</code> columns from the data frame since they are no longer needed for my analysis.</p>
+<p><img src="images/2023-10-06-16-33-50.png" class="img-fluid"></p>
+</section>
+<section id="rename-columns" class="level3">
+<h3 class="anchored" data-anchor-id="rename-columns">Rename Columns</h3>
+<p><strong>Clarity and Consistency</strong>: To ensure clarity and consistency in column naming, I rename the ‘Total’ column to ‘Total_Acres’. This change accurately reflects the content of the column, which avoids the mergeing process.</p>
+<p><img src="images/2023-10-06-16-35-33.png" class="img-fluid"></p>
+<p>Repeating the above cleaning procedures on the rest of three datasets and get four cleaned up wildfire datasets for this study.</p>
+</section>
+<section id="merge-data-frames" class="level3">
+<h3 class="anchored" data-anchor-id="merge-data-frames">Merge Data Frames</h3>
+<p><strong>Data Integration</strong>: I merge two data frames, ‘HumanCausedAcres’ and ‘HumanCausedFires’, using the <code>Year</code> column as the common identifier. Similarly, two other data frames, ‘LighteningAcres’ and ‘LightingFires,’ are also merged based on the <code>Year</code> column. The two merged datasets are called ‘HumanCaused’ and ‘LighteningCaused’ respectively.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2023-10-06-16-51-04.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">‘HumanCaused’ and ‘LighteningCaused’</figcaption>
+</figure>
+</div>
+<p>I observed that the two datasets have the same column names. Because my goal is to conbine the datasets into onw big chart, I need to rename the columns to avoid confusion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2023-10-06-16-53-41.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Renamed ‘HumanCaused’ and ‘LighteningCaused’</figcaption>
+</figure>
+</div>
+<p>Then, I can merge the two datasets into one basing on the column <code>Year</code>, and name it ‘Human_Lightening’</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2023-10-06-16-59-15.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">‘Human_Lightening’</figcaption>
+</figure>
+</div>
+</section>
+<section id="save-cleaned-data" class="level3">
+<h3 class="anchored" data-anchor-id="save-cleaned-data">Save Cleaned Data</h3>
+<p>The cleaned data is saved into my project repository and can now be used for predictive modeling and other analyses.</p>
+</section>
+</section>
+<section id="suppression-cost-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="suppression-cost-statistics">Suppression Cost Statistics</h2>
+<p>In this section, I will discuss on the data cleaning process for the ‘SuppCosts’ dataset, which contains information about wildfire suppression costs. I will clean, transform, and organize the data to prepare it for analysis.</p>
+</section>
+<section id="data-loading-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-loading-1">Data Loading</h2>
+<p>I begin by loading the raw “SuppCosts” dataset from the CSV file. This dataset contains columns such as <code>Year</code>, <code>Fires</code>, <code>Acres</code>, <code>Forest Service</code>, <code>DOI Agencies</code> and <code>Total</code>, which provide information about suppression costs over the years.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2023-10-06-17-11-06.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">‘SuppCosts’ Before Cleaning</figcaption>
+</figure>
+</div>
+</section>
+<section id="subset-columns-1" class="level2">
+<h2 class="anchored" data-anchor-id="subset-columns-1">Subset Columns</h2>
+<p><strong>Column Selection</strong>: Initially, I have all the columns from the raw data. However, for my analysis, I need a subset of columns that are relevant. I select the columns <code>Year</code>, <code>Fires</code>, <code>Acres</code>, and <code>Total</code> to focus on wildfire suppression cost trends.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2023-10-06-17-13-05.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">After Subset</figcaption>
+</figure>
+</div>
+</section>
+<section id="remove-rows-and-convert-columns" class="level2">
+<h2 class="anchored" data-anchor-id="remove-rows-and-convert-columns">Remove Rows and Convert Columns</h2>
+<p><strong>Data Cleanup</strong>: - I remove rows below index 38 from the dataset. - I convert the “Acres” and “Total” columns to numeric format by removing commas and dollar signs.</p>
+</section>
+<section id="rename-columns-1" class="level2">
+<h2 class="anchored" data-anchor-id="rename-columns-1">Rename Columns</h2>
+<p><strong>Clarity and Consistency</strong>: To ensure clear and consistent column naming, we rename the ‘Total’ column to ‘Total_spent.’ This change accurately reflects the content of the column.</p>
+</section>
+<section id="calculate-combined-score" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-combined-score">Calculate Combined Score</h2>
+<p><strong>Data Enrichment</strong>: We calculate a new column called “CombinedScore” by summing the “Fires” and “Acres” columns. This combined score represents the overall impact of wildfires, taking both the number of fires and acres affected into account.</p>
+</section>
+<section id="sort-data" class="level2">
+<h2 class="anchored" data-anchor-id="sort-data">Sort Data</h2>
+<p><strong>Data Analysis</strong>: To facilitate analysis, we sort the data based on the “CombinedScore” column in descending order. This arrangement allows us to identify the most significant wildfire events.</p>
+</section>
+<section id="save-cleaned-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="save-cleaned-data-1">Save Cleaned Data</h2>
+<p>The cleaned and enriched “SuppCosts” dataset, now organized and ready for analysis, is saved to a CSV file named “sorted_SuppCosts.csv” in the “data/cleaned-data” directory.</p>
+<p>With the data cleaning process complete, you can now use the cleaned dataset for further analysis and modeling.</p>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
+<p>The above data cleaning process is specific to the “SuppCosts” dataset. To perform similar cleaning procedures on the other three datasets, you can follow the same steps, ensuring that the data is prepared consistently for your wildfire statistics study.</p>
 
 
-</main> <!-- /main -->
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>My Data Cleaning Codes - <a href="https://github.com/anly501/dsan-5000-project-jtjt427/tree/main/codes/02-data-cleaning">Link</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

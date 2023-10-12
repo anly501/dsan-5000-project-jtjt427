@@ -1,5 +1,6 @@
 library(readr)
 library(dplyr)
+library(ggplot2)
 HumanCausedAcres <- read_csv("data/raw-data/HumanCausedAcres.csv")
 HumanCausedFires <- read_csv("data/raw-data/HumanCausedFires.csv")
 LighteningAcres <- read_csv("data/raw-data/LighteningAcres.csv")
@@ -7,8 +8,36 @@ LightingFires <- read_csv("data/raw-data/LightingFires.csv")
 SuppCosts <- read_csv("data/raw-data/SuppCosts.csv")
 
 # Subset a data frame with the given column names:
+# Before
+ggplot(data = HumanCausedAcres, aes(x = Year, y = Total)) +
+  geom_line() +
+  ggtitle("Human Caused Acres Before Subset Columns") +
+  xlab("Year") +
+  ylab("Total Acres")
 HumanCausedAcres <- HumanCausedAcres[, c("Year", "Northern California", 
                                          "Southern California", "Total")]
+head(HumanCausedAcres)
+# Create a new column California_Acres, which is the sum of the column Northern California` and column `Southern California`
+HumanCausedAcres$California_Acres <- HumanCausedAcres$`Northern California` +
+  HumanCausedAcres$`Southern California`
+# Remove the column Northern California` and column `Southern California`
+HumanCausedAcres <- subset(HumanCausedAcres, select = -c(`Northern California`, 
+                                                         `Southern California`))
+head(HumanCausedAcres)
+# Rename the column Total
+HumanCausedAcres <- HumanCausedAcres %>%
+  rename(Total_Acres = Total)
+# Switch the order of the two columns
+HumanCausedAcres <- HumanCausedAcres[, c("Year", "California_Acres", "Total_Acres")]
+
+# After
+ggplot(data = HumanCausedAcres, aes(x = Year, y = California_Acres)) +
+  geom_line() +
+  ggtitle("Human Caused Acres After Subset Columns") +
+  xlab("Year") +
+  ylab("California Acres")
+
+# Do the same for the rest of the data frames
 HumanCausedFires <- HumanCausedFires[, c("Year", "Northern California",
                                          "Southern California", "Total")]
 LighteningAcres <- LighteningAcres[, c("Year", "Northern California",
@@ -17,22 +46,6 @@ LightingFires <- LightingFires[, c("Year", "Northern California",
                                    "Southern California", "Total")]
 SuppCosts <- SuppCosts[, c("Year", "Fires", "Acres", "Total")]
 
-# Create a new column California_Acres, which is the sum of the column Northern California` and column `Southern California`
-HumanCausedAcres$California_Acres <- HumanCausedAcres$`Northern California` +
-  HumanCausedAcres$`Southern California`
-
-# Remove the column Northern California` and column `Southern California`
-HumanCausedAcres <- subset(HumanCausedAcres, select = -c(`Northern California`, 
-                                                         `Southern California`))
-
-# Rename the column Total
-HumanCausedAcres <- HumanCausedAcres %>%
-  rename(Total_Acres = Total)
-
-# Switch the order of the two columns
-HumanCausedAcres <- HumanCausedAcres[, c("Year", "California_Acres", "Total_Acres")]
-
-# Do the same for the rest of the data frames
 HumanCausedFires$California_Fires <- HumanCausedFires$`Northern California` +
   HumanCausedFires$`Southern California`
 HumanCausedFires <- subset(HumanCausedFires, select = -c(`Northern California`, 
@@ -62,6 +75,8 @@ LightingFires <- LightingFires[, c("Year", "California_Fires", "Total_Fires")]
 HumanCaused <- merge(HumanCausedAcres, HumanCausedFires, by = "Year", all = TRUE)
 LighteningCaused <- merge(LighteningAcres, LightingFires, by = "Year", all = TRUE)
 
+head(HumanCaused)
+head(LighteningCaused)
 # Rename the columns
 HumanCaused <- HumanCaused %>%
   rename(Cali_Acres_H = California_Acres,
@@ -74,6 +89,9 @@ LighteningCaused <- LighteningCaused %>%
          Total_Acres_L = Total_Acres, 
          Cali_Fires_L = California_Fires,
          Total_Fires_L = Total_Fires)
+
+head(HumanCaused)
+head(LighteningCaused)
 
 Human_Lightening <- merge(HumanCaused, LighteningCaused, by = "Year", all = TRUE)
 
@@ -101,6 +119,71 @@ sorted_SuppCosts <- SuppCosts[order(-SuppCosts$CombinedScore), ]
 write.csv(sorted_SuppCosts, file = "data/cleaned-data/sorted_SuppCosts.csv", row.names = FALSE)
 
 
+Cali_2020 <- read_csv("data/raw-data/Cali_2020.csv")
+# Subset a data frame with the given column names:
+Cali_2020 <- Cali_2020[ , c('datetime', 'tempmax', 'tempmin', 'humidity', 
+                            'precip', 'windspeed')]
+
+Cali_2017 <- read_csv("data/raw-data/Cali_2017.csv")
+Cali_2017 <- Cali_2017[ , c('datetime', 'tempmax', 'tempmin', 'humidity', 
+                            'precip', 'windspeed')]
+
+Cali_2015 <- read_csv("data/raw-data/Cali_2015.csv")
+Cali_2015 <- Cali_2015[ , c('datetime', 'tempmax', 'tempmin', 'humidity', 
+                            'precip', 'windspeed')]
+
+Cali_2014 <- read_csv("data/raw-data/Cali_2014.csv")
+Cali_2014 <- Cali_2014[ , c('datetime', 'tempmax', 'tempmin', 'humidity', 
+                            'precip', 'windspeed')]
+
+Cali_2010 <- read_csv("data/raw-data/Cali_2010.csv")
+Cali_2010 <- Cali_2010[ , c('datetime', 'tempmax', 'tempmin', 'humidity', 
+                            'precip', 'windspeed')]
+
+Cali_2001 <- read_csv("data/raw-data/Cali_2001.csv")
+Cali_2001 <- Cali_2001[ , c('datetime', 'tempmax', 'tempmin', 'humidity', 
+                            'precip', 'windspeed')]
+
+Cali_MDY <- read_csv("data/raw-data/Cali_MDY.csv")
+Cali_MDY <- Cali_MDY %>%
+  rename(
+    AcresBurned = `Acres Burned`
+  )
+Cali_MDY <- Cali_MDY[ , c('StartDate', 'AcresBurned', 'Cause', 
+                          'StructureDest.', 'StructureDam.', 
+                          'FirePersonnelDeath', 'CivilDeath')]
+
+# Replace NA values with 0 in the columns
+Cali_MDY$StructureDest.[is.na(Cali_MDY$StructureDest.)] <- 0
+Cali_MDY$StructureDam.[is.na(Cali_MDY$StructureDam.)] <- 0
+Cali_MDY$FirePersonnelDeath[is.na(Cali_MDY$FirePersonnelDeath)] <- 0
+Cali_MDY$CivilDeath[is.na(Cali_MDY$CivilDeath)] <- 0
+
+# Add up 'StructureDest.' and 'StructureDam.' and name the new column 'StructureDam'
+Cali_MDY$StructureDam <- Cali_MDY$StructureDest. + Cali_MDY$StructureDam.
+
+# Add up 'FirePersonnelDeath' and 'CivilDeath' and name the new column 'Fatalities'
+Cali_MDY$Fatalities <- Cali_MDY$FirePersonnelDeath + Cali_MDY$CivilDeath
+
+# Delete the original four columns
+Cali_MDY <- Cali_MDY[, !names(Cali_MDY) %in% c('StructureDest.', 'StructureDam.', 'FirePersonnelDeath', 'CivilDeath')]
+
+# Identify NA values in the StartDate column
+na_rows <- is.na(Cali_MDY$StartDate)
+
+# Convert date column to Date format
+Cali_MDY$StartDate <- as.Date(Cali_MDY$StartDate, format = "%m/%d/%y")
+
+# Remove rows with NA values in the StartDate column
+Cali_MDY <- Cali_MDY[!na_rows, ]
+
+# Left merge the two datasets based on the 'datetime' and 'StartDate' columns
+Cali20_climate_fire <- merge(Cali_2020, Cali_MDY, by.x = "datetime", by.y = "StartDate", all.x = TRUE)
+
+# Create a new column 'fire' based on the 'AcresBurned' column
+Cali20_climate_fire$fire <- ifelse(!is.na(Cali20_climate_fire$AcresBurned), "Yes", "No")
+
+write.csv(Cali20_climate_fire, file = "data/cleaned-data/Cali20_climate_fire.csv", row.names = FALSE)
 
 
 
