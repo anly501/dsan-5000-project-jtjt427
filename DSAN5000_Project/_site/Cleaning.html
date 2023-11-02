@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DSAN5000_Project - Data Gathering</title>
+<title>DSAN5000_Project - Data Cleaning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Data Cleaning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data_Exploration.ipynb" rel="" target="">
+    <a class="nav-link" href="./Data_Exploration.html" rel="" target="">
  <span class="menu-text">Data Exploration</span></a>
   </li>  
   <li class="nav-item">
@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#calculate-combined-score" id="toc-calculate-combined-score" class="nav-link" data-scroll-target="#calculate-combined-score">Calculate Combined Score</a></li>
   <li><a href="#sort-data" id="toc-sort-data" class="nav-link" data-scroll-target="#sort-data">Sort Data</a></li>
   </ul></li>
-  <li><a href="#california-2020-wildfire-statistics" id="toc-california-2020-wildfire-statistics" class="nav-link" data-scroll-target="#california-2020-wildfire-statistics">California 2020 Wildfire Statistics</a>
+  <li><a href="#california-wildfire-statistics" id="toc-california-wildfire-statistics" class="nav-link" data-scroll-target="#california-wildfire-statistics">California Wildfire Statistics</a>
   <ul class="collapse">
   <li><a href="#data-loading-2" id="toc-data-loading-2" class="nav-link" data-scroll-target="#data-loading-2">Data Loading</a></li>
   <li><a href="#subset-columns-2" id="toc-subset-columns-2" class="nav-link" data-scroll-target="#subset-columns-2">Subset Columns</a></li>
@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Gathering</h1>
+<h1 class="title">Data Cleaning</h1>
 </div>
 
 
@@ -258,18 +258,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>In this section, I will walk through the data cleaning process for my wildfire prediction and mitigation project. The primary goal is to prepare the raw data for analysis and modeling. I use R code to clean record data that has both qualitative and quantitative variables, and python code to clean labeled text data. To access the original data cleaning codes, please visit the Github link here <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>In this section, we will walk through the data cleaning process for my wildfire prediction and mitigation project. The primary goal is to prepare the raw data for analysis and modeling. I used R code to clean record data that has both qualitative and quantitative variables, and python code to clean labeled text data. To access the original data cleaning codes, please visit the Github link here <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <section id="wildfire-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="wildfire-statistics">Wildfire Statistics</h2>
 <section id="data-loading" class="level3">
 <h3 class="anchored" data-anchor-id="data-loading">Data Loading</h3>
-<p>I start by loading the raw data from CSV files, including HumanCausedAcres.csv, HumanCausedFires.csv, LighteningAcres.csv, and LightningFires.csv. These files contain various data related to wildfires statistics across the states.</p>
+<p>We start by loading the raw data from CSV files, including HumanCausedAcres.csv, HumanCausedFires.csv, LighteningAcres.csv, and LightningFires.csv. These files contain various data related to wildfires statistics across the states.</p>
 <p>Note that the four raw datasets share an extremely similiar data structure, except that HumanCausedAcres.csv and LighteningAcres.csv are the statistics on wildfire <strong>acres</strong> caused by human and lightening, whereas HumanCausedFires.csv and LightningFires.csv are the statistics on the <strong>number</strong> of wildfires caused by human and lightening.(Details on the raw datasets are demonstrated under the Data Cleaning tab). Therefore, I will use HumanCausedAcres.csv as an example to illustrate on the data cleaning process, and the rest of the three datasets follow the exact same cleaning goal and process.</p>
 </section>
 <section id="subset-columns" class="level3">
 <h3 class="anchored" data-anchor-id="subset-columns">Subset Columns</h3>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>head(HumanCausedAcres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(HumanCausedAcres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 13</caption>
@@ -400,11 +400,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<p><strong>Column Selection</strong>: Initially, I have all columns from the raw data. However, for my analysis, I need a subset of columns that are relevant. These typically include <code>Year</code>, <code>Northern California</code>, <code>Southern California</code>, and <code>Total</code>. The columns are chosen to focus on the analysis on the trend of wildfire across the states:</p>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres <span class="op">&lt;-</span> HumanCausedAcres[, c(<span class="st">"Year"</span>, <span class="st">"Northern California"</span>, </span>
+<p><strong>Column Selection</strong>: Initially, we have all columns from the raw data. However, for our analysis, we need a subset of columns that are relevant. These typically include <code>Year</code>, <code>Northern California</code>, <code>Southern California</code>, and <code>Total</code>. The columns are chosen to focus on the analysis on the trend of wildfire across the states:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres <span class="ot">&lt;-</span> HumanCausedAcres[, <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Northern California"</span>, </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">"Southern California"</span>, <span class="st">"Total"</span>)]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>head(HumanCausedAcres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(HumanCausedAcres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 4</caption>
@@ -466,15 +466,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="create-new-column-and-remove-unnecessary-columns" class="level3">
 <h3 class="anchored" data-anchor-id="create-new-column-and-remove-unnecessary-columns">Create New Column and Remove Unnecessary Columns</h3>
-<p><strong>Consolidating Acreage</strong>: To simplify the representation of acreage data, I create a new column called <code>California_Acres</code> in the <code>HumanCausedAcres</code> data frame. This new column represents the combined acreage for both Northern and Southern California.</p>
-<p><strong>Streamlining Data</strong>: After creating the <code>California_Acres</code> column, I remove the <code>Northern California</code> and <code>Southern California</code> columns from the data frame since they are no longer needed for my analysis:</p>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres$California_Acres <span class="op">&lt;-</span> HumanCausedAcres$`Northern California` <span class="op">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  HumanCausedAcres$`Southern California`</span>
+<p><strong>Consolidating Acreage</strong>: To simplify the representation of acreage data, we create a new column called <code>California_Acres</code> in the <code>HumanCausedAcres</code> data frame. This new column represents the combined acreage for both Northern and Southern California.</p>
+<p><strong>Streamlining Data</strong>: After creating the <code>California_Acres</code> column, we remove the <code>Northern California</code> and <code>Southern California</code> columns from the data frame since they are no longer needed for our analysis:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres<span class="sc">$</span>California_Acres <span class="ot">&lt;-</span> HumanCausedAcres<span class="sc">$</span><span class="st">`</span><span class="at">Northern California</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  HumanCausedAcres<span class="sc">$</span><span class="st">`</span><span class="at">Southern California</span><span class="st">`</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the column Northern California` and column `Southern California`</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres <span class="op">&lt;-</span> subset(HumanCausedAcres, select <span class="op">=</span> <span class="op">-</span>c(`Northern California`, </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                                         `Southern California`))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>head(HumanCausedAcres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres <span class="ot">&lt;-</span> <span class="fu">subset</span>(HumanCausedAcres, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">`</span><span class="at">Northern California</span><span class="st">`</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">`</span><span class="at">Southern California</span><span class="st">`</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(HumanCausedAcres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 3</caption>
@@ -529,12 +529,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="rename-columns" class="level3">
 <h3 class="anchored" data-anchor-id="rename-columns">Rename Columns</h3>
 <p><strong>Clarity and Consistency</strong>: To ensure clarity and consistency in column naming, I rename the ‘Total’ column to ‘Total_Acres’. This change accurately reflects the content of the column, which avoids the mergeing process:</p>
-<div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres <span class="op">&lt;-</span> HumanCausedAcres <span class="op">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  rename(Total_Acres <span class="op">=</span> Total)</span>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres <span class="ot">&lt;-</span> HumanCausedAcres <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Total_Acres =</span> Total)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch the order of the two columns</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres <span class="op">&lt;-</span> HumanCausedAcres[, c(<span class="st">"Year"</span>, <span class="st">"California_Acres"</span>, <span class="st">"Total_Acres"</span>)]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>head(HumanCausedAcres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>HumanCausedAcres <span class="ot">&lt;-</span> HumanCausedAcres[, <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"California_Acres"</span>, <span class="st">"Total_Acres"</span>)]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(HumanCausedAcres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 3</caption>
@@ -586,55 +586,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Repeating the above cleaning procedures on the rest of three datasets and get four cleaned up wildfire datasets for this study:</p>
-<div class="cell" data-execution_count="29">
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="29">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do the same for the rest of the data frames</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/HumanCausedFires.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/LighteningAcres.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/LightingFires.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="op">&lt;-</span> HumanCausedFires[, c(<span class="st">"Year"</span>, <span class="st">"Northern California"</span>,</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do the same for the rest of the data frames</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/HumanCausedFires.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/LighteningAcres.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/LightingFires.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="ot">&lt;-</span> HumanCausedFires[, <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Northern California"</span>,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">"Southern California"</span>, <span class="st">"Total"</span>)]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="op">&lt;-</span> LighteningAcres[, c(<span class="st">"Year"</span>, <span class="st">"Northern California"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="ot">&lt;-</span> LighteningAcres[, <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Northern California"</span>,</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"Southern California"</span>, <span class="st">"Total"</span>)]</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="op">&lt;-</span> LightingFires[, c(<span class="st">"Year"</span>, <span class="st">"Northern California"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="ot">&lt;-</span> LightingFires[, <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Northern California"</span>,</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Southern California"</span>, <span class="st">"Total"</span>)]</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>HumanCausedFires$California_Fires <span class="op">&lt;-</span> HumanCausedFires$`Northern California` <span class="op">+</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  HumanCausedFires$`Southern California`</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="op">&lt;-</span> subset(HumanCausedFires, select <span class="op">=</span> <span class="op">-</span>c(`Northern California`, </span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                                                         `Southern California`))</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="op">&lt;-</span> HumanCausedFires <span class="op">%&gt;%</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  rename(Total_Fires <span class="op">=</span> Total)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="op">&lt;-</span> HumanCausedFires[, c(<span class="st">"Year"</span>, <span class="st">"California_Fires"</span>, <span class="st">"Total_Fires"</span>)]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>HumanCausedFires<span class="sc">$</span>California_Fires <span class="ot">&lt;-</span> HumanCausedFires<span class="sc">$</span><span class="st">`</span><span class="at">Northern California</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  HumanCausedFires<span class="sc">$</span><span class="st">`</span><span class="at">Southern California</span><span class="st">`</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="ot">&lt;-</span> <span class="fu">subset</span>(HumanCausedFires, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">`</span><span class="at">Northern California</span><span class="st">`</span>, </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">`</span><span class="at">Southern California</span><span class="st">`</span>))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="ot">&lt;-</span> HumanCausedFires <span class="sc">%&gt;%</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Total_Fires =</span> Total)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>HumanCausedFires <span class="ot">&lt;-</span> HumanCausedFires[, <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"California_Fires"</span>, <span class="st">"Total_Fires"</span>)]</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>LighteningAcres$California_Acres <span class="op">&lt;-</span> LighteningAcres$`Northern California` <span class="op">+</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  LighteningAcres$`Southern California`</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="op">&lt;-</span> subset(LighteningAcres, select <span class="op">=</span> <span class="op">-</span>c(`Northern California`, </span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                                                       `Southern California`))</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="op">&lt;-</span> LighteningAcres <span class="op">%&gt;%</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  rename(Total_Acres <span class="op">=</span> Total)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="op">&lt;-</span> LighteningAcres[, c(<span class="st">"Year"</span>, <span class="st">"California_Acres"</span>, <span class="st">"Total_Acres"</span>)]</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>LighteningAcres<span class="sc">$</span>California_Acres <span class="ot">&lt;-</span> LighteningAcres<span class="sc">$</span><span class="st">`</span><span class="at">Northern California</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  LighteningAcres<span class="sc">$</span><span class="st">`</span><span class="at">Southern California</span><span class="st">`</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="ot">&lt;-</span> <span class="fu">subset</span>(LighteningAcres, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">`</span><span class="at">Northern California</span><span class="st">`</span>, </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                                                       <span class="st">`</span><span class="at">Southern California</span><span class="st">`</span>))</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="ot">&lt;-</span> LighteningAcres <span class="sc">%&gt;%</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Total_Acres =</span> Total)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>LighteningAcres <span class="ot">&lt;-</span> LighteningAcres[, <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"California_Acres"</span>, <span class="st">"Total_Acres"</span>)]</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>LightingFires$California_Fires <span class="op">&lt;-</span> LightingFires$`Northern California` <span class="op">+</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  LightingFires$`Southern California`</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="op">&lt;-</span> subset(LightingFires, select <span class="op">=</span> <span class="op">-</span>c(`Northern California`, </span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>                                                   `Southern California`))</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="op">&lt;-</span> LightingFires <span class="op">%&gt;%</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  rename(Total_Fires <span class="op">=</span> Total)</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="op">&lt;-</span> LightingFires[, c(<span class="st">"Year"</span>, <span class="st">"California_Fires"</span>, <span class="st">"Total_Fires"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>LightingFires<span class="sc">$</span>California_Fires <span class="ot">&lt;-</span> LightingFires<span class="sc">$</span><span class="st">`</span><span class="at">Northern California</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  LightingFires<span class="sc">$</span><span class="st">`</span><span class="at">Southern California</span><span class="st">`</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="ot">&lt;-</span> <span class="fu">subset</span>(LightingFires, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">`</span><span class="at">Northern California</span><span class="st">`</span>, </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>                                                   <span class="st">`</span><span class="at">Southern California</span><span class="st">`</span>))</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="ot">&lt;-</span> LightingFires <span class="sc">%&gt;%</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Total_Fires =</span> Total)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>LightingFires <span class="ot">&lt;-</span> LightingFires[, <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"California_Fires"</span>, <span class="st">"Total_Fires"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="merge-data-frames" class="level3">
 <h3 class="anchored" data-anchor-id="merge-data-frames">Merge Data Frames</h3>
-<p><strong>Data Integration</strong>: I merge two data frames, ‘HumanCausedAcres’ and ‘HumanCausedFires’, using the <code>Year</code> column as the common identifier. Similarly, two other data frames, ‘LighteningAcres’ and ‘LightingFires,’ are also merged based on the <code>Year</code> column. The two merged datasets are called ‘HumanCaused’ and ‘LighteningCaused’ respectively:</p>
-<div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>HumanCaused <span class="op">&lt;-</span> merge(HumanCausedAcres, HumanCausedFires, by <span class="op">=</span> <span class="st">"Year"</span>, <span class="bu">all</span> <span class="op">=</span> TRUE)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>LighteningCaused <span class="op">&lt;-</span> merge(LighteningAcres, LightingFires, by <span class="op">=</span> <span class="st">"Year"</span>, <span class="bu">all</span> <span class="op">=</span> TRUE)</span>
+<p><strong>Data Integration</strong>: We merge two data frames, ‘HumanCausedAcres’ and ‘HumanCausedFires’, using the <code>Year</code> column as the common identifier. Similarly, two other data frames, ‘LighteningAcres’ and ‘LightingFires,’ are also merged based on the <code>Year</code> column. The two merged datasets are called ‘HumanCaused’ and ‘LighteningCaused’ respectively:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>HumanCaused <span class="ot">&lt;-</span> <span class="fu">merge</span>(HumanCausedAcres, HumanCausedFires, <span class="at">by =</span> <span class="st">"Year"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>LighteningCaused <span class="ot">&lt;-</span> <span class="fu">merge</span>(LighteningAcres, LightingFires, <span class="at">by =</span> <span class="st">"Year"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>head(HumanCaused)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>head(LighteningCaused)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(HumanCaused)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(LighteningCaused)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 6 x 5</caption>
@@ -782,23 +782,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<p>I observe that the two datasets have the same column names. Because my goal is to conbine the datasets into one big chart, I need to rename the columns to avoid confusion:</p>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>HumanCaused <span class="op">&lt;-</span> HumanCaused <span class="op">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  rename(Cali_Acres_H <span class="op">=</span> California_Acres,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         Total_Acres_H <span class="op">=</span> Total_Acres, </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         Cali_Fires_H <span class="op">=</span> California_Fires,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         Total_Fires_H <span class="op">=</span> Total_Fires)</span>
+<p>We observe that the two datasets have the same column names. Because my goal is to conbine the datasets into one big chart, we need to rename the columns to avoid confusion:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>HumanCaused <span class="ot">&lt;-</span> HumanCaused <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Cali_Acres_H =</span> California_Acres,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Total_Acres_H =</span> Total_Acres, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">Cali_Fires_H =</span> California_Fires,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Total_Fires_H =</span> Total_Fires)</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>LighteningCaused <span class="op">&lt;-</span> LighteningCaused <span class="op">%&gt;%</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  rename(Cali_Acres_L <span class="op">=</span> California_Acres,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>         Total_Acres_L <span class="op">=</span> Total_Acres, </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>         Cali_Fires_L <span class="op">=</span> California_Fires,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>         Total_Fires_L <span class="op">=</span> Total_Fires)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>LighteningCaused <span class="ot">&lt;-</span> LighteningCaused <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Cali_Acres_L =</span> California_Acres,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">Total_Acres_L =</span> Total_Acres, </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">Cali_Fires_L =</span> California_Fires,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">Total_Fires_L =</span> Total_Fires)</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>head(HumanCaused)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>head(LighteningCaused)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(HumanCaused)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(LighteningCaused)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 6 x 5</caption>
@@ -947,9 +947,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now, I am safe to merge the datasets:</p>
-<div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Human_Lightening <span class="op">&lt;-</span> merge(HumanCaused, LighteningCaused, by <span class="op">=</span> <span class="st">"Year"</span>, <span class="bu">all</span> <span class="op">=</span> TRUE)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>head(Human_Lightening)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Human_Lightening <span class="ot">&lt;-</span> <span class="fu">merge</span>(HumanCaused, LighteningCaused, <span class="at">by =</span> <span class="st">"Year"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Human_Lightening)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 6 x 9</caption>
@@ -1056,17 +1056,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<p>Since the column names are still variables, I make a new column called cause that stores the cause of the wildfire:</p>
-<div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Human_Lightening <span class="op">&lt;-</span> Human_Lightening <span class="op">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  pivot_longer(cols <span class="op">=</span> <span class="op">-</span>Year, names_to <span class="op">=</span> <span class="st">"Variable"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  mutate(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    Cause <span class="op">=</span> ifelse(grepl(<span class="st">"_H$"</span>, Variable), <span class="st">"Human"</span>, <span class="st">"Lightning"</span>),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    Variable <span class="op">=</span> gsub(<span class="st">"_H$|_L$"</span>, <span class="st">""</span>, Variable)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  pivot_wider(names_from <span class="op">=</span> Variable, values_from <span class="op">=</span> value)</span>
+<p>Since the column names are still variables, we make a new column called cause that stores the cause of the wildfire:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Human_Lightening <span class="ot">&lt;-</span> Human_Lightening <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Year, <span class="at">names_to =</span> <span class="st">"Variable"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cause =</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"_H$"</span>, Variable), <span class="st">"Human"</span>, <span class="st">"Lightning"</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="fu">gsub</span>(<span class="st">"_H$|_L$"</span>, <span class="st">""</span>, Variable)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Variable, <span class="at">values_from =</span> value)</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>head(Human_Lightening)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Human_Lightening)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 6</caption>
@@ -1145,13 +1145,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="suppression-cost-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="suppression-cost-statistics">Suppression Cost Statistics</h2>
-<p>In this section, I will discuss on the data cleaning process for the ‘SuppCosts’ dataset, which contains information about wildfire suppression costs. I will clean, transform, and organize the data to prepare it for analysis.</p>
+<p>In this section, we will discuss on the data cleaning process for the ‘SuppCosts’ dataset, which contains information about wildfire suppression costs. we will clean, transform, and organize the data to prepare it for analysis.</p>
 <section id="data-loading-1" class="level3">
 <h3 class="anchored" data-anchor-id="data-loading-1">Data Loading</h3>
-<p>I begin by loading the raw “SuppCosts” dataset from the CSV file. This dataset contains columns such as <code>Year</code>, <code>Fires</code>, <code>Acres</code>, <code>Forest Service</code>, <code>DOI Agencies</code> and <code>Total</code>, which provide information about suppression costs over the years:</p>
-<div class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>SuppCosts <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/SuppCosts.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>head(SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>we begin by loading the raw “SuppCosts” dataset from the CSV file. This dataset contains columns such as <code>Year</code>, <code>Fires</code>, <code>Acres</code>, <code>Forest Service</code>, <code>DOI Agencies</code> and <code>Total</code>, which provide information about suppression costs over the years:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>SuppCosts <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/SuppCosts.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 6</caption>
@@ -1229,10 +1229,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="subset-columns-1" class="level3">
 <h3 class="anchored" data-anchor-id="subset-columns-1">Subset Columns</h3>
-<p><strong>Column Selection</strong>: Initially, I have all the columns from the raw data. However, for my analysis, I need a subset of columns that are relevant. I select the columns <code>Year</code>, <code>Fires</code>, <code>Acres</code>, and <code>Total</code> to focus on wildfire suppression cost trends:</p>
-<div class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>SuppCosts <span class="op">&lt;-</span> SuppCosts[, c(<span class="st">"Year"</span>, <span class="st">"Fires"</span>, <span class="st">"Acres"</span>, <span class="st">"Total"</span>)]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>head(SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Column Selection</strong>: Initially, we have all the columns from the raw data. However, for our analysis, we need a subset of columns that are relevant. we select the columns <code>Year</code>, <code>Fires</code>, <code>Acres</code>, and <code>Total</code> to focus on wildfire suppression cost trends:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>SuppCosts <span class="ot">&lt;-</span> SuppCosts[, <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Fires"</span>, <span class="st">"Acres"</span>, <span class="st">"Total"</span>)]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 4</caption>
@@ -1294,21 +1294,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="remove-rows-and-convert-columns" class="level3">
 <h3 class="anchored" data-anchor-id="remove-rows-and-convert-columns">Remove Rows and Convert Columns</h3>
-<p><strong>Data Cleanup</strong>: - I remove rows below index 38 from the dataset since it is a N/A row. - I convert the “Acres” and “Total” columns to numeric format by removing commas and dollar signs:</p>
-<div class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>SuppCosts <span class="op">&lt;-</span> SuppCosts[(<span class="dv">1</span>:<span class="dv">38</span>), ]</span>
+<p><strong>Data Cleanup</strong>: - we remove rows below index 38 from the dataset since it is a N/A row. - we convert the “Acres” and “Total” columns to numeric format by removing commas and dollar signs:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>SuppCosts <span class="ot">&lt;-</span> SuppCosts[(<span class="dv">1</span><span class="sc">:</span><span class="dv">38</span>), ]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>SuppCosts$Acres <span class="op">&lt;-</span> <span class="im">as</span>.numeric(gsub(<span class="st">","</span>, <span class="st">""</span>, SuppCosts$Acres))</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>SuppCosts$Total <span class="op">&lt;-</span> <span class="im">as</span>.numeric(gsub(<span class="st">"</span><span class="ch">\\</span><span class="st">$"</span>, <span class="st">""</span>, gsub(<span class="st">","</span>, <span class="st">""</span>, SuppCosts$Total)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>SuppCosts<span class="sc">$</span>Acres <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, SuppCosts<span class="sc">$</span>Acres))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>SuppCosts<span class="sc">$</span>Total <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">$"</span>, <span class="st">""</span>, <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, SuppCosts<span class="sc">$</span>Total)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="rename-columns-1" class="level3">
 <h3 class="anchored" data-anchor-id="rename-columns-1">Rename Columns</h3>
-<p><strong>Clarity and Consistency</strong>: To ensure clear and consistent column naming, I rename the <code>Total</code> column to <code>Total_spent</code>. This change accurately reflects the content of the column:</p>
-<div class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>SuppCosts <span class="op">&lt;-</span> SuppCosts  <span class="op">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  rename(Total_spent <span class="op">=</span> Total)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>head(SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Clarity and Consistency</strong>: To ensure clear and consistent column naming, we rename the <code>Total</code> column to <code>Total_spent</code>. This change accurately reflects the content of the column:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>SuppCosts <span class="ot">&lt;-</span> SuppCosts  <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Total_spent =</span> Total)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 4</caption>
@@ -1370,11 +1370,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="calculate-combined-score" class="level3">
 <h3 class="anchored" data-anchor-id="calculate-combined-score">Calculate Combined Score</h3>
-<p><strong>Data Enrichment</strong>: I calculate a new column called <code>CombinedScore</code> by summing the <code>Fires</code>and <code>Acres</code> columns. This combined score represents the overall impact of wildfires, taking both the number of fires and acres affected into account.</p>
-<div class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate a combined score based on Fires and Acres</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>SuppCosts$CombinedScore <span class="op">&lt;-</span> SuppCosts$Fires <span class="op">+</span> SuppCosts$Acres</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>head(SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Data Enrichment</strong>: we calculate a new column called <code>CombinedScore</code> by summing the <code>Fires</code>and <code>Acres</code> columns. This combined score represents the overall impact of wildfires, taking both the number of fires and acres affected into account.</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate a combined score based on Fires and Acres</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>SuppCosts<span class="sc">$</span>CombinedScore <span class="ot">&lt;-</span> SuppCosts<span class="sc">$</span>Fires <span class="sc">+</span> SuppCosts<span class="sc">$</span>Acres</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 5</caption>
@@ -1444,13 +1444,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sort-data" class="level3">
 <h3 class="anchored" data-anchor-id="sort-data">Sort Data</h3>
-<p><strong>Data Analysis</strong>: To facilitate analysis, I sort the data based on the <code>CombinedScore</code> column in descending order. This arrangement allows me to identify the most significant wildfire events.</p>
-<div class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the data based on the combined score in descending order</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sorted_SuppCosts <span class="op">&lt;-</span> SuppCosts[order(<span class="op">-</span>SuppCosts$CombinedScore), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Data Analysis</strong>: To facilitate analysis, we sort the data based on the <code>CombinedScore</code> column in descending order. This arrangement allows me to identify the most significant wildfire events.</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the data based on the combined score in descending order</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sorted_SuppCosts <span class="ot">&lt;-</span> SuppCosts[<span class="fu">order</span>(<span class="sc">-</span>SuppCosts<span class="sc">$</span>CombinedScore), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>head(sorted_SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sorted_SuppCosts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 5</caption>
@@ -1519,15 +1519,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="california-2020-wildfire-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="california-2020-wildfire-statistics">California 2020 Wildfire Statistics</h2>
-<p>In this section, I will walk through the data cleaning process for the “Cali_MDY” dataset, which contains information on year-to-date wildfires in California. The goal is to prepare this dataset for analysis and modeling on the relationship between weather and wildfire, ensuring that the data is in a cleaner and more usable state.</p>
+<section id="california-wildfire-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="california-wildfire-statistics">California Wildfire Statistics</h2>
+<p>In this section, we will walk through the data cleaning process for the <code>California wildfire statistics</code> datasets, which contains information on year-to-date wildfires in California in the year of 2020, 2017, 2015, 2014, 2010. The goal is to prepare this dataset for analysis and modeling on the relationship between weather and wildfire, ensuring that the data is in a cleaner and more usable state.</p>
 <section id="data-loading-2" class="level3">
 <h3 class="anchored" data-anchor-id="data-loading-2">Data Loading</h3>
-<p>I start by loading the raw “Cali_MDY” dataset from a CSV file. The dataset initially includes various columns, such as <code>StartDate</code>, <code>Acres Burned</code>, <code>Cause</code>, <code>StructureDest.</code>, <code>StructureDam.</code>, <code>FirePersonnelDeath</code>, and <code>CivilDeath</code>:</p>
-<div class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Cali_MDY <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/Cali_MDY.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>head(Cali_MDY)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We start by loading the raw “Cali_20_Wildfire” dataset from a CSV file. The dataset initially includes various columns, such as <code>StartDate</code>, <code>Acres Burned</code>, <code>Cause</code>, <code>StructureDest.</code>, <code>StructureDam.</code>, <code>FirePersonnelDeath</code>, and <code>CivilDeath</code>:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_20_Wildfire.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cali_20_Wildfire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 12</caption>
@@ -1654,15 +1654,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="subset-columns-2" class="level3">
 <h3 class="anchored" data-anchor-id="subset-columns-2">Subset Columns</h3>
 <p><strong>Column Selection</strong>: To focus on the analysis and modeling, we select a subset of relevant columns, including <code>StartDate</code>, <code>AcresBurned</code>, <code>Cause</code>, <code>StructureDest.</code>, <code>StructureDam.</code>, <code>FirePersonnelDeath</code>, and <code>CivilDeath</code>. These columns are chosen based on the nature of the analysis:</p>
-<div class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Cali_MDY <span class="op">&lt;-</span> Cali_MDY <span class="op">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  rename(</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    AcresBurned <span class="op">=</span> `Acres Burned`</span>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire <span class="ot">&lt;-</span> Cali_20_Wildfire <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">AcresBurned =</span> <span class="st">`</span><span class="at">Acres Burned</span><span class="st">`</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>Cali_MDY <span class="op">&lt;-</span> Cali_MDY[ , c(<span class="st">'StartDate'</span>, <span class="st">'AcresBurned'</span>, <span class="st">'Cause'</span>, </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire <span class="ot">&lt;-</span> Cali_20_Wildfire[ , <span class="fu">c</span>(<span class="st">'StartDate'</span>, <span class="st">'AcresBurned'</span>, <span class="st">'Cause'</span>, </span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, </span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>head(Cali_MDY)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cali_20_Wildfire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 7</caption>
@@ -1748,17 +1748,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="replace-missing-values" class="level3">
 <h3 class="anchored" data-anchor-id="replace-missing-values">Replace Missing Values</h3>
-<p><strong>Missing Value Management</strong>: I address missing values in the dataset by replacing them with zeros. Specifically, I replace NA values in columns “StructureDest.,” “StructureDam.,” “FirePersonnelDeath,” and “CivilDeath” with zeros. The purpose of this step is to prepare the dataset for the following column merging steps:</p>
-<div class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Cali_MDY$StructureDest.[<span class="kw">is</span>.na(Cali_MDY$StructureDest.)] <span class="op">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Cali_MDY$StructureDam.[<span class="kw">is</span>.na(Cali_MDY$StructureDam.)] <span class="op">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Cali_MDY$FirePersonnelDeath[<span class="kw">is</span>.na(Cali_MDY$FirePersonnelDeath)] <span class="op">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>Cali_MDY$CivilDeath[<span class="kw">is</span>.na(Cali_MDY$CivilDeath)] <span class="op">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Missing Value Management</strong>: we address missing values in the dataset by replacing them with zeros. Specifically, we replace NA values in columns “StructureDest.,” “StructureDam.,” “FirePersonnelDeath,” and “CivilDeath” with zeros. The purpose of this step is to prepare the dataset for the following column merging steps:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire<span class="sc">$</span>StructureDest.[<span class="fu">is.na</span>(Cali_20_Wildfire<span class="sc">$</span>StructureDest.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire<span class="sc">$</span>StructureDam.[<span class="fu">is.na</span>(Cali_20_Wildfire<span class="sc">$</span>StructureDam.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire<span class="sc">$</span>FirePersonnelDeath[<span class="fu">is.na</span>(Cali_20_Wildfire<span class="sc">$</span>FirePersonnelDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire<span class="sc">$</span>CivilDeath[<span class="fu">is.na</span>(Cali_20_Wildfire<span class="sc">$</span>CivilDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-new-columns" class="level3">
 <h3 class="anchored" data-anchor-id="create-new-columns">Create New Columns</h3>
-<p><strong>Feature Engineering</strong>: I create two new columns in the dataset:</p>
+<p><strong>Feature Engineering</strong>: we create two new columns in the dataset:</p>
 <ol type="1">
 <li><p><code>StructureDam</code>: This column is created by adding <code>StructureDest.</code> and <code>StructureDam</code>. This represents the combined impact on structures from wildfires.</p></li>
 <li><p><code>Fatalities</code>: This column is created by adding <code>FirePersonnelDeath</code> and <code>CivilDeath</code>. It represents the total number of fatalities from wildfires.</p></li>
@@ -1767,18 +1767,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="remove-original-columns" class="level3">
 <h3 class="anchored" data-anchor-id="remove-original-columns">Remove Original Columns</h3>
 <p><strong>Data Reduction</strong>: We remove the original columns <code>StructureDest.</code>, <code>StructureDam.</code>, <code>FirePersonnelDeath</code>, and <code>CivilDeath</code> from the dataset as they are no longer needed for the analysis:</p>
-<div class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'StructureDest.' and 'StructureDam.' and name the new column 'StructureDam'</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Cali_MDY$StructureDam <span class="op">&lt;-</span> Cali_MDY$StructureDest. <span class="op">+</span> Cali_MDY$StructureDam.</span>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'StructureDest.' and 'StructureDam.' and name the new column 'StructureDam'</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire<span class="sc">$</span>StructureDam <span class="ot">&lt;-</span> Cali_20_Wildfire<span class="sc">$</span>StructureDest. <span class="sc">+</span> Cali_20_Wildfire<span class="sc">$</span>StructureDam.</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'FirePersonnelDeath' and 'CivilDeath' and name the new column 'Fatalities'</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>Cali_MDY$Fatalities <span class="op">&lt;-</span> Cali_MDY$FirePersonnelDeath <span class="op">+</span> Cali_MDY$CivilDeath</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire<span class="sc">$</span>Fatalities <span class="ot">&lt;-</span> Cali_20_Wildfire<span class="sc">$</span>FirePersonnelDeath <span class="sc">+</span> Cali_20_Wildfire<span class="sc">$</span>CivilDeath</span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the original four columns</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>Cali_MDY <span class="op">&lt;-</span> Cali_MDY[, <span class="op">!</span>names(Cali_MDY) <span class="op">%</span><span class="kw">in</span><span class="op">%</span> c(<span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire <span class="ot">&lt;-</span> Cali_20_Wildfire[, <span class="sc">!</span><span class="fu">names</span>(Cali_20_Wildfire) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>head(Cali_MDY)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cali_20_Wildfire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 5</caption>
@@ -1848,18 +1848,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="date-column-cleanup" class="level3">
 <h3 class="anchored" data-anchor-id="date-column-cleanup">Date Column Cleanup</h3>
-<p><strong>Date Format Conversion</strong>: I convert the <code>StartDate</code> column to Date format, using the format “%m/%d/%y”. This ensures that the date values are consistent and usable for future data merging.</p>
+<p><strong>Date Format Conversion</strong>: we convert the <code>StartDate</code> column to Date format, using the format “%m/%d/%y”. This ensures that the date values are consistent and usable for future data merging.</p>
 <p><strong>Data Integrity</strong>: Rows with missing values in the <code>StartDate</code> column are identified and removed from the dataset, ensuring that the dataset contains only records with valid date information:</p>
-<div class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date column to Date format</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Cali_MDY$StartDate <span class="op">&lt;-</span> <span class="im">as</span>.Date(Cali_MDY$StartDate, <span class="bu">format</span> <span class="op">=</span> <span class="st">"%m/</span><span class="sc">%d</span><span class="st">/%y"</span>)</span>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date column to Date format</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire<span class="sc">$</span>StartDate <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(Cali_20_Wildfire<span class="sc">$</span>StartDate, <span class="at">format =</span> <span class="st">"%m/%d/%y"</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify NA values in the StartDate column</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>na_rows <span class="op">&lt;-</span> <span class="kw">is</span>.na(Cali_MDY$StartDate)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>na_rows <span class="ot">&lt;-</span> <span class="fu">is.na</span>(Cali_20_Wildfire<span class="sc">$</span>StartDate)</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with NA values in the StartDate column</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>Cali_MDY <span class="op">&lt;-</span> Cali_MDY[<span class="op">!</span>na_rows, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>Cali_20_Wildfire <span class="ot">&lt;-</span> Cali_20_Wildfire[<span class="sc">!</span>na_rows, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>head(Cali_MDY)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cali_20_Wildfire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 5</caption>
@@ -1926,21 +1926,160 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<p>With the cleaning process complete, the “Cali_MDY” dataset is now in a cleaner state and ready for further analysis and modeling.</p>
+<p>With the cleaning process complete, the “Cali_20_Wildfire” dataset is now in a cleaner state and ready for further analysis and modeling.</p>
+<p>Later, we follow the same data cleaning process to clean up the rest of the four datasets (California wildfire statistics in year 2017, 2015, 2014 and 2010).</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="43">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_17_Wildfire.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire <span class="ot">&lt;-</span> Cali_17_Wildfire <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">AcresBurned =</span> <span class="st">`</span><span class="at">Acres Burned</span><span class="st">`</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire <span class="ot">&lt;-</span> Cali_17_Wildfire[ , <span class="fu">c</span>(<span class="st">'StartDate'</span>, <span class="st">'AcresBurned'</span>, <span class="st">'Cause'</span>, </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA values with 0 in the columns</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire<span class="sc">$</span>StructureDest.[<span class="fu">is.na</span>(Cali_17_Wildfire<span class="sc">$</span>StructureDest.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire<span class="sc">$</span>StructureDam.[<span class="fu">is.na</span>(Cali_17_Wildfire<span class="sc">$</span>StructureDam.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire<span class="sc">$</span>FirePersonnelDeath[<span class="fu">is.na</span>(Cali_17_Wildfire<span class="sc">$</span>FirePersonnelDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire<span class="sc">$</span>CivilDeath[<span class="fu">is.na</span>(Cali_17_Wildfire<span class="sc">$</span>CivilDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'StructureDest.' and 'StructureDam.' and name the new column 'StructureDam'</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire<span class="sc">$</span>StructureDam <span class="ot">&lt;-</span> Cali_17_Wildfire<span class="sc">$</span>StructureDest. <span class="sc">+</span> Cali_17_Wildfire<span class="sc">$</span>StructureDam.</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'FirePersonnelDeath' and 'CivilDeath' and name the new column 'Fatalities'</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire<span class="sc">$</span>Fatalities <span class="ot">&lt;-</span> Cali_17_Wildfire<span class="sc">$</span>FirePersonnelDeath <span class="sc">+</span> Cali_17_Wildfire<span class="sc">$</span>CivilDeath</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the original four columns</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire <span class="ot">&lt;-</span> Cali_17_Wildfire[, <span class="sc">!</span><span class="fu">names</span>(Cali_17_Wildfire) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify NA values in the StartDate column</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>na_rows <span class="ot">&lt;-</span> <span class="fu">is.na</span>(Cali_17_Wildfire<span class="sc">$</span>StartDate)</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date column to Date format</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire<span class="sc">$</span>StartDate <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(Cali_17_Wildfire<span class="sc">$</span>StartDate, <span class="at">format =</span> <span class="st">"%m/%d/%y"</span>)</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with NA values in the StartDate column</span></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>Cali_17_Wildfire <span class="ot">&lt;-</span> Cali_17_Wildfire[<span class="sc">!</span>na_rows, ]</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_15_Wildfire.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire <span class="ot">&lt;-</span> Cali_15_Wildfire <span class="sc">%&gt;%</span></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">AcresBurned =</span> <span class="st">`</span><span class="at">Acres Burned</span><span class="st">`</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire <span class="ot">&lt;-</span> Cali_15_Wildfire[ , <span class="fu">c</span>(<span class="st">'StartDate'</span>, <span class="st">'AcresBurned'</span>, <span class="st">'Cause'</span>, </span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, </span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA values with 0 in the columns</span></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire<span class="sc">$</span>StructureDest.[<span class="fu">is.na</span>(Cali_15_Wildfire<span class="sc">$</span>StructureDest.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire<span class="sc">$</span>StructureDam.[<span class="fu">is.na</span>(Cali_15_Wildfire<span class="sc">$</span>StructureDam.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire<span class="sc">$</span>FirePersonnelDeath[<span class="fu">is.na</span>(Cali_15_Wildfire<span class="sc">$</span>FirePersonnelDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire<span class="sc">$</span>CivilDeath[<span class="fu">is.na</span>(Cali_15_Wildfire<span class="sc">$</span>CivilDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'StructureDest.' and 'StructureDam.' and name the new column 'StructureDam'</span></span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire<span class="sc">$</span>StructureDam <span class="ot">&lt;-</span> Cali_15_Wildfire<span class="sc">$</span>StructureDest. <span class="sc">+</span> Cali_15_Wildfire<span class="sc">$</span>StructureDam.</span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'FirePersonnelDeath' and 'CivilDeath' and name the new column 'Fatalities'</span></span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire<span class="sc">$</span>Fatalities <span class="ot">&lt;-</span> Cali_15_Wildfire<span class="sc">$</span>FirePersonnelDeath <span class="sc">+</span> Cali_15_Wildfire<span class="sc">$</span>CivilDeath</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the original four columns</span></span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire <span class="ot">&lt;-</span> Cali_15_Wildfire[, <span class="sc">!</span><span class="fu">names</span>(Cali_15_Wildfire) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify NA values in the StartDate column</span></span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>na_rows <span class="ot">&lt;-</span> <span class="fu">is.na</span>(Cali_15_Wildfire<span class="sc">$</span>StartDate)</span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date column to Date format</span></span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire<span class="sc">$</span>StartDate <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(Cali_15_Wildfire<span class="sc">$</span>StartDate, <span class="at">format =</span> <span class="st">"%m/%d/%y"</span>)</span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with NA values in the StartDate column</span></span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a>Cali_15_Wildfire <span class="ot">&lt;-</span> Cali_15_Wildfire[<span class="sc">!</span>na_rows, ]</span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_14_Wildfire.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire <span class="ot">&lt;-</span> Cali_14_Wildfire <span class="sc">%&gt;%</span></span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">AcresBurned =</span> <span class="st">`</span><span class="at">Acres Burned</span><span class="st">`</span></span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire <span class="ot">&lt;-</span> Cali_14_Wildfire[ , <span class="fu">c</span>(<span class="st">'StartDate'</span>, <span class="st">'AcresBurned'</span>, <span class="st">'Cause'</span>, </span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, </span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA values with 0 in the columns</span></span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire<span class="sc">$</span>StructureDest.[<span class="fu">is.na</span>(Cali_14_Wildfire<span class="sc">$</span>StructureDest.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire<span class="sc">$</span>StructureDam.[<span class="fu">is.na</span>(Cali_14_Wildfire<span class="sc">$</span>StructureDam.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire<span class="sc">$</span>FirePersonnelDeath[<span class="fu">is.na</span>(Cali_14_Wildfire<span class="sc">$</span>FirePersonnelDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire<span class="sc">$</span>CivilDeath[<span class="fu">is.na</span>(Cali_14_Wildfire<span class="sc">$</span>CivilDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'StructureDest.' and 'StructureDam.' and name the new column 'StructureDam'</span></span>
+<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire<span class="sc">$</span>StructureDam <span class="ot">&lt;-</span> Cali_14_Wildfire<span class="sc">$</span>StructureDest. <span class="sc">+</span> Cali_14_Wildfire<span class="sc">$</span>StructureDam.</span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'FirePersonnelDeath' and 'CivilDeath' and name the new column 'Fatalities'</span></span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire<span class="sc">$</span>Fatalities <span class="ot">&lt;-</span> Cali_14_Wildfire<span class="sc">$</span>FirePersonnelDeath <span class="sc">+</span> Cali_14_Wildfire<span class="sc">$</span>CivilDeath</span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the original four columns</span></span>
+<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire <span class="ot">&lt;-</span> Cali_14_Wildfire[, <span class="sc">!</span><span class="fu">names</span>(Cali_14_Wildfire) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify NA values in the StartDate column</span></span>
+<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a>na_rows <span class="ot">&lt;-</span> <span class="fu">is.na</span>(Cali_14_Wildfire<span class="sc">$</span>StartDate)</span>
+<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date column to Date format</span></span>
+<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire<span class="sc">$</span>StartDate <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(Cali_14_Wildfire<span class="sc">$</span>StartDate, <span class="at">format =</span> <span class="st">"%m/%d/%y"</span>)</span>
+<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with NA values in the StartDate column</span></span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a>Cali_14_Wildfire <span class="ot">&lt;-</span> Cali_14_Wildfire[<span class="sc">!</span>na_rows, ]</span>
+<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_10_Wildfire.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire <span class="ot">&lt;-</span> Cali_10_Wildfire <span class="sc">%&gt;%</span></span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">AcresBurned =</span> <span class="st">`</span><span class="at">Acres Burned</span><span class="st">`</span></span>
+<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire <span class="ot">&lt;-</span> Cali_10_Wildfire[ , <span class="fu">c</span>(<span class="st">'StartDate'</span>, <span class="st">'AcresBurned'</span>, <span class="st">'Cause'</span>, </span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, </span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span>
+<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA values with 0 in the columns</span></span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire<span class="sc">$</span>StructureDest.[<span class="fu">is.na</span>(Cali_10_Wildfire<span class="sc">$</span>StructureDest.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire<span class="sc">$</span>StructureDam.[<span class="fu">is.na</span>(Cali_10_Wildfire<span class="sc">$</span>StructureDam.)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire<span class="sc">$</span>FirePersonnelDeath[<span class="fu">is.na</span>(Cali_10_Wildfire<span class="sc">$</span>FirePersonnelDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire<span class="sc">$</span>CivilDeath[<span class="fu">is.na</span>(Cali_10_Wildfire<span class="sc">$</span>CivilDeath)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'StructureDest.' and 'StructureDam.' and name the new column 'StructureDam'</span></span>
+<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire<span class="sc">$</span>StructureDam <span class="ot">&lt;-</span> Cali_10_Wildfire<span class="sc">$</span>StructureDest. <span class="sc">+</span> Cali_10_Wildfire<span class="sc">$</span>StructureDam.</span>
+<span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a><span class="co"># Add up 'FirePersonnelDeath' and 'CivilDeath' and name the new column 'Fatalities'</span></span>
+<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire<span class="sc">$</span>Fatalities <span class="ot">&lt;-</span> Cali_10_Wildfire<span class="sc">$</span>FirePersonnelDeath <span class="sc">+</span> Cali_10_Wildfire<span class="sc">$</span>CivilDeath</span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the original four columns</span></span>
+<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire <span class="ot">&lt;-</span> Cali_10_Wildfire[, <span class="sc">!</span><span class="fu">names</span>(Cali_10_Wildfire) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'StructureDest.'</span>, <span class="st">'StructureDam.'</span>, <span class="st">'FirePersonnelDeath'</span>, <span class="st">'CivilDeath'</span>)]</span>
+<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify NA values in the StartDate column</span></span>
+<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a>na_rows <span class="ot">&lt;-</span> <span class="fu">is.na</span>(Cali_10_Wildfire<span class="sc">$</span>StartDate)</span>
+<span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date column to Date format</span></span>
+<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire<span class="sc">$</span>StartDate <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(Cali_10_Wildfire<span class="sc">$</span>StartDate, <span class="at">format =</span> <span class="st">"%m/%d/%y"</span>)</span>
+<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with NA values in the StartDate column</span></span>
+<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a>Cali_10_Wildfire <span class="ot">&lt;-</span> Cali_10_Wildfire[<span class="sc">!</span>na_rows, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 </section>
 <section id="california-weather-data-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="california-weather-data-statistics">California Weather Data Statistics</h2>
-<p>In this section, I will outline the data cleaning process for the <code>Cali climate</code> datasets, which include climate data from various years (2020, 2017, 2015, 2014, 2010, and 2001). My goal is to: 1. prepare these datasets for analysis against the <code>SuppCosts</code> dataset on the effects of precipitation on wildfire occurance throughout the years 2. integrate <code>Cali_2020</code> and <code>Cali_MYD</code> into a combined dataset, <code>Cali20_climate_fire</code>, in order to facilitate the future analysis on climate effects on wildfires in a specific year.</p>
-<p>Since the climate datasets for different years have the same exact data structure, I will use the California climate data in 2020 to demonstrate the cleaning process.</p>
+<p>In this section, we will outline the data cleaning process for the <code>Cali climate</code> datasets, which include climate data from various years (2020, 2017, 2015, 2014, and 2010). Our goal is to: 1. prepare these datasets for analysis against the <code>SuppCosts</code> dataset on the effects of precipitation on wildfire occurance throughout the years 2. integrate weather datasets and wildfire datasets with respect to year, in order to facilitate the future analysis on climate effects on wildfires in California.</p>
+<p>Since the climate datasets for different years have the same exact data structure, we will use the California climate data in year 2020 to demonstrate the cleaning process.</p>
 <section id="data-loading-3" class="level3">
 <h3 class="anchored" data-anchor-id="data-loading-3">Data Loading</h3>
-<p>I begin by loading multiple raw datasets, each containing climate data for different years. The datasets include information such as <code>datetime</code>, <code>tempmax</code>, <code>tempmin</code>, <code>humidity</code>, <code>precip</code>, and <code>windspeed</code>:</p>
-<div class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Cali_2020 <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/Cali_2020.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We begin by loading multiple raw datasets, each containing climate data for different years. The datasets include information such as <code>datetime</code>, <code>tempmax</code>, <code>tempmin</code>, <code>humidity</code>, <code>precip</code>, and <code>windspeed</code>:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Cali_2020 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_2020.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>head(Cali_2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cali_2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 37</caption>
@@ -2138,12 +2277,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="subset-columns-3" class="level3">
 <h3 class="anchored" data-anchor-id="subset-columns-3">Subset Columns</h3>
-<p><strong>Column Selection</strong>: I select a subset of columns, including <code>datetime</code>, <code>tempmax</code>, <code>tempmin</code>, <code>humidity</code>, <code>precip</code>, and <code>windspeed</code>. These columns are chosen based on their relevance to my analysis:</p>
-<div class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset a data frame with the given column names:</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Cali_2020 <span class="op">&lt;-</span> Cali_2020[ , c(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>head(Cali_2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Column Selection</strong>: we select a subset of columns, including <code>datetime</code>, <code>tempmax</code>, <code>tempmin</code>, <code>humidity</code>, <code>precip</code>, and <code>windspeed</code>. These columns are chosen based on their relevance to my analysis:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset a data frame with the given column names:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Cali_2020 <span class="ot">&lt;-</span> Cali_2020[ , <span class="fu">c</span>(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cali_2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A tibble: 6 x 6</caption>
@@ -2219,38 +2358,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Repeating the above cleaning procedure 5 more times on the rest of 5 datasets:</p>
-<div class="cell" data-execution_count="64">
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="47">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Cali_2017 <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/Cali_2017.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Cali_2017 <span class="op">&lt;-</span> Cali_2017[ , c(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>Cali_2015 <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/Cali_2015.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>Cali_2015 <span class="op">&lt;-</span> Cali_2015[ , c(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>Cali_2014 <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/Cali_2014.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>Cali_2014 <span class="op">&lt;-</span> Cali_2014[ , c(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>Cali_2010 <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/Cali_2010.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>Cali_2010 <span class="op">&lt;-</span> Cali_2010[ , c(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>Cali_2001 <span class="op">&lt;-</span> read_csv(<span class="st">"../data/raw-data/Cali_2001.csv"</span>, show_col_types <span class="op">=</span> FALSE)</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>Cali_2001 <span class="op">&lt;-</span> Cali_2001[ , c(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Cali_2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_2017.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>Cali_2017 <span class="ot">&lt;-</span> Cali_2017[ , <span class="fu">c</span>(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>Cali_2015 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_2015.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>Cali_2015 <span class="ot">&lt;-</span> Cali_2015[ , <span class="fu">c</span>(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>Cali_2014 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_2014.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>Cali_2014 <span class="ot">&lt;-</span> Cali_2014[ , <span class="fu">c</span>(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>Cali_2010 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/raw-data/Cali_2010.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>Cali_2010 <span class="ot">&lt;-</span> Cali_2010[ , <span class="fu">c</span>(<span class="st">'datetime'</span>, <span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, </span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'precip'</span>, <span class="st">'windspeed'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="merging-datasets" class="level3">
 <h3 class="anchored" data-anchor-id="merging-datasets">Merging Datasets</h3>
-<p><strong>Data Integration</strong>: I perform a left merge on the <code>Cali_2020</code> datasets, merging them with the <code>Cali_MDY</code> dataset (wildfire data) based on the <code>datetime</code> and <code>StartDate</code> columns. The resulting dataset, “Cali20_climate_fire,” combines climate and wildfire data for the year 2020 in the state of California:</p>
-<div class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Left merge the two datasets based on the 'datetime' and 'StartDate' columns</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>Cali20_climate_fire <span class="op">&lt;-</span> merge(Cali_2020, Cali_MDY, by.x <span class="op">=</span> <span class="st">"datetime"</span>, by.y <span class="op">=</span> <span class="st">"StartDate"</span>, <span class="bu">all</span>.x <span class="op">=</span> TRUE)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>head(Cali20_climate_fire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Data Integration</strong>: we perform a left merge on the <code>Cali_2020</code> datasets, merging them with the <code>Cali_20_Wildfire</code> dataset (wildfire data) based on the <code>datetime</code> and <code>StartDate</code> columns. The resulting dataset, “Cali20_climate_fire,” combines climate and wildfire data for the year 2020 in the state of California:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Left merge the two datasets based on the 'datetime' and 'StartDate' columns</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Cali20_climate_fire <span class="ot">&lt;-</span> <span class="fu">merge</span>(Cali_2020, Cali_20_Wildfire, <span class="at">by.x =</span> <span class="st">"datetime"</span>, <span class="at">by.y =</span> <span class="st">"StartDate"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cali20_climate_fire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 6 x 10</caption>
@@ -2368,11 +2503,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="create-new-column" class="level3">
 <h3 class="anchored" data-anchor-id="create-new-column">Create New Column</h3>
-<p>In the merged dataset, <code>Cali20_climate_fire</code>, I create a new column called <code>fire</code>. This column represents the presence of a wildfire based on the “AcresBurned” column. If there is a value in “AcresBurned,” the “fire” column is marked as “Yes”; otherwise, it’s marked as “No.”</p>
-<div class="cell" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'fire' based on the 'AcresBurned' column</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Cali20_climate_fire$fire <span class="op">&lt;-</span> ifelse(<span class="op">!</span><span class="kw">is</span>.na(Cali20_climate_fire$AcresBurned), <span class="st">"Yes"</span>, <span class="st">"No"</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>head(Cali20_climate_fire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the merged dataset, <code>Cali20_climate_fire</code>, we create a new column called <code>fire</code>. This column represents the presence of a wildfire based on the “AcresBurned” column. If there is a value in “AcresBurned,” the “fire” column is marked as “Yes”; otherwise, it’s marked as “No.”</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'fire' based on the 'AcresBurned' column</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>Cali20_climate_fire<span class="sc">$</span>fire <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(Cali20_climate_fire<span class="sc">$</span>AcresBurned), <span class="st">"Yes"</span>, <span class="st">"No"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cali20_climate_fire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 6 x 11</caption>
@@ -2495,20 +2630,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="50">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Left merge the two datasets based on the 'datetime' and 'StartDate' columns</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>Cali17_climate_fire <span class="ot">&lt;-</span> <span class="fu">merge</span>(Cali_2017, Cali_17_Wildfire, <span class="at">by.x =</span> <span class="st">"datetime"</span>, <span class="at">by.y =</span> <span class="st">"StartDate"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'fire' based on the 'AcresBurned' column</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>Cali17_climate_fire<span class="sc">$</span>fire <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(Cali17_climate_fire<span class="sc">$</span>AcresBurned), <span class="st">"Yes"</span>, <span class="st">"No"</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Left merge the two datasets based on the 'datetime' and 'StartDate' columns</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>Cali15_climate_fire <span class="ot">&lt;-</span> <span class="fu">merge</span>(Cali_2015, Cali_15_Wildfire, <span class="at">by.x =</span> <span class="st">"datetime"</span>, <span class="at">by.y =</span> <span class="st">"StartDate"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'fire' based on the 'AcresBurned' column</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>Cali15_climate_fire<span class="sc">$</span>fire <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(Cali15_climate_fire<span class="sc">$</span>AcresBurned), <span class="st">"Yes"</span>, <span class="st">"No"</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Left merge the two datasets based on the 'datetime' and 'StartDate' columns</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>Cali14_climate_fire <span class="ot">&lt;-</span> <span class="fu">merge</span>(Cali_2014, Cali_14_Wildfire, <span class="at">by.x =</span> <span class="st">"datetime"</span>, <span class="at">by.y =</span> <span class="st">"StartDate"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'fire' based on the 'AcresBurned' column</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>Cali14_climate_fire<span class="sc">$</span>fire <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(Cali14_climate_fire<span class="sc">$</span>AcresBurned), <span class="st">"Yes"</span>, <span class="st">"No"</span>)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Left merge the two datasets based on the 'datetime' and 'StartDate' columns</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>Cali10_climate_fire <span class="ot">&lt;-</span> <span class="fu">merge</span>(Cali_2010, Cali_10_Wildfire, <span class="at">by.x =</span> <span class="st">"datetime"</span>, <span class="at">by.y =</span> <span class="st">"StartDate"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'fire' based on the 'AcresBurned' column</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>Cali10_climate_fire<span class="sc">$</span>fire <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(Cali10_climate_fire<span class="sc">$</span>AcresBurned), <span class="st">"Yes"</span>, <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now, let’s combine the California wildfire statistics and weather statistics into a single dataset:</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of data file names</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>data_files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"../data/cleaned-data/Cali20_climate_fire.csv"</span>, <span class="st">"../data/cleaned-data/Cali17_climate_fire.csv"</span>, <span class="st">"../data/cleaned-data/Cali15_climate_fire.csv"</span>, <span class="st">"../data/cleaned-data/Cali14_climate_fire.csv"</span>, <span class="st">"../data/cleaned-data/Cali10_climate_fire.csv"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and combine the datasets</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(data_files, read.csv))</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the combined dataset to a new CSV file</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(combined_data, <span class="st">"../data/cleaned-data/CA_climate_fire.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="text-data-on-wildfire-prevention" class="level2">
 <h2 class="anchored" data-anchor-id="text-data-on-wildfire-prevention">Text Data on Wildfire Prevention</h2>
-<p>In this section, I outline the data cleaning process for text data obtained from a JSON file containing articles. The objective is to prepare the text data for further analysis on the attitudes of the public towards wildfire prevention, as well as create a clean, structured dataset. The code shown below processes the data, cleans it, and enriches it with sentiment analysis.</p>
+<p>In this section, I will outline the data cleaning process for text data obtained from a JSON file containing articles. The objective is to prepare the text data for further analysis on the attitudes of the public towards wildfire prevention, as well as create a clean, structured dataset. The code shown below processes the data, cleans it, and enriches it with sentiment analysis.</p>
 <section id="data-loading-4" class="level3">
 <h3 class="anchored" data-anchor-id="data-loading-4">Data Loading</h3>
 <p>The first step is to load the raw text data from the <code>articles.json</code> file. The data consists of various attributes for each article, including <code>source</code>, <code>author</code>, <code>title</code>, <code>description</code>, <code>content</code>, and <code>publishedAt</code>:</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the JSON data from the file</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"../data/raw-data/articles.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> json_file:</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.load(json_file)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    articles <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(articles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the JSON data from the file</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>with <span class="fu">open</span>(<span class="st">"../data/raw-data/articles.json"</span>, <span class="st">"r"</span>) as json_file<span class="sc">:</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    data <span class="ot">=</span> <span class="fu">json.load</span>(json_file)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    articles <span class="ot">=</span> <span class="fu">pd.DataFrame</span>(data)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(articles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                               source  \
 0              {'id': 'bbc-news', 'name': 'BBC News'}   
@@ -2611,31 +2785,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>String Cleaning</strong>: A custom function, <code>string_cleaner</code>, is applied to clean and normalize text data. This function handles punctuation, whitespace, character replacements, and converts text to lowercase:</li>
 </ul>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>verbose<span class="op">=</span><span class="va">True</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> string_cleaner(input_string):</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> <span class="st">''</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>: </span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        out<span class="op">=</span>re.sub(<span class="vs">r"""</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="vs">                    [,.;@#?!&amp;$-]+  # Accept one or more copies of punctuation</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="vs">                    \ *           # plus zero or more copies of a space,</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="vs">                    """</span>,</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>                    <span class="st">" "</span>,          <span class="co"># and replace it with a single space</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>                    input_string, flags<span class="op">=</span>re.VERBOSE)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">#REPLACE SELECT CHARACTERS WITH NOTHING</span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> re.sub(<span class="st">'[’.]+'</span>, <span class="st">''</span>, input_string)</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">#ELIMINATE DUPLICATE WHITESPACES USING WILDCARDS</span></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> re.sub(<span class="vs">r'\s+'</span>, <span class="st">' '</span>, out)</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">#CONVERT TO LOWER CASE</span></span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>        out<span class="op">=</span>out.lower()</span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"ERROR"</span>)</span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>        out<span class="op">=</span><span class="st">''</span></span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>verbose<span class="ot">=</span>True</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>def <span class="fu">string_cleaner</span>(input_string)<span class="sc">:</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    out <span class="ot">=</span> <span class="st">''</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    try<span class="sc">:</span> </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        out<span class="ot">=</span><span class="fu">re.sub</span>(r<span class="st">"""</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="st">                    [,.;@#?!&amp;$-]+  # Accept one or more copies of punctuation</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="st">                    \ *           # plus zero or more copies of a space,</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="st">                    """</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>                    <span class="st">" "</span>,          <span class="co"># and replace it with a single space</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>                    input_string, <span class="at">flags=</span>re.VERBOSE)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">#REPLACE SELECT CHARACTERS WITH NOTHING</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>        out <span class="ot">=</span> <span class="fu">re.sub</span>(<span class="st">'[’.]+'</span>, <span class="st">''</span>, input_string)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">#ELIMINATE DUPLICATE WHITESPACES USING WILDCARDS</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>        out <span class="ot">=</span> <span class="fu">re.sub</span>(r<span class="st">'\s+'</span>, <span class="st">' '</span>, out)</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">#CONVERT TO LOWER CASE</span></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>        out<span class="ot">=</span><span class="fu">out.lower</span>()</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>    except<span class="sc">:</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="st">"ERROR"</span>)</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>        out<span class="ot">=</span><span class="st">''</span></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>    return out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="cleaning-process" class="level3">
@@ -2646,59 +2820,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Author and Source Handling</strong>: An error check is performed to ensure that the “author” is not mistakenly the same as the “source.”</p></li>
 <li><p><strong>Date Validation</strong>: A regular expression is used to validate the date format in the “publishedAt” column.</p></li>
 </ul>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>article_keys <span class="op">=</span> articles.columns</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AVAILABLE KEYS:"</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(article_keys)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>cleaned_data <span class="op">=</span> []</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, article <span class="kw">in</span> articles.iterrows():</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    tmp <span class="op">=</span> []</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"#------------------------------------------"</span>)</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"#"</span>, index)</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"#------------------------------------------"</span>)</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key <span class="kw">in</span> article_keys:</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"----------------"</span>)</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(key)</span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(article[key])  <span class="co"># Access the value directly</span></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="op">==</span> <span class="st">'source'</span>:</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>            src <span class="op">=</span> string_cleaner(article[<span class="st">'source'</span>][<span class="st">'name'</span>])</span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>            tmp.append(src)</span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="op">==</span> <span class="st">'author'</span>:</span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>            author <span class="op">=</span> string_cleaner(article[<span class="st">'author'</span>])</span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>            <span class="co"># ERROR CHECK (SOMETIMES AUTHOR IS SAME AS PUBLICATION)</span></span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> src <span class="kw">in</span> author:</span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">" AUTHOR ERROR:"</span>, author)</span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>                author <span class="op">=</span> <span class="st">'NA'</span></span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>            tmp.append(author)</span>
-<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="op">==</span> <span class="st">'title'</span>:</span>
-<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>            tmp.append(string_cleaner(article[<span class="st">'title'</span>]))</span>
-<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="op">==</span> <span class="st">'description'</span>:</span>
-<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>            tmp.append(string_cleaner(article[<span class="st">'description'</span>]))</span>
-<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="op">==</span> <span class="st">'content'</span>:</span>
-<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>            tmp.append(string_cleaner(article[<span class="st">'content'</span>]))</span>
-<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="op">==</span> <span class="st">'publishedAt'</span>:</span>
-<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a>            <span class="co"># DEFINE DATA PATTERN FOR RE TO CHECK  .* --&gt; wildcard</span></span>
-<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a>            ref <span class="op">=</span> re.<span class="bu">compile</span>(<span class="st">'.*-.*-.*T.*:.*:.*Z'</span>)</span>
-<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a>            date <span class="op">=</span> article[<span class="st">'publishedAt'</span>]</span>
-<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> ref.match(date):</span>
-<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">" DATE ERROR:"</span>, date)</span>
-<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a>                date <span class="op">=</span> <span class="st">"NA"</span></span>
-<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a>            tmp.append(date)</span>
-<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a>    cleaned_data.append(tmp)</span>
-<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a>    index <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>article_keys <span class="ot">=</span> articles.columns</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"AVAILABLE KEYS:"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(article_keys)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>index <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>cleaned_data <span class="ot">=</span> []</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, article <span class="cf">in</span> <span class="fu">articles.iterrows</span>()<span class="sc">:</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">=</span> []</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose<span class="sc">:</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="st">"#------------------------------------------"</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="st">"#"</span>, index)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="st">"#------------------------------------------"</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key <span class="cf">in</span> article_keys<span class="sc">:</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose<span class="sc">:</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">print</span>(<span class="st">"----------------"</span>)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>            <span class="fu">print</span>(key)</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">print</span>(article[key])  <span class="co"># Access the value directly</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="sc">==</span> <span class="st">'source'</span><span class="sc">:</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>            src <span class="ot">=</span> <span class="fu">string_cleaner</span>(article[<span class="st">'source'</span>][<span class="st">'name'</span>])</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>            <span class="fu">tmp.append</span>(src)</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="sc">==</span> <span class="st">'author'</span><span class="sc">:</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>            author <span class="ot">=</span> <span class="fu">string_cleaner</span>(article[<span class="st">'author'</span>])</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>            <span class="co"># ERROR CHECK (SOMETIMES AUTHOR IS SAME AS PUBLICATION)</span></span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> src <span class="cf">in</span> author<span class="sc">:</span></span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>                <span class="fu">print</span>(<span class="st">" AUTHOR ERROR:"</span>, author)</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>                author <span class="ot">=</span> <span class="st">'NA'</span></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>            <span class="fu">tmp.append</span>(author)</span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="sc">==</span> <span class="st">'title'</span><span class="sc">:</span></span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>            <span class="fu">tmp.append</span>(<span class="fu">string_cleaner</span>(article[<span class="st">'title'</span>]))</span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="sc">==</span> <span class="st">'description'</span><span class="sc">:</span></span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>            <span class="fu">tmp.append</span>(<span class="fu">string_cleaner</span>(article[<span class="st">'description'</span>]))</span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="sc">==</span> <span class="st">'content'</span><span class="sc">:</span></span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>            <span class="fu">tmp.append</span>(<span class="fu">string_cleaner</span>(article[<span class="st">'content'</span>]))</span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="sc">==</span> <span class="st">'publishedAt'</span><span class="sc">:</span></span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>            <span class="co"># DEFINE DATA PATTERN FOR RE TO CHECK  .* --&gt; wildcard</span></span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>            ref <span class="ot">=</span> <span class="fu">re.compile</span>(<span class="st">'.*-.*-.*T.*:.*:.*Z'</span>)</span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>            date <span class="ot">=</span> article[<span class="st">'publishedAt'</span>]</span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> not <span class="fu">ref.match</span>(date)<span class="sc">:</span></span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>                <span class="fu">print</span>(<span class="st">" DATE ERROR:"</span>, date)</span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a>                date <span class="ot">=</span> <span class="st">"NA"</span></span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>            <span class="fu">tmp.append</span>(date)</span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cleaned_data.append</span>(tmp)</span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>    index <span class="sc">+</span><span class="er">=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>AVAILABLE KEYS:
 Index(['source', 'author', 'title', 'description', 'url', 'urlToImage',
@@ -5522,34 +5696,34 @@ content
 <ul>
 <li><strong>Filtering Removed Data</strong>: Rows containing “[removed]” in the “content” column are removed.</li>
 </ul>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a filter condition to check for "[removed]" in column 5</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>filter_condition <span class="op">=</span> <span class="kw">lambda</span> article: article[<span class="dv">5</span>] <span class="op">!=</span> <span class="st">"[removed]"</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a list comprehension to create a new cleaned_data list with rows that satisfy the condition</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>cleaned_data_filtered <span class="op">=</span> [article <span class="cf">for</span> article <span class="kw">in</span> cleaned_data <span class="cf">if</span> filter_condition(article)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a filter condition to check for "[removed]" in column 5</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>filter_condition <span class="ot">=</span> lambda article<span class="sc">:</span> article[<span class="dv">5</span>] <span class="sc">!=</span> <span class="st">"[removed]"</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a list comprehension to create a new cleaned_data list with rows that satisfy the condition</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>cleaned_data_filtered <span class="ot">=</span> [article <span class="cf">for</span> article <span class="cf">in</span> cleaned_data <span class="cf">if</span> <span class="fu">filter_condition</span>(article)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><strong>Count Vectorization</strong>: The article contents are transformed using CountVectorizer to create a matrix of token counts, allowing text data to be represented in a structured format.</li>
 </ul>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_count_vectorizer(text_data):</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create an instance of CountVectorizer</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    vectorizer <span class="op">=</span> CountVectorizer()</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fit and transform the text data</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> vectorizer.fit_transform(text_data)</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the feature names (tokens)</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    feature_names <span class="op">=</span> vectorizer.get_feature_names_out()</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert the matrix to a DataFrame for better readability</span></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    count_matrix <span class="op">=</span> pd.DataFrame(X.toarray(), columns<span class="op">=</span>feature_names)</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count_matrix</span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply CountVectorizer to article contents</span></span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>content_data <span class="op">=</span> [article[<span class="dv">5</span>] <span class="cf">for</span> article <span class="kw">in</span> cleaned_data_filtered] </span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>content_count_matrix <span class="op">=</span> apply_count_vectorizer(content_data)</span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(content_count_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>def <span class="fu">apply_count_vectorizer</span>(text_data)<span class="sc">:</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create an instance of CountVectorizer</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    vectorizer <span class="ot">=</span> <span class="fu">CountVectorizer</span>()</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fit and transform the text data</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    X <span class="ot">=</span> <span class="fu">vectorizer.fit_transform</span>(text_data)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the feature names (tokens)</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    feature_names <span class="ot">=</span> <span class="fu">vectorizer.get_feature_names_out</span>()</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert the matrix to a DataFrame for better readability</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    count_matrix <span class="ot">=</span> <span class="fu">pd.DataFrame</span>(<span class="fu">X.toarray</span>(), <span class="at">columns=</span>feature_names)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    return count_matrix</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply CountVectorizer to article contents</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>content_data <span class="ot">=</span> [article[<span class="dv">5</span>] <span class="cf">for</span> article <span class="cf">in</span> cleaned_data_filtered] </span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>content_count_matrix <span class="ot">=</span> <span class="fu">apply_count_vectorizer</span>(content_data)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(content_count_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    000  007  01  015  07  08  09  100  10311  10521  ...  wrapped  yea  year  \
 0     0    0   0    0   0   0   0    0      0      0  ...        0    0     0   
@@ -5583,24 +5757,24 @@ content
 <ul>
 <li><strong>Sentiment Analysis</strong>: The sentiment of each article’s content is analyzed using the SentimentIntensityAnalyzer from the NLTK library. The resulting sentiment scores are stored for each article:</li>
 </ul>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.sentiment <span class="im">import</span> SentimentIntensityAnalyzer </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the SentimentIntensityAnalyzer</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>sia <span class="op">=</span> SentimentIntensityAnalyzer()</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Analyze the sentiment of each article's content and store the sentiment scores</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>sentiments <span class="op">=</span> []</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> content <span class="kw">in</span> content_data:</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    sentiment_score <span class="op">=</span> sia.polarity_scores(content)</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    sentiments.append(sentiment_score)</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame for the sentiment scores</span></span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>sentiments_df <span class="op">=</span> pd.DataFrame(sentiments)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>from nltk.sentiment import SentimentIntensityAnalyzer </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the SentimentIntensityAnalyzer</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>sia <span class="ot">=</span> <span class="fu">SentimentIntensityAnalyzer</span>()</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Analyze the sentiment of each article's content and store the sentiment scores</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>sentiments <span class="ot">=</span> []</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> content <span class="cf">in</span> content_data<span class="sc">:</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    sentiment_score <span class="ot">=</span> <span class="fu">sia.polarity_scores</span>(content)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sentiments.append</span>(sentiment_score)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame for the sentiment scores</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>sentiments_df <span class="ot">=</span> <span class="fu">pd.DataFrame</span>(sentiments)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentiments_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sentiments_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      neg    neu    pos  compound
 0   0.121  0.879  0.000   -0.6124
@@ -5622,24 +5796,24 @@ content
 <li><p><strong>Combining Dataframes</strong>: The cleaned text data is combined with the sentiment scores, resulting in a DataFrame that includes sentiment attributes.</p></li>
 <li><p><strong>Renaming Columns</strong>: The columns of the combined DataFrame are renamed for clarity and consistency.</p></li>
 </ul>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>cleaned_text_data <span class="op">=</span> pd.read_csv(<span class="st">"../data/cleaned-data/cleaned_text_data.csv"</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the sentiment scores with the original article DataFrame</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>articles_with_sentiment <span class="op">=</span> pd.concat([cleaned_text_data, sentiments_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename columns</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>articles_with_sentiment <span class="op">=</span> articles_with_sentiment.rename(columns<span class="op">=</span>{</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'...1'</span>: <span class="st">'index'</span>,</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'0'</span>: <span class="st">'source'</span>,</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'1'</span>: <span class="st">'author'</span>,</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'2'</span>: <span class="st">'title'</span>,</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'3'</span>: <span class="st">'description'</span>,</span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'4'</span>: <span class="st">'date'</span>,</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'5'</span>: <span class="st">'content'</span></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the DataFrame to verify the changes</span></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(articles_with_sentiment)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>cleaned_text_data <span class="ot">=</span> <span class="fu">pd.read_csv</span>(<span class="st">"../data/cleaned-data/cleaned_text_data.csv"</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the sentiment scores with the original article DataFrame</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>articles_with_sentiment <span class="ot">=</span> <span class="fu">pd.concat</span>([cleaned_text_data, sentiments_df], <span class="at">axis=</span><span class="dv">1</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename columns</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>articles_with_sentiment <span class="ot">=</span> <span class="fu">articles_with_sentiment.rename</span>(<span class="at">columns=</span>{</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'...1'</span><span class="sc">:</span> <span class="st">'index'</span>,</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'0'</span><span class="sc">:</span> <span class="st">'source'</span>,</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'1'</span><span class="sc">:</span> <span class="st">'author'</span>,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'2'</span><span class="sc">:</span> <span class="st">'title'</span>,</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'3'</span><span class="sc">:</span> <span class="st">'description'</span>,</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'4'</span><span class="sc">:</span> <span class="st">'date'</span>,</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'5'</span><span class="sc">:</span> <span class="st">'content'</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the DataFrame to verify the changes</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(articles_with_sentiment)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 source                          author  \
 0              bbc news  https://wwwfacebookcom/bbcnews   
@@ -5709,7 +5883,6 @@ content
 [98 rows x 10 columns]</code></pre>
 </div>
 </div>
-<p>For the detailed</p>
 
 
 </section>

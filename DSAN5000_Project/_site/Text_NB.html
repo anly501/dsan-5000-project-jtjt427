@@ -1,0 +1,3535 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DSAN5000_Project – text_nb</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">DSAN5000_Project</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/anly501/dsan-5000-project-jtjt427/tree/main/codes" rel="" target="">
+ <span class="menu-text">Code</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Data.html" rel="" target="">
+ <span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Introduction.html" rel="" target="">
+ <span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Data_Gathering.html" rel="" target="">
+ <span class="menu-text">Data Gathering</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Cleaning.html" rel="" target="">
+ <span class="menu-text">Data Cleaning</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Data_Exploration.html" rel="" target="">
+ <span class="menu-text">Data Exploration</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Clustering.html" rel="" target="">
+ <span class="menu-text">Clustering</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Dimensionality_Reduction.html" rel="" target="">
+ <span class="menu-text">Dimensionality Reduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-decision-trees" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Decision Trees</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-decision-trees">    
+        <li>
+    <a class="dropdown-item" href="./Classification.html" rel="" target="">
+ <span class="dropdown-text">Classification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Regression.html" rel="" target="">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./ARM.html" rel="" target="">
+ <span class="menu-text">ARM</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Conclusions.html" rel="" target="">
+ <span class="menu-text">Conclusions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Naive_Bayes.html" rel="" target="">
+ <span class="menu-text">Naive_Bayes</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> MultinomialNB</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectKBest, chi2</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, classification_report, confusion_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>articles_with_sentiment <span class="op">=</span> pd.read_csv(<span class="st">"../data/cleaned-data/articles_with_sentiment.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 'sentiment' column based on the 'compound' values</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>articles_with_sentiment[<span class="st">'sentiment'</span>] <span class="op">=</span> articles_with_sentiment[<span class="st">'compound'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="st">'positive'</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> (<span class="st">'negative'</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'neutral'</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>[]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#ITERATE OVER ROWS</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,articles_with_sentiment.shape[<span class="dv">0</span>]):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># CONVERT STRINGS TO INT TAGS</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(articles_with_sentiment[<span class="st">"sentiment"</span>][i]<span class="op">==</span><span class="st">"positive"</span>):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        y.append(<span class="dv">1</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(articles_with_sentiment[<span class="st">"sentiment"</span>][i]<span class="op">==</span><span class="st">"neutral"</span>):</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        y.append(<span class="dv">0</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(articles_with_sentiment[<span class="st">"sentiment"</span>][i]<span class="op">==</span><span class="st">"negative"</span>):</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        y.append(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(i<span class="op">&lt;</span><span class="dv">3</span>):</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(articles_with_sentiment[<span class="st">"content"</span>][i].replace(<span class="st">"&lt;br /&gt;"</span>,<span class="st">""</span>),<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(articles_with_sentiment[<span class="st">"sentiment"</span>][i],y[i])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+"people have been let off the leash," thomas mayo says quietly, swiping through screenshots racist memes depicting first nations australians as "grifters", "wife beaters" and "primitives" flash ac… [+9064 chars] 
+
+negative -1
+1
+in 2019 and 2020, a megafire scorched eastern australia, destroying some 24 million hectares of land, and adding to the hole in the ozone layer another massive fire ate away parts of northern califo… [+7274 chars] 
+
+negative -1
+2
+all a wildfire needs is oxygen, an ignition to spark it, and fuel to burn its crackling embers and flickering flames dont know the difference between the california foothills, where residents are us… [+10837 chars] 
+
+positive 1</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CONVERT Y TO NUMPY ARRAY</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>np.array(y)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#DOUBLE CHECK SIZE</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(articles_with_sentiment[<span class="st">"content"</span>]),<span class="bu">len</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>98 98</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-stdout">
+<pre><code>AVAILABLE KEYS:
+Index(['source', 'author', 'title', 'description', 'url', 'urlToImage',
+       'publishedAt', 'content'],
+      dtype='object')
+#------------------------------------------
+# 0
+#------------------------------------------
+----------------
+source
+{'id': 'bbc-news', 'name': 'BBC News'}
+----------------
+author
+https://www.facebook.com/bbcnews
+----------------
+title
+Voice referendum: Lies fuel racism ahead of Australia's Indigenous vote
+----------------
+description
+Experts express concerns for First Nations people as a referendum debate turns increasingly divisive.
+----------------
+url
+https://www.bbc.co.uk/news/world-australia-66470376
+----------------
+urlToImage
+https://ichef.bbci.co.uk/news/1024/branded_news/13D39/production/_130790218_gettyimages-1593394059-1.jpg
+----------------
+publishedAt
+2023-09-05T21:23:49Z
+----------------
+content
+"People have been let off the leash," Thomas Mayo says quietly, swiping through screenshots. 
+Racist memes depicting First Nations Australians as "grifters", "wife beaters" and "primitives" flash ac… [+9064 chars]
+#------------------------------------------
+# 1
+#------------------------------------------
+----------------
+source
+{'name': 'Scientific American'}
+----------------
+author
+Curtis Abraham
+----------------
+title
+Large Herbivores Can Help Prevent Massive Wildfires
+----------------
+description
+Reintroducing large herbivores into fire-prone areas can help combat the global rise in megafires
+----------------
+url
+https://www.scientificamerican.com/article/large-herbivores-can-help-prevent-massive-wildfires/
+----------------
+urlToImage
+https://static.scientificamerican.com/sciam/cache/file/61CB9CDD-6C92-43FF-97517A08D9369F51.jpg
+----------------
+publishedAt
+2023-09-09T12:00:00Z
+----------------
+content
+In 2019 and 2020, a megafire scorched eastern Australia, destroying some 24 million hectares of land, and adding to the hole in the ozone layer. Another massive fire ate away parts of Northern Califo… [+7274 chars]
+#------------------------------------------
+# 2
+#------------------------------------------
+----------------
+source
+{'name': 'Vox'}
+----------------
+author
+Kylie Mohr
+----------------
+title
+Wildfire risk is everywhere and growing
+----------------
+description
+The ingredients for catastrophic wildfires are found in all corners of the country. Here are areas facing increased risk.
+----------------
+url
+https://www.vox.com/climate/23868557/wildfire-risk-states-climate-change-extreme-weather-events
+----------------
+urlToImage
+https://cdn.vox-cdn.com/thumbor/rphOgpb_JxK6F28-GY5CZ8ZA5GA=/0x482:3600x2367/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/24913466/1615229307.jpg
+----------------
+publishedAt
+2023-09-12T11:30:00Z
+----------------
+content
+All a wildfire needs is oxygen, an ignition to spark it, and fuel to burn. Its crackling embers and flickering flames dont know the difference between the California foothills, where residents are us… [+10837 chars]
+#------------------------------------------
+# 3
+#------------------------------------------
+----------------
+source
+{'name': 'Forbes'}
+----------------
+author
+Jamie Hailstone, Contributor, 
+ Jamie Hailstone, Contributor
+ https://www.forbes.com/sites/jamiehailstone/
+ AUTHOR ERROR: jamie hailstone, contributor, jamie hailstone, contributor https://wwwforbescom/sites/jamiehailstone/
+----------------
+title
+Why Now Is The Time To Focus On Wildfire Prevention And Restoration
+----------------
+description
+The search engine Ecosia recently announced it will invest €800,000 into prevention and restoration schemes.
+----------------
+url
+https://www.forbes.com/sites/jamiehailstone/2023/09/13/why-now-is-the-time-to-focus-on-wildfire-prevention-and-restoration/
+----------------
+urlToImage
+https://imageio.forbes.com/specials-images/imageserve/65018e260b28851dc79a7e36/0x0.jpg?format=jpg&amp;width=1200
+----------------
+publishedAt
+2023-09-13T10:29:06Z
+----------------
+content
+ALBERGARIA A VELHA, PORTUGAL - JULY 13: Firefighters during a forest fire that has hit a timber ... [+] factory on July 13, 2022 in Albergaria a Velha, Portugal. Wildfires have swept across the centr… [+4157 chars]
+#------------------------------------------
+# 4
+#------------------------------------------
+----------------
+source
+{'id': 'al-jazeera-english', 'name': 'Al Jazeera English'}
+----------------
+author
+Matthaios Tsimitakis
+----------------
+title
+Greece is fighting wildfires the wrong way
+----------------
+description
+A strategy focusing largely on boosting a firefighting force won't save the country from climate crisis-fuelled blazes.
+----------------
+url
+https://www.aljazeera.com/opinions/2023/9/17/greece-is-fighting-wildfires-the-wrong-way
+----------------
+urlToImage
+https://www.aljazeera.com/wp-content/uploads/2023/09/2023-09-03T050706Z_850717965_RC2N03AGRS4N_RTRMADP_3_EUROPE-WEATHER-GREECE-WILDFIRE-1694948212.jpg?resize=1920%2C1440
+----------------
+publishedAt
+2023-09-17T11:01:15Z
+----------------
+content
+This summer, I decided to seek refuge from the heat in Mount Pelion, a mountainous region in the heart of Greece, halfway between Athens and Thessaloniki. It is home to breathtaking forests and vibra… [+9254 chars]
+#------------------------------------------
+# 5
+#------------------------------------------
+----------------
+source
+{'name': 'MakeUseOf'}
+----------------
+author
+Charlotte Osborn
+----------------
+title
+Is YouTube Doing Enough to Curb Health Misinformation?
+----------------
+description
+Misinformation and disinformation proliferate online. Are YouTube's ongoing changes enough to promote trustworthy health content?
+----------------
+url
+https://www.makeuseof.com/youtube-doing-enough-curb-health-misinformation/
+----------------
+urlToImage
+https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2023/09/is-youtube-doing-enough-to-combat-health-misinformation.jpg
+----------------
+publishedAt
+2023-09-14T16:16:23Z
+----------------
+content
+Key Takeaways
+&lt;ul&gt;&lt;li&gt; YouTube has repeatedly adjusted policies to tackle health misinformation, aiming to protect users from inaccurate health content while preserving important conversations. &lt;/li… [+7909 chars]
+#------------------------------------------
+# 6
+#------------------------------------------
+----------------
+source
+{'name': 'Dezeen'}
+----------------
+author
+Ben Dreith
+----------------
+title
+US scientists develop "nanoscale" coating to combat spread of fires
+----------------
+description
+A team of scientists from universities in the United States have developed a silicon-based coating that can help stop the spread of fires&nbsp;by preventing materials coming in contact with flame. The coating was developed to slow the spread of fire by limiting th…
+----------------
+url
+https://www.dezeen.com/2023/09/04/silicon-coating-fire-protection-nanoscale/
+----------------
+urlToImage
+https://static.dezeen.com/uploads/2023/08/fire-coating-cover-photo-2364-dezeen-hero-600x600.jpg
+----------------
+publishedAt
+2023-09-04T16:50:00Z
+----------------
+content
+A team of scientists from universities in the United States have developed a silicon-based coating that can help stop the spread of fires&nbsp;by preventing materials coming in contact with flame.
+The co… [+4831 chars]
+#------------------------------------------
+# 7
+#------------------------------------------
+----------------
+source
+{'id': 'cbc-news', 'name': 'CBC News'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+These goats are 'constantly eating' to prevent wildfires in the California countryside
+----------------
+description
+Michael Choi organizes a herd of goats that eat their way through the brush of California, clearing away the fuel a wildfire needs to spread.
+----------------
+url
+https://www.cbc.ca/radio/asithappens/firefighting-goats-california-1.6978953
+----------------
+urlToImage
+https://i.cbc.ca/1.6978990.1695760652!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/goats.jpg
+----------------
+publishedAt
+2023-09-26T22:10:16Z
+----------------
+content
+There's a crew of firefighters gaining renown for their work to keep California safe from wildfires. Each member of the team has a great work ethic, a mean appetite and four legs.
+"They're constantl… [+3434 chars]
+#------------------------------------------
+# 8
+#------------------------------------------
+----------------
+source
+{'name': 'Grist'}
+----------------
+author
+Thomas Heaton, Honolulu Civil Beat
+----------------
+title
+Hawaii needs to build hundreds more miles of firebreaks to protect against wildfire
+----------------
+description
+Fire officials and landowners have known for years about gaps in Hawaii's firebreaks and fuelbreaks. The problem boils down to money and cooperation.
+----------------
+url
+http://grist.org/wildfires/hawaii-needs-to-build-hundreds-more-miles-of-firebreaks-to-protect-against-wildfire/
+----------------
+urlToImage
+https://grist.org/wp-content/uploads/2023/09/waianae-mountains-wildfire-break-aerial.jpg
+----------------
+publishedAt
+2023-09-17T13:00:00Z
+----------------
+content
+This story was originally published by Honolulu Civil Beat and is republished with permission.
+Hawaii maintains a network of firebreaks to keep wildfire from spreading, but that system includes hund… [+6397 chars]
+#------------------------------------------
+# 9
+#------------------------------------------
+----------------
+source
+{'name': 'MobileSyrup'}
+----------------
+author
+Nida Zafar
+----------------
+title
+Rogers partners with SpaceX and Pano AI to bring wildfire detection technology to B.C.
+----------------
+description
+Rogers is utilizing SpaceX’s services to introduce wildfire detection and prevention technology in British Columbia. The telecom giant will use satellite-connected sensors through SpaceX’s low-bandwidth Swarm service to predict wildfires in remote areas of th…
+----------------
+url
+https://mobilesyrup.com/2023/09/21/rogers-spacex-pano-ai-bring-wildfire-detection-technology-b-c/
+----------------
+urlToImage
+https://cdn.mobilesyrup.com/wp-content/uploads/2023/09/header-PanoAI-sized.jpg
+----------------
+publishedAt
+2023-09-21T13:00:23Z
+----------------
+content
+Rogers is utilizing SpaceX’s services to introduce wildfire detection and prevention technology in British Columbia.
+The telecom giant will use satellite-connected sensors through SpaceXs low-bandwi… [+1536 chars]
+#------------------------------------------
+# 10
+#------------------------------------------
+----------------
+source
+{'name': 'Grist'}
+----------------
+author
+Zoya Teirstein, Grist
+ AUTHOR ERROR: zoya teirstein, grist
+----------------
+title
+The U.S. Undercounts Climate-Driven Deaths
+----------------
+description
+The full death toll from extreme heat waves, hurricanes and other climate-related disasters often isn&amp;rsquo;t revealed until weeks,&amp;nbsp;months or&amp;nbsp;even years after an event occurs
+----------------
+url
+https://grist.org/health/why-the-united-states-undercounts-climate-driven-deaths/
+----------------
+urlToImage
+https://static.scientificamerican.com/sciam/cache/file/20793F86-328C-458D-A36128F51F6CFE18.jpeg
+----------------
+publishedAt
+2023-09-06T11:30:00Z
+----------------
+content
+This story is part of&nbsp;Record High, a Grist series examining extreme heat and its impact on how — and where — we live.
+Every week between May and October, the Maricopa County Department of Public Hea… [+10521 chars]
+#------------------------------------------
+# 11
+#------------------------------------------
+----------------
+source
+{'name': 'UPI.com'}
+----------------
+author
+Cara Murez, HealthDay News
+----------------
+title
+Exposure to wildfire smoke affects billions of people around the globe
+----------------
+description
+More people around the world are exposed to wildfire smoke that has the potential to harm human health, and their numbers are growing, new research finds.
+----------------
+url
+https://www.upi.com/Health_News/2023/09/21/wildfire-smoke-pollution/2441695309789/
+----------------
+urlToImage
+https://media.zenfs.com/en/united_press_international_articles_356/5f237e2bb9ee667174db2baa87833994
+----------------
+publishedAt
+2023-09-21T17:54:01Z
+----------------
+content
+More people around the world are exposed to wildfire smoke that has the potential to harm human health, and their numbers are growing, new research finds.
+More than 2 billion people are exposed to a… [+2032 chars]
+#------------------------------------------
+# 12
+#------------------------------------------
+----------------
+source
+{'name': 'Los Angeles Times'}
+----------------
+author
+Priscella Vega
+----------------
+title
+Smoke advisory issued through weekend in L.A. area from Northern California wildfires
+----------------
+description
+Wildfires burning in Northern California result in a smoke advisory in the greater Los Angeles area. Residents are advised to limit outdoor exposure.
+----------------
+url
+https://www.latimes.com/california/story/2023-09-24/smoke-advisory-issued-through-weekend-in-los-angeles-area-from-northern-california-wildfires
+----------------
+urlToImage
+https://ca-times.brightspotcdn.com/dims4/default/f574011/2147483647/strip/true/crop/3526x1851+0+250/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fd8%2F75%2F36b8b11d4867ba4db6bb162fd037%2Fla-photos-1staff-615463-me-smoke-air-quality-3-brv-wip.JPG
+----------------
+publishedAt
+2023-09-24T17:56:33Z
+----------------
+content
+Wildfires burning in Northern California are blowing smoke toward the Los Angeles area, causing unhealthy air levels that are expected to remain through Sunday evening. 
+The South Coast Air Quality … [+1090 chars]
+#------------------------------------------
+# 13
+#------------------------------------------
+----------------
+source
+{'id': 'al-jazeera-english', 'name': 'Al Jazeera English'}
+----------------
+author
+John Psaropoulos
+----------------
+title
+After slew of disasters, Greeks wonder what is happening to their democracy
+----------------
+description
+Floods, wildfires and a deadly train collision this year have raised questions about the competence of the government.
+----------------
+url
+https://www.aljazeera.com/news/2023/9/11/reporters-notebook-greeks-wonder-what-is-happening-to-their-democracy
+----------------
+urlToImage
+https://www.aljazeera.com/wp-content/uploads/2023/09/20230908_16-1694441325.jpg?resize=1920%2C1440
+----------------
+publishedAt
+2023-09-11T15:21:43Z
+----------------
+content
+Karditsa, Greece I came across Matoula Tzela as she threw shrink-wrapped bricks of exercise books onto the pavement outside her stationery shop in the village of Palamas.
+Muddy floodwater had risen … [+8011 chars]
+#------------------------------------------
+# 14
+#------------------------------------------
+----------------
+source
+{'name': 'Sacramento Bee'}
+----------------
+author
+Grace Scullion
+----------------
+title
+Legislature will vote on bill to save California goat herders for two more years
+----------------
+description
+Goat herders have been in jeopardy since a 2022 ‘bureacratic accident.’
+----------------
+url
+https://www.sacbee.com/news/politics-government/capitol-alert/article278874669.html
+----------------
+urlToImage
+https://media.zenfs.com/en/sacramento_bee_mcclatchy_569/d5ea2237b8deb1b9baef3f5350903f3c
+----------------
+publishedAt
+2023-09-05T12:00:00Z
+----------------
+content
+I didnt have goat herders on my bingo card for this budget year, said Asm. Vince Fong, R-Kern County, at an Assembly Budget Committee hearing this week. But ever since a 2022 bureaucratic accident, g… [+2949 chars]
+#------------------------------------------
+# 15
+#------------------------------------------
+----------------
+source
+{'name': 'Yahoo Entertainment'}
+----------------
+author
+Clark Mindock
+----------------
+title
+UPDATE 2-Hawaii, Maui sued by victim's family for gross negligence in deadly wildfires
+----------------
+description
+The father of a woman who died during last month's wildfires in Hawaii has sued the state and the county of Maui in a “first-of-its-kind” lawsuit accusing...
+----------------
+url
+https://finance.yahoo.com/news/1-hawaii-maui-sued-victims-161326287.html
+----------------
+urlToImage
+https://s.yimg.com/cv/apiv2/social/images/yahoo_default_logo-1200x1200.png
+----------------
+publishedAt
+2023-09-05T16:13:26Z
+----------------
+content
+(Adds plaintiff also suing on own behalf in paragraph 3, deaths, missing persons details in paragraph 4, background)
+By Clark Mindock
+Sept 5 (Reuters) - The father of a woman who died during last m… [+2669 chars]
+#------------------------------------------
+# 16
+#------------------------------------------
+----------------
+source
+{'name': 'iPhone in Canada'}
+----------------
+author
+Gary Ng
+----------------
+title
+Rogers Partners with SpaceX for Advanced Wildfire Detection
+----------------
+description
+Rogers has announced a significant investment in cutting-edge wildfire detection and prevention technology in British Columbia, leveraging its partnerships with SpaceX and other technology providers. The company is integrating satellite-connected sensors usin…
+----------------
+url
+https://www.iphoneincanada.ca/2023/09/21/rogers-spacex-wildfire-detection/
+----------------
+urlToImage
+https://cdn.iphoneincanada.ca/wp-content/uploads/2017/09/iic-logo-1.svg
+----------------
+publishedAt
+2023-09-21T13:00:51Z
+----------------
+content
+Rogers has announced a significant investment in cutting-edge wildfire detection and prevention technology in British Columbia, leveraging its partnerships with SpaceX and other technology providers.… [+2715 chars]
+#------------------------------------------
+# 17
+#------------------------------------------
+----------------
+source
+{'name': 'CleanTechnica'}
+----------------
+author
+U.S. Department of Energy
+----------------
+title
+Researchers Using AI to Aid Disaster Response &amp; Recovery
+----------------
+description
+For some, all the talk about artificial intelligence sounds like science fiction, where futuristic societies are overrun by robots that begin to think for themselves. And given all the hype about AI, it is not surprising that 61 percent of respondents in a re…
+----------------
+url
+https://cleantechnica.com/2023/09/28/pnnl-researchers-using-ai-to-aid-disaster-response-recovery/
+----------------
+urlToImage
+https://cleantechnica.com/files/2023/09/hero-image-0-00-13-01-1536x1152-1.png
+----------------
+publishedAt
+2023-09-28T04:10:41Z
+----------------
+content
+Sign up for daily news updates from CleanTechnica on email. Or follow us on Google News!
+For some, all the talk about artificial intelligence sounds like science fiction, where futuristic societies … [+5515 chars]
+#------------------------------------------
+# 18
+#------------------------------------------
+----------------
+source
+{'name': 'AOL'}
+----------------
+author
+Tom Hals
+----------------
+title
+Analysis-Novel Lahaina wildfire lawsuit asks 'when is wild grass inherently dangerous?'
+----------------
+description
+The father of a woman who died in the Hawaii wildfires last month has launched a novel lawsuit against three major landowners, seeking to hold them...
+----------------
+url
+https://www.aol.com/news/analysis-novel-lahaina-wildfire-lawsuit-100411070.html
+----------------
+urlToImage
+https://media.zenfs.com/en/aol_reuters_29/d5aab5b20c8688eed011f85b4a5cb484
+----------------
+publishedAt
+2023-09-20T10:04:11Z
+----------------
+content
+By Tom Hals
+WILMINGTON, Delaware (Reuters) - The father of a woman who died in the Hawaii wildfires last month has launched a novel lawsuit against three major landowners, seeking to hold them respo… [+5829 chars]
+#------------------------------------------
+# 19
+#------------------------------------------
+----------------
+source
+{'id': 'cbc-news', 'name': 'CBC News'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+Invasive species are costing us dearly, both in terms of dollars and biodiversity
+----------------
+description
+In this week's issue of our environment newsletter, we look at the financial and ecological costs of invasive species and why Vancouver's architecture is poorly suited to a warming planet.
+----------------
+url
+https://www.cbc.ca/news/science/what-on-earth-invasive-species-cost-biodiversity-1.6959365
+----------------
+urlToImage
+https://i.cbc.ca/1.6959380.1694103487!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/zebra-mussels.jpg
+----------------
+publishedAt
+2023-09-07T16:26:12Z
+----------------
+content
+Our planet is changing. So is our journalism. This weekly newsletter is part of a CBC News initiative entitled "Our Changing Planet" to show and explain the effects of climate change. Keep up with th… [+14282 chars]
+#------------------------------------------
+# 20
+#------------------------------------------
+----------------
+source
+{'name': 'ProPublica'}
+----------------
+author
+by Patrick Lohmann, Source New Mexico, and Byard Duncan, ProPublica
+ AUTHOR ERROR: by patrick lohmann, source new mexico, and byard duncan, propublica
+----------------
+title
+Life in Limbo: Victims of New Mexico’s Biggest Wildfire Wait for Checks From the Federal Government to Rebuild
+----------------
+description
+by Patrick Lohmann, Source New Mexico, and Byard Duncan, ProPublica 
+ 
+
+ 
+ This article was produced for ProPublica’s Local Reporting Network in partnership with Source New Mexico. Sign up for Dispatches to get stories like this one as soon as they are publis…
+----------------
+url
+https://www.propublica.org/article/life-in-limbo-victims-of-new-mexicos-biggest-wildfire-wait-for-checks-from-the-federal-government-to-rebuild
+----------------
+urlToImage
+https://img.assets-c3.propublica.org/images/articles/Long-Burn-Limbo-OG_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=630&amp;imgixProfile=propublicaAssets&amp;q=90&amp;w=1200&amp;s=868c179be6ce9b545d6dbc9dc747916a
+----------------
+publishedAt
+2023-09-28T09:00:00Z
+----------------
+content
+This article was produced for ProPublicas Local Reporting Network in partnership with Source New Mexico. Sign up for Dispatches to get stories like this one as soon as they are published.
+On a recen… [+23561 chars]
+#------------------------------------------
+# 21
+#------------------------------------------
+----------------
+source
+{'name': 'Phys.Org'}
+----------------
+author
+Andy Sheppard, Melodie McGeoch, Philip Hulme, Phill Cassey
+----------------
+title
+Opinion: The true damage of invasive alien species was just revealed in a landmark report—here's how we must act
+----------------
+description
+Invasive alien species are driving biodiversity loss and extinctions in every country, all over the world.
+----------------
+url
+https://phys.org/news/2023-09-opinion-true-invasive-alien-species.html
+----------------
+urlToImage
+https://scx2.b-cdn.net/gfx/news/hires/2023/the-true-damage-of-inv.jpg
+----------------
+publishedAt
+2023-09-04T17:14:03Z
+----------------
+content
+by Andy Sheppard, Melodie McGeoch, Philip Hulme and Phill Cassey, The ConversationInvasive alien species are driving biodiversity loss and extinctions in every country, all over the world.
+Respondin… [+6820 chars]
+#------------------------------------------
+# 22
+#------------------------------------------
+----------------
+source
+{'name': 'UPI.com'}
+----------------
+author
+A.L. Lee
+----------------
+title
+Biden launches American Climate Corps to train 20,000 for clean energy jobs
+----------------
+description
+President Joe Biden will announce a new program that will create a workforce of 20,000 young people in careers to boost clean energy and environmental...
+----------------
+url
+https://www.upi.com/Top_News/US/2023/09/20/biden-announces-American-Climate-Corps-workforce-of-20000-young-people/3321695212772/
+----------------
+urlToImage
+https://media.zenfs.com/en/united_press_international_articles_356/42ce685d318816fcc51c5d2be3ba1d8f
+----------------
+publishedAt
+2023-09-20T14:40:17Z
+----------------
+content
+Sept. 20 (UPI) -- President Joe Biden will announce a program that will create a workforce of 20,000 young people in careers to boost clean energy and environmental conservation as part of an ongoing… [+2084 chars]
+#------------------------------------------
+# 23
+#------------------------------------------
+----------------
+source
+{'name': 'Grist'}
+----------------
+author
+Jessica Kutz, The 19th
+----------------
+title
+Extreme heat is linked to higher risk of life-threatening delivery complications for pregnant people
+----------------
+description
+A new study found significant associations between both long- and short-term exposure to environmental heat during a pregnancy and severe maternal morbidity.
+----------------
+url
+http://grist.org/health/extreme-heat-is-linked-to-higher-risk-of-life-threatening-delivery-complications-for-pregnant-people/
+----------------
+urlToImage
+https://grist.org/wp-content/uploads/2023/09/MaternityHeat.jpg
+----------------
+publishedAt
+2023-09-16T13:00:00Z
+----------------
+content
+This story was originally published by The 19th and is republished with permission.
+Pregnant people exposed to extreme heat are at higher risk of developing life-threatening complications during lab… [+5645 chars]
+#------------------------------------------
+# 24
+#------------------------------------------
+----------------
+source
+{'name': 'Forbes'}
+----------------
+author
+Rotem Gantz, Forbes Councils Member, 
+ Rotem Gantz, Forbes Councils Member
+ https://www.forbes.com/sites/forbesbusinesscouncil/people/rotemgantz/
+ AUTHOR ERROR: rotem gantz, forbes councils member, rotem gantz, forbes councils member https://wwwforbescom/sites/forbesbusinesscouncil/people/rotemgantz/
+----------------
+title
+Why Should CEOs Pay Attention To Retail Investors In 2024 IPOs?
+----------------
+description
+In today’s volatile market environment, being publicly traded can look different than it has in the past.
+----------------
+url
+https://www.forbes.com/sites/forbesbusinesscouncil/2023/09/20/why-should-ceos-pay-attention-to-retail-investors-in-2024-ipos/
+----------------
+urlToImage
+https://imageio.forbes.com/specials-images/imageserve/6509c5d44d129db58ebba903/0x0.jpg?format=jpg&amp;width=1200
+----------------
+publishedAt
+2023-09-20T12:45:00Z
+----------------
+content
+Rotem helps companies pre-identify and mitigate manipulation and reputation attacks. CEO ARX, a corporate advisory and VC.
+getty
+With some predicting a rebound in the IPO market in 2024, its time f… [+5674 chars]
+#------------------------------------------
+# 25
+#------------------------------------------
+----------------
+source
+{'name': '[Removed]'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+[Removed]
+----------------
+description
+[Removed]
+----------------
+url
+https://removed.com
+----------------
+urlToImage
+nan
+----------------
+publishedAt
+1970-01-01T00:00:00Z
+----------------
+content
+[Removed]
+#------------------------------------------
+# 26
+#------------------------------------------
+----------------
+source
+{'name': 'EURACTIV'}
+----------------
+author
+Georgi Gotev
+----------------
+title
+Greece to launch drones, temperature sensors to better fight wildfires
+----------------
+description
+Greece's prime minister said on Thursday (31 August) it would launch drones and install forest temperature sensors to improve preventive firefighting after criticism from climate activists over a devastating wildfire burning for almost two weeks.
+----------------
+url
+https://www.euractiv.com/section/climate-environment/news/greece-to-launch-drones-temperature-sensors-to-better-fight-wildfires/
+----------------
+urlToImage
+https://www.euractiv.com/wp-content/uploads/sites/2/2023/09/Greek-beach-wildfires-800x450.jpg
+----------------
+publishedAt
+2023-09-01T05:45:22Z
+----------------
+content
+Greece’s prime minister said on Thursday (31 August) it would launch drones and install forest temperature sensors to improve preventive firefighting after criticism from climate activists over a dev… [+2174 chars]
+#------------------------------------------
+# 27
+#------------------------------------------
+----------------
+source
+{'name': 'Yahoo Entertainment'}
+----------------
+author
+Jody Godoy
+----------------
+title
+U.S. appeals court questions delay in PG&amp;E shareholder case
+----------------
+description
+U.S. appeals court judges questioned a 2-1/2-year pause in a shareholder lawsuit against PG&amp;E Corp officers and directors on Wednesday, suggesting they could...
+----------------
+url
+https://finance.yahoo.com/news/u-appeals-court-questions-delay-190909326.html
+----------------
+urlToImage
+https://media.zenfs.com/en/reuters-finance.com/8024089dad00419f87c77a467765be16
+----------------
+publishedAt
+2023-09-13T19:09:09Z
+----------------
+content
+By Jody Godoy
+(Reuters) - U.S. appeals court judges questioned a 2-1/2-year pause in a shareholder lawsuit against PG&amp;amp;E Corp officers and directors on Wednesday, suggesting they could allow the … [+1836 chars]
+#------------------------------------------
+# 28
+#------------------------------------------
+----------------
+source
+{'id': 'nbc-news', 'name': 'NBC News'}
+----------------
+author
+Adiel Kaplan and Alicia Victoria Lozano
+----------------
+title
+House passes bill to improve wildfire prevention accountability after NBC News report
+----------------
+description
+A bill to improve how federal agencies track wildfire prevention work passed the House after NBC News found decades of overstatement by the Forest Service.
+----------------
+url
+https://www.nbcnews.com/news/us-news/house-passes-bill-improve-wildfire-prevention-accountability-nbc-news-rcna104712
+----------------
+urlToImage
+https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/rockcms/2023-09/230912-Calif-Sequoia-National-Forest-Crews-prescribed-burn-ac-450p-0e66a1.jpg
+----------------
+publishedAt
+2023-09-13T18:27:48Z
+----------------
+content
+A bill to improve how the federal government tracks wildfire prevention work passed the House in a near-unanimous 406-4 vote on Wednesday, a month after the nations deadliest wildfire in over 100 yea… [+1664 chars]
+#------------------------------------------
+# 29
+#------------------------------------------
+----------------
+source
+{'name': 'PRNewswire'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+New Smokey Bear PSAs Encourage Americans to Channel the "Smokey Within" and Help Prevent Unwanted, Human-Caused Wildfires
+----------------
+description
+WASHINGTON, Sept. 13, 2023 /PRNewswire/ -- The Ad Council, National Association of State Foresters and the USDA Forest Service are releasing new PSAs today as part of the iconic Smokey Bear Wildfire Prevention campaign. Inspiring the public to share in the sa…
+----------------
+url
+https://www.prnewswire.com/news-releases/new-smokey-bear-psas-encourage-americans-to-channel-the-smokey-within-and-help-prevent-unwanted-human-caused-wildfires-301925317.html
+----------------
+urlToImage
+https://www.multivu.com/players/English/9094556-new-smokey-bear-psa-channel-the-smokey-within-and-help-prevent-wildfires/video/FriendsVideo_1694192311471-HR.jpg
+----------------
+publishedAt
+2023-09-13T04:01:00Z
+----------------
+content
+WASHINGTON, Sept. 13, 2023 /PRNewswire/ -- The Ad Council, National Association of State Foresters and the USDA Forest Service are releasing new PSAs today as part of the iconic Smokey Bear Wildfire … [+6724 chars]
+#------------------------------------------
+# 30
+#------------------------------------------
+----------------
+source
+{'name': 'Rand.org'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+Teacher Pay, the Costs of Insomnia, Wildfire Prevention: RAND Weekly Recap
+----------------
+description
+This weekly recap focuses on teachers' dissatisfaction with their pay and work hours, the staggering costs of insomnia, connections between wildfires and food insecurity., and more.
+----------------
+url
+https://www.rand.org/blog/2023/09/weekly-recap-september-15.html
+----------------
+urlToImage
+https://wwwassets.rand.org/content/rand/blog/2023/09/weekly-recap-september-15/jcr:content/par/teaser.fit.0x1200.jpeg/1694808930999.jpeg
+----------------
+publishedAt
+2023-09-15T16:00:00Z
+----------------
+content
+This week, we discuss survey results showing that most U.S. teachers feel overworked and underpaid; why insomnia is a multibillion-dollar problem; helping overworked public defenders; challenges faci… [+5049 chars]
+#------------------------------------------
+# 31
+#------------------------------------------
+----------------
+source
+{'name': 'Rand.org'}
+----------------
+author
+Lena Easton-Calabria
+----------------
+title
+After Maui Fires, Food Security Is a Major Concern and Opportunity
+----------------
+description
+The full impact of the deadly Maui fires on food resilience strategies remains to be seen. But the disaster highlights an urgent need for a systems-based approach to address both food security and wildfire prevention.
+----------------
+url
+https://www.rand.org/blog/2023/09/after-maui-fires-food-security-is-a-major-concern-and.html
+----------------
+urlToImage
+https://wwwassets.rand.org/content/rand/blog/2023/09/after-maui-fires-food-security-is-a-major-concern-and/jcr:content/par/teaser.fit.0x1200.jpeg/1693435569924.jpeg
+----------------
+publishedAt
+2023-09-06T13:30:00Z
+----------------
+content
+The COVID-19 pandemic exposed the fragility of food supply chains and highlighted Hawaii's reliance on food imports (PDF). The fires that have devastated Maui provide another warning and perhaps an o… [+5080 chars]
+#------------------------------------------
+# 32
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Rogers Communications Canada Inc.
+----------------
+title
+Rogers Brings World Leading Wildfire Detection and Prevention Technology to British Columbia
+----------------
+description
+Introducing satellite-connected wildfire sensors with SpaceX technology  Connecting AI cameras to Rogers 5G network for early wildfire detection in......
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/21/2747352/0/en/Rogers-Brings-World-Leading-Wildfire-Detection-and-Prevention-Technology-to-British-Columbia.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/75df463a-930e-43e3-92cc-bdb2d7058d8e
+----------------
+publishedAt
+2023-09-21T13:00:00Z
+----------------
+content
+Introducing satellite-connected wildfire sensors with SpaceX technology
+Connecting AI cameras to Rogers 5G network for early wildfire detection in Canadian first
+VANCOUVER, British Columbia, Sept. … [+4615 chars]
+#------------------------------------------
+# 33
+#------------------------------------------
+----------------
+source
+{'name': 'Naturalnews.com'}
+----------------
+author
+Zoey Sky
+----------------
+title
+Worse than smoking and alcohol: Air pollution is the “greatest global threat to human health,” warn scientists
+----------------
+description
+Drinking alcohol and smoking are linked to many health issues. But according to research, air pollution is the “greatest global threat to human health.” More should be done to fight air pollution,&nbsp;experts say Findings from a benchmark study suggest the growin…
+----------------
+url
+https://www.naturalnews.com/2023-09-05-air-pollution-greatest-global-threat-human-health.html
+----------------
+urlToImage
+https://www.naturalnews.com/wp-content/uploads/sites/91/2023/09/Pollution-Air-Cars-Co2-Smog.jpg
+----------------
+publishedAt
+2023-09-05T06:00:00Z
+----------------
+content
+Drinking alcohol and smoking are linked to many health issues. But according to research, air pollution is the "greatest global threat to human health."
+More should be done to fight air pollution,&nbsp;e… [+5939 chars]
+#------------------------------------------
+# 34
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+GlobeNewswire
+----------------
+title
+Rogers Brings World Leading Wildfire Detection and Prevention Technology to British Columbia
+----------------
+description
+(marketscreener.com) Introducing satellite-connected wildfire sensors with SpaceX technology Connecting AI cameras to Rogers 5G network for early wildfire detection in Canadian first VANCOUVER, British Columbia, Sept. 21, 2023 -- Rogers Communications today a…
+----------------
+url
+https://www.marketscreener.com/quote/stock/ROGERS-COMMUNICATIONS-INC-1411425/news/Rogers-Brings-World-Leading-Wildfire-Detection-and-Prevention-Technology-to-British-Columbia-44896267/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdblanc.png
+----------------
+publishedAt
+2023-09-21T13:02:02Z
+----------------
+content
+Introducing satellite-connected wildfire sensors with SpaceX technology
+Connecting AI cameras to Rogers 5G network for early wildfire detection in Canadian first
+VANCOUVER, British Columbia, Sept. … [+4615 chars]
+#------------------------------------------
+# 35
+#------------------------------------------
+----------------
+source
+{'name': 'Yahoo Entertainment'}
+----------------
+author
+Reuters
+----------------
+title
+Maui fire lawsuit blames landowners for wild grass growth
+----------------
+description
+The father of a woman who died in the Hawaii wildfires last month has launched a novel lawsuit against three major landowners, seeking to hold them...
+----------------
+url
+https://news.yahoo.com/analysis-novel-lahaina-wildfire-lawsuit-100411958.html
+----------------
+urlToImage
+https://media.zenfs.com/en/reuters.com/55dba0f048c6387f2a9d10e54349b6a3
+----------------
+publishedAt
+2023-09-20T10:04:11Z
+----------------
+content
+WILMINGTON, Delaware (Reuters) - The father of a woman who died in the Hawaii wildfires last month has launched a novel lawsuit against three major landowners, seeking to hold them responsible even t… [+5816 chars]
+#------------------------------------------
+# 36
+#------------------------------------------
+----------------
+source
+{'name': 'Los Angeles Times'}
+----------------
+author
+Hannah Wiley
+----------------
+title
+California voters will decide in 2024 whether to lower bar for new taxes and housing bonds
+----------------
+description
+California lawmakers on Wednesday approved a 2024 ballot measure that asks voters whether to lower the bar for new taxes and bonds to fund housing and public infrastructure.
+----------------
+url
+https://www.latimes.com/california/story/2023-09-14/aca-1-california-legislature-taxes-bonds-housing-infrastructure-ballot-measure-2024-voters
+----------------
+urlToImage
+https://ca-times.brightspotcdn.com/dims4/default/5688295/2147483647/strip/true/crop/3992x2096+0+448/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fd0%2F88%2F8cf74e4c4e549d324c9c6c29fe90%2F974034-me-affordable-housing-costs-jpg038.jpg
+----------------
+publishedAt
+2023-09-14T21:25:24Z
+----------------
+content
+In 2022, nearly 60% of voters in Berkeley approved a $650-million bond to build affordable housing and repair streets, sidewalks and other outdated infrastructure. 
+The same year, more than 61% of v… [+5226 chars]
+#------------------------------------------
+# 37
+#------------------------------------------
+----------------
+source
+{'name': 'Los Angeles Times'}
+----------------
+author
+The Times Editorial Board
+----------------
+title
+Editorial: California lets a minority squash local tax and bond measures. That could change
+----------------
+description
+By requiring a supermajority to pass local tax measures, a fraction of naysayers veto what a majority, or more, of their fellow voters support. That's undemocratic.
+----------------
+url
+https://www.latimes.com/opinion/story/2023-09-18/editorial-california-lets-a-minority-of-naysayers-squash-local-tax-and-bond-measures-that-could-change
+----------------
+urlToImage
+https://ca-times.brightspotcdn.com/dims4/default/3dfaf36/2147483647/strip/true/crop/5188x2724+0+445/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F03%2Fd0%2F6f3c04b14cfcbfbd1085f4e125ed%2Fcalifornia-legislature-31793.jpg
+----------------
+publishedAt
+2023-09-18T12:00:58Z
+----------------
+content
+California gives too much power to a minority of voters to block local taxes for parks, housing, transportation and other public investments.
+In most elections, decisions are made by a simple majori… [+4044 chars]
+#------------------------------------------
+# 38
+#------------------------------------------
+----------------
+source
+{'name': 'Grist'}
+----------------
+author
+Zoya Teirstein
+----------------
+title
+Why the United States undercounts climate-driven deaths
+----------------
+description
+As temperatures rise and weather extremes worsen, finding better ways to monitor climate-related deaths becomes increasingly urgent.
+----------------
+url
+http://grist.org/health/why-the-united-states-undercounts-climate-driven-deaths/
+----------------
+urlToImage
+https://grist.org/wp-content/uploads/2023/08/Screenshot-2023-08-31-at-9.53.00-PM-e1693600935888.png
+----------------
+publishedAt
+2023-09-05T08:15:00Z
+----------------
+content
+This story is part of&nbsp;Record High, a Grist series examining extreme heat and its impact on how and where we live.
+Every week between May and October, the Maricopa County Department of Public Health … [+10311 chars]
+#------------------------------------------
+# 39
+#------------------------------------------
+----------------
+source
+{'name': 'Biztoc.com'}
+----------------
+author
+nbcnews.com
+----------------
+title
+House passes bill to improve wildfire prevention accountability after NBC News report
+----------------
+description
+Create your free profile or log in to save this article Create your free profile or log in to save this article A bill to improve how the federal government tracks wildfire prevention work passed the House in a near-unanimous 406-4 vote on Wednesday, a month …
+----------------
+url
+https://biztoc.com/x/5c589066f72cdef9
+----------------
+urlToImage
+https://c.biztoc.com/p/5c589066f72cdef9/s.webp
+----------------
+publishedAt
+2023-09-13T18:46:13Z
+----------------
+content
+Create your free profile or log in to save this articleCreate your free profile or log in to save this articleA bill to improve how the federal government tracks wildfire prevention work passed the H… [+273 chars]
+#------------------------------------------
+# 40
+#------------------------------------------
+----------------
+source
+{'name': 'CNA'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+Hawaii, Maui sued by victim's family for gross negligence in deadly wildfires
+----------------
+description
+The father of a woman who died during last month's wildfires in Hawaii has sued the state and the county of Maui in a “first-of-its-kind” lawsuit accusing the governments of gross negligence leading to the blazes that razed the historic town of Lahaina. Filed…
+----------------
+url
+https://www.channelnewsasia.com/world/hawaii-maui-sued-victims-family-gross-negligence-deadly-wildfires-3748196
+----------------
+urlToImage
+https://onecms-res.cloudinary.com/image/upload/s--_FbxKK9X--/fl_relative,g_south_east,l_one-cms:core:watermark:reuters,w_0.1/f_auto,q_auto/c_fill,g_auto,h_676,w_1200/v1/one-cms/core/2023-09-05t154014z_2_lynxmpej840p0_rtroptp_3_hawaii-wildfires-lawsuit.jpg?itok=EnkpEORX
+----------------
+publishedAt
+2023-09-05T21:23:43Z
+----------------
+content
+The father of a woman who died during last month's wildfires in Hawaii has sued the state and the county of Maui in a first-of-its-kind lawsuit accusing the governments of gross negligence leading to… [+2618 chars]
+#------------------------------------------
+# 41
+#------------------------------------------
+----------------
+source
+{'name': 'Insurance Journal'}
+----------------
+author
+Admin
+----------------
+title
+Tech Startups in US, France, Germany Help in Fight Against Wildfires
+----------------
+description
+This year has been a challenging one for Phil Schneider, who hasn’t seen wildfire behavior like this in his 47-year firefighting career. Blazes raged through more than 2,000 acres of wildland in recent months in his county deep in the …
+----------------
+url
+https://www.insurancejournal.com/news/national/2023/09/25/741510.htm
+----------------
+urlToImage
+https://www.insurancejournal.com/app/uploads/2023/09/helicopter-gets-load-of-water-for-oregon-fire-AP-scaled.jpg
+----------------
+publishedAt
+2023-09-25T13:27:59Z
+----------------
+content
+This year has been a challenging one for Phil Schneider, who hasn’t seen wildfire behavior like this in his 47-year firefighting career.
+Blazes raged through more than 2,000 acres of wildland in rec… [+9287 chars]
+#------------------------------------------
+# 42
+#------------------------------------------
+----------------
+source
+{'name': 'EUobserver'}
+----------------
+author
+Elena Sánchez Nicolás
+----------------
+title
+[Analysis] Europe's summer wildfires: the lessons to be learnt
+----------------
+description
+This summer's wildfires have dominated headlines, featuring pictures of helicopters flying overhead and tourists fleeing — but what lessons have experts drawn? They are calling for the need to manage forests and vegetation, and create more forest&nbsp;firebreaks.
+----------------
+url
+https://euobserver.com/green-economy/157375
+----------------
+urlToImage
+https://media.euobserver.com/c5e2cc3c706e340de39347d282733ce5-800x.jpg
+----------------
+publishedAt
+2023-09-01T11:32:55Z
+----------------
+content
+This summer's wildfires have dominated headlines, with pictures of helicopters flying overhead and tourists fleeing — and politicians across Europe blaming the magnitude of the disaster primarily on … [+3334 chars]
+#------------------------------------------
+# 43
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+FireSmart BC
+----------------
+title
+FireSmart BC Launches New Youth Education Program Following the Worst Wildfire Season in BC’s History
+----------------
+description
+Victoria, BC, Sept. 25, 2023 (GLOBE NEWSWIRE) -- This back-to-school season comes after the worst wildfire season in BC’s history. To help students and educators learn about wildfire prevention and awareness, FireSmart BC has launched new teaching resources g…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/25/2748925/0/en/FireSmart-BC-Launches-New-Youth-Education-Program-Following-the-Worst-Wildfire-Season-in-BC-s-History.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/3cf44ad5-ffed-407c-b5ad-75a1f849b8da
+----------------
+publishedAt
+2023-09-25T16:53:00Z
+----------------
+content
+Victoria, BC, Sept. 25, 2023 (GLOBE NEWSWIRE) -- This back-to-school season comes after the worst wildfire season in BCs history. To help students and educators learn about wildfire prevention and aw… [+3006 chars]
+#------------------------------------------
+# 44
+#------------------------------------------
+----------------
+source
+{'name': 'International Business Times'}
+----------------
+author
+Katerina NIKOLOPOULOU
+----------------
+title
+Greek PM Vows For A Restart After Criticism For Natural Disasters' Handling
+----------------
+description
+Faced with criticism for his alleged poor handling of the fires and floods that struck Greece this summer, Prime Minister Kyriakos Mitsotakis pledged fresh funding and reforms in order to fight the "climate war".
+----------------
+url
+https://www.ibtimes.com/greek-pm-vows-restart-after-criticism-natural-disasters-handling-3712109
+----------------
+urlToImage
+https://d.ibtimes.com/en/full/4486709/greek-prime-minister-kyriakos-mitsotakis-says-climate-crisis-requires-mobilisation-whole.jpg
+----------------
+publishedAt
+2023-09-17T12:15:39Z
+----------------
+content
+Faced with criticism for his alleged poor handling of the fires and floods that struck Greece this summer, Prime Minister Kyriakos Mitsotakis pledged fresh funding and reforms in order to fight the "… [+3406 chars]
+#------------------------------------------
+# 45
+#------------------------------------------
+----------------
+source
+{'id': 'cnn', 'name': 'CNN'}
+----------------
+author
+Helen Regan, CNN
+ AUTHOR ERROR: helen regan, cnn
+----------------
+title
+Invasive species cost the world $423 billion every year and are causing environmental chaos, UN report finds
+----------------
+description
+Invasive species cost the world at least $423 billion every year as they drive plant and animal extinctions, threaten food security and exacerbate...
+----------------
+url
+https://www.cnn.com/2023/09/05/world/invasive-species-global-threat-report-climate-scn-intl-hnk/index.html
+----------------
+urlToImage
+https://media.zenfs.com/en/cnn_articles_875/327bef4a41c7a2f97121d16b6fafb30b
+----------------
+publishedAt
+2023-09-05T06:26:17Z
+----------------
+content
+Invasive species cost the world at least $423 billion every year as they drive plant and animal extinctions, threaten food security and exacerbate environmental catastrophes across the globe, a major… [+5723 chars]
+#------------------------------------------
+# 46
+#------------------------------------------
+----------------
+source
+{'name': 'Yahoo Entertainment'}
+----------------
+author
+AUDREY McAVOY
+----------------
+title
+The number of people missing following devastating Maui wildfires has dropped to 66, governor says
+----------------
+description
+One month after the deadliest U.S. wildfire in more than a century leveled the historic town of Lahaina, Hawaii Gov. Josh Green said Friday that the number...
+----------------
+url
+https://news.yahoo.com/number-people-missing-following-devastating-221421561.html
+----------------
+urlToImage
+https://s.yimg.com/ny/api/res/1.2/3H43Jc2X2tY248mRDDWhQg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://media.zenfs.com/en/ap.org/bb0f7780900d0975be5e6546c60f8629
+----------------
+publishedAt
+2023-09-08T22:14:21Z
+----------------
+content
+HONOLULU (AP) One month after the deadliest U.S. wildfire in more than a century leveled the historic town of Lahaina, Hawaii Gov. Josh Green said Friday that the number of missing has dropped to 66,… [+4727 chars]
+#------------------------------------------
+# 47
+#------------------------------------------
+----------------
+source
+{'id': 'cbc-news', 'name': 'CBC News'}
+----------------
+author
+David P. Ball
+----------------
+title
+Canadian army needs dedicated climate disaster force, says former top soldier
+----------------
+description
+This summer has seen the Canadian Armed Forces deployed to multiple natural disasters at the request of provinces, which are ultimately responsible for emergency management and natural disasters.
+----------------
+url
+https://www.cbc.ca/news/canada/british-columbia/former-top-soldier-says-canadian-army-needs-new-disaster-response-force-1.6955373
+----------------
+urlToImage
+https://i.cbc.ca/1.6955403.1693606703!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/canada-army-plane-yellowknife-2023.jpg
+----------------
+publishedAt
+2023-09-04T08:00:00Z
+----------------
+content
+The country's former top soldier says Canada is behind its allies in not having a dedicated agency that can deploy personnel to disasters nationwide.
+Retired Lt. Gen. Andrew Leslie, who commanded Ca… [+6413 chars]
+#------------------------------------------
+# 48
+#------------------------------------------
+----------------
+source
+{'name': 'Yahoo Entertainment'}
+----------------
+author
+Reuters
+----------------
+title
+Factbox-US government shutdown: What closes, what stays open?
+----------------
+description
+The two million U.S. military personnel would remain at their posts, but roughly half of the Pentagon's 800,000 civilian employees would be furloughed...
+----------------
+url
+https://news.yahoo.com/factbox-us-government-shutdown-closes-182346097.html
+----------------
+urlToImage
+https://media.zenfs.com/en/reuters.com/51f74613f09c1b3fc8a326862e777847
+----------------
+publishedAt
+2023-09-21T18:23:46Z
+----------------
+content
+(Reuters) - Many U.S. government services would be disrupted and hundreds of thousands of federal workers furloughed without pay if Congress fails to provide funding for the fiscal year starting Oct.… [+6541 chars]
+#------------------------------------------
+# 49
+#------------------------------------------
+----------------
+source
+{'name': 'LADbible'}
+----------------
+author
+Dominic Smithers
+----------------
+title
+Scientists warn silent killer 'super gonorrhoea' is on the rise
+----------------
+description
+Experts have warned that 'super gonorrhoea' is spreading like wildfire
+----------------
+url
+https://www.ladbible.com/news/health/super-gonorrhoea-on-rise-who-stis-uk-474828-20230904
+----------------
+urlToImage
+https://images.ladbible.com/resize?type=jpeg&amp;quality=70&amp;width=1200&amp;fit=contain&amp;gravity=auto&amp;url=https://eu-images.contentstack.com/v3/assets/bltcd74acc1d0a99f3a/blte3829f79436b449e/64f6379b61d6f67a86c1e52b/super-gonorrhoea.png
+----------------
+publishedAt
+2023-09-04T20:01:45Z
+----------------
+content
+When you think of the word 'super', you mind usually conjures something really, really good.
+Take 'superglue' and 'super strength drain unblocker' or even Superman. I think everyone would agree that… [+2691 chars]
+#------------------------------------------
+# 50
+#------------------------------------------
+----------------
+source
+{'name': 'New York Post'}
+----------------
+author
+Steven Nelson
+----------------
+title
+Biden claims he was at Ground Zero day after 9/11 — but his own book puts him in DC
+----------------
+description
+“Ground Zero in New York — I remember standing there the next day and looking at the building. And I felt like I was looking through the gates of hell,” Biden told US troops in Alaska.…
+----------------
+url
+https://nypost.com/2023/09/11/biden-claims-he-was-at-ground-zero-day-after-9-11-but-his-own-book-puts-him-in-dc/
+----------------
+urlToImage
+https://nypost.com/wp-content/uploads/sites/2/2023/09/newspress-collage-9x78py6ep-1694473471748.jpg?quality=75&amp;strip=all&amp;1694459130&amp;w=1024
+----------------
+publishedAt
+2023-09-11T23:19:37Z
+----------------
+content
+WASHINGTON President Biden said Monday that he was at the World Trade Center site in New York City one day after the 9/11 attacks despite his own autobiography placing him in DC.
+The 80-year-old pre… [+5870 chars]
+#------------------------------------------
+# 51
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+Publicnow
+----------------
+title
+Entergy : Wildfire risk management
+----------------
+description
+(marketscreener.com) 
+ 
+ Dry conditions, extreme heat combine to create wildfire hazards
+ 
+ 
+ While drought conditions and wildfires have not been common in most areas across Entergy's service territory, recent record-breaking high temperatures and ongoing se…
+----------------
+url
+https://www.marketscreener.com/quote/stock/ENTERGY-CORPORATION-12512/news/Entergy-Wildfire-risk-management-44855676/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdblanc.png
+----------------
+publishedAt
+2023-09-15T17:25:02Z
+----------------
+content
+Dry conditions, extreme heat combine to create wildfire hazards
+While drought conditions and wildfires have not been common in most areas across Entergy's service territory, recent record-breaking h… [+9490 chars]
+#------------------------------------------
+# 52
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+AlcheraX Inc
+----------------
+title
+Alchera X Partners with National Forest Foundation (NFF) in Their Commitment To Plant Thousands of Trees
+----------------
+description
+NEW YORK, Sept. 07, 2023 (GLOBE NEWSWIRE) -- Alchera X, a global leader in AI SaaS specializing in wildfire detection and protection through FireScout, is pleased to announce that in a significant step toward ensuring the health of National Forests, the compa…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/07/2739738/0/en/Alchera-X-Partners-with-National-Forest-Foundation-NFF-in-Their-Commitment-To-Plant-Thousands-of-Trees.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/e87c36ca-f952-4318-99aa-e320d534b94f
+----------------
+publishedAt
+2023-09-07T19:15:00Z
+----------------
+content
+NEW YORK, Sept. 07, 2023 (GLOBE NEWSWIRE) -- Alchera X, a global leader in AI SaaS specializing in wildfire detection and protection through FireScout, is pleased to announce that in a significant st… [+3934 chars]
+#------------------------------------------
+# 53
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+AlcheraX Inc
+----------------
+title
+AX Hosts Korean Delegation, Strengthening Global Wildfire Management &amp; Disaster Response
+----------------
+description
+SONOMA COUNTY, Calif., Sept. 21, 2023 (GLOBE NEWSWIRE) -- AX is pleased to announce that, in collaboration with Sonoma County and the REDCOM center, the company has welcomed a delegation from South Korea for the second time this year. Building upon South Kore…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/21/2747697/0/en/AX-Hosts-Korean-Delegation-Strengthening-Global-Wildfire-Management-Disaster-Response.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/e87c36ca-f952-4318-99aa-e320d534b94f
+----------------
+publishedAt
+2023-09-21T21:00:00Z
+----------------
+content
+SONOMA COUNTY, Calif., Sept. 21, 2023 (GLOBE NEWSWIRE) -- AX is pleased to announce that, in collaboration with Sonoma County and the REDCOM center, the company has welcomed a delegation from South K… [+4025 chars]
+#------------------------------------------
+# 54
+#------------------------------------------
+----------------
+source
+{'id': 'cbc-news', 'name': 'CBC News'}
+----------------
+author
+David P. Ball
+----------------
+title
+Canadian army needs dedicated climate disaster force, says former lieutenant-general
+----------------
+description
+A former army commander says Canada is behind its allies in not having a dedicated agency that can deploy personnel to disasters nationwide.
+----------------
+url
+https://www.cbc.ca/news/canada/british-columbia/former-general-says-canadian-army-needs-new-disaster-response-force-1.6955373
+----------------
+urlToImage
+https://i.cbc.ca/1.6955403.1693845138!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/canada-army-plane-yellowknife-2023.jpg
+----------------
+publishedAt
+2023-09-04T08:00:00Z
+----------------
+content
+A former army commander says Canada is behind its allies in not having a dedicated agency that can deploy personnel to disasters nationwide.
+Retired Lt.-Gen. Andrew Leslie&nbsp;told CBC News the lack of … [+6373 chars]
+#------------------------------------------
+# 55
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+Reuters
+----------------
+title
+U.S. appeals court questions delay in PG&amp;E shareholder case
+----------------
+description
+(marketscreener.com) U.S. appeals court judges questioned a 2-1/2-year pause in a shareholder lawsuit against PG&amp;E Corp officers and directors on Wednesday, suggesting they could allow the case over statements about the utility's wildfire prevention measures …
+----------------
+url
+https://www.marketscreener.com/quote/stock/PG-E-CORPORATION-13946/news/U-S-appeals-court-questions-delay-in-PG-E-shareholder-case-44836920/
+----------------
+urlToImage
+https://img.zonebourse.com/reuters/2023-09/2023-09-13T190909Z_1_LYNXMPEJ8C10Y_RTROPTP_3_CALIFORNIA-FIRES.JPG
+----------------
+publishedAt
+2023-09-13T19:12:04Z
+----------------
+content
+(Reuters) - U.S. appeals court judges questioned a 2-1/2-year pause in a shareholder lawsuit against PG&amp;amp;E Corp officers and directors on Wednesday, suggesting they could allow the case over state… [+1838 chars]
+#------------------------------------------
+# 56
+#------------------------------------------
+----------------
+source
+{'name': 'PRNewswire'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+HAWAIIAN ELECTRIC INVESTOR DEADLINE APPROACHING: Securities Litigation Partner James (Josh) Wilson Encourages Investors Who Suffered Losses Exceeding $100,000 In Hawaiian Electric To Contact Him Directly To Discuss Their Options
+----------------
+description
+NEW YORK, Sept. 23, 2023 /PRNewswire/ --Faruqi &amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. ("Hawaiian Electric" or the "Company") (NYSE: HE) and reminds investors of the O…
+----------------
+url
+https://www.prnewswire.com/news-releases/hawaiian-electric-investor-deadline-approaching-securities-litigation-partner-james-josh-wilson-encourages-investors-who-suffered-losses-exceeding-100-000-in-hawaiian-electric-to-contact-him-directly-to-discuss-their-options-301935776.html
+----------------
+urlToImage
+https://mma.prnewswire.com/media/1959220/Logo_11_30_2022.jpg?p=facebook
+----------------
+publishedAt
+2023-09-23T15:00:00Z
+----------------
+content
+NEW YORK, Sept. 23, 2023 /PRNewswire/ --Faruqi &amp;amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. ("Hawaiian Elect… [+5140 chars]
+#------------------------------------------
+# 57
+#------------------------------------------
+----------------
+source
+{'name': 'Screen Rant'}
+----------------
+author
+Joe Deckelmeier
+----------------
+title
+Peter Facinelli Talks About Directing On Fire &amp; Collaborating With His Cast
+----------------
+description
+On Fire director and star Peter Facinelli discusses collaborating with co-director Nick Lyon, what drew him to the script, and the filming process.
+----------------
+url
+https://screenrant.com/on-fire-movie-peter-facinelli-interview/
+----------------
+urlToImage
+https://static1.srcdn.com/wordpress/wp-content/uploads/2023/09/peterfacinelli_onfire_yt.jpg
+----------------
+publishedAt
+2023-09-22T19:22:22Z
+----------------
+content
+Summary
+&lt;ul&gt;&lt;li&gt; On Fire is a family survival film that focuses on one family's journey through a wildfire crisis, highlighting their strength, faith, and love. &lt;/li&gt;&lt;li&gt; The movie is based on real … [+12970 chars]
+#------------------------------------------
+# 58
+#------------------------------------------
+----------------
+source
+{'name': 'Investing.com'}
+----------------
+author
+Reuters
+----------------
+title
+Analysis-Novel Lahaina wildfire lawsuit asks 'when is wild grass inherently dangerous?'
+----------------
+description
+Analysis-Novel Lahaina wildfire lawsuit asks 'when is wild grass inherently dangerous?'
+----------------
+url
+https://www.investing.com/news/world-news/analysisnovel-lahaina-wildfire-lawsuit-asks-when-is-wild-grass-inherently-dangerous-3178252
+----------------
+urlToImage
+https://i-invdn-com.investing.com/news/news_headline_open_108x81._800x533_L_1419519630.jpg
+----------------
+publishedAt
+2023-09-20T10:17:13Z
+----------------
+content
+By Tom Hals
+WILMINGTON, Delaware (Reuters) - The father of a woman who died in the Hawaii wildfires last month has launched a novel lawsuit against three major landowners, seeking to hold them respo… [+5726 chars]
+#------------------------------------------
+# 59
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+Wildfire Safety and Preparedness: The PG&amp;E Corporation Foundation and California Fire Foundation Announce Wildfire Safety Grant Funding
+----------------
+description
+(marketscreener.com) 
+
+49 Grants Totaling $730,000 Awarded to Local Fire Departments, Fire Agencies and Community Groups
+SACRAMENTO, Calif., Sept. 21, 2023 /PRNewswire/ -- The California Fire Foundation , with support from The PG&amp;E Corporation Foundation , ha…
+----------------
+url
+https://www.marketscreener.com/quote/stock/PG-E-CORPORATION-13946/news/Wildfire-Safety-and-Preparedness-The-PG-E-Corporation-Foundation-and-California-Fire-Foundation-Ann-44898378/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdnoir.png
+----------------
+publishedAt
+2023-09-21T17:01:05Z
+----------------
+content
+49 Grants Totaling $730,000 Awarded to Local Fire Departments, Fire Agencies and Community Groups
+SACRAMENTO, Calif., Sept. 21, 2023 /PRNewswire/ -- The California Fire Foundation (CFF), with suppor… [+6617 chars]
+#------------------------------------------
+# 60
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+De Beers Canada
+----------------
+title
+ANGLO AMERICAN FOUNDATION SUPPORTS WILDFIRE RECOVERY IN THE NORTHWEST TERRITORIES AND BRITISH COLUMBIA
+----------------
+description
+Calgary, AB Canada, Sept. 14, 2023 (GLOBE NEWSWIRE) -- De Beers Group is proud to announce a CAD$250,000 contribution from the Anglo American Foundation to support wildfire recovery in Canada’s Northwest Territories (NWT) and British Columbia (B.C.).
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/14/2743705/0/en/ANGLO-AMERICAN-FOUNDATION-SUPPORTS-WILDFIRE-RECOVERY-IN-THE-NORTHWEST-TERRITORIES-AND-BRITISH-COLUMBIA.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/1b8d9d0f-ca36-4a01-b7c0-48c762e693f2
+----------------
+publishedAt
+2023-09-14T21:30:00Z
+----------------
+content
+Calgary, AB Canada, Sept. 14, 2023 (GLOBE NEWSWIRE) -- De Beers Group is proud to announce a CAD$250,000 contribution from the Anglo American Foundation to support wildfire recovery in Canadas Northw… [+3210 chars]
+#------------------------------------------
+# 61
+#------------------------------------------
+----------------
+source
+{'name': 'The Conversation Africa'}
+----------------
+author
+Jean Slick, Professor, Disaster and Emergency Management, Royal Roads University
+----------------
+title
+Canada's lack of recognition for gender-based violence is putting disaster survivors at risk
+----------------
+description
+Research shows gender-based violence increases in the aftermath of disasters. Governments must incorporate ways of addressing it into their disaster response plans.
+----------------
+url
+https://theconversation.com/canadas-lack-of-recognition-for-gender-based-violence-is-putting-disaster-survivors-at-risk-212243
+----------------
+urlToImage
+https://images.theconversation.com/files/546717/original/file-20230906-29-yolnrr.jpg?ixlib=rb-1.1.0&amp;rect=0%2C80%2C3001%2C1500&amp;q=45&amp;auto=format&amp;w=1356&amp;h=668&amp;fit=crop
+----------------
+publishedAt
+2023-09-10T13:04:16Z
+----------------
+content
+Evidence suggests gender-based violence increases during disasters and in the years that follow. (Shutterstock)
+Canada has experienced an unprecedented wildfire season in 2023. People’s experiences … [+6755 chars]
+#------------------------------------------
+# 62
+#------------------------------------------
+----------------
+source
+{'name': 'BBC News'}
+----------------
+author
+Hannah Ritchie - BBC News, Sydney
+ AUTHOR ERROR: hannah ritchie - bbc news, sydney
+----------------
+title
+Voice referendum: Lies fuel racism ahead of Australia's Indigenous vote
+----------------
+description
+Experts express concerns for First Nations people as a referendum debate turns increasingly divisive.
+----------------
+url
+https://www.bbc.com/news/world-australia-66470376?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bnews%5D-%5Bbizdev%5D-%5Bisapi%5D
+----------------
+urlToImage
+https://media.zenfs.com/en/bbc_us_articles_995/aa49b1250afdf628832127109afb0e01
+----------------
+publishedAt
+2023-09-05T21:23:50Z
+----------------
+content
+"People have been let off the leash," Thomas Mayo says quietly, swiping through screenshots.
+Racist memes depicting First Nations Australians as "grifters", "wife beaters" and "primitives" flash acr… [+8953 chars]
+#------------------------------------------
+# 63
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Robbins LLP
+----------------
+title
+HE Stockholder Alert: Investors with Large Losses Should Contact Robbins LLP for Information About Recovery Against Hawaiian Electric Industries, Inc. (HE)
+----------------
+description
+SAN DIEGO, Sept. 08, 2023 (GLOBE NEWSWIRE) -- Robbins LLP&nbsp;reminds investors that a shareholder filed a class action on behalf of persons and entities that purchased or otherwise acquired Hawaiian Electric Industries, Inc. (NYSE: HE) securities between Februar…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/08/2740310/32719/en/HE-Stockholder-Alert-Investors-with-Large-Losses-Should-Contact-Robbins-LLP-for-Information-About-Recovery-Against-Hawaiian-Electric-Industries-Inc-HE.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/df31ba33-ed56-4425-9937-22b42e49bdb2
+----------------
+publishedAt
+2023-09-08T19:46:00Z
+----------------
+content
+SAN DIEGO, Sept. 08, 2023 (GLOBE NEWSWIRE) -- 
+Robbins LLP&nbsp;reminds investors that a shareholder filed a class action on behalf of persons and entities that purchased or otherwise acquired Hawaiian E… [+3871 chars]
+#------------------------------------------
+# 64
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+Business Wire
+----------------
+title
+Hawaiian Electric Industries, Inc. (HE) Investor Alert: Robbins LLP Reminds Investors of Lead Plaintiff Deadline in Hawaiian Electric Industries, Inc. Securities Class Action
+----------------
+description
+(marketscreener.com) 
+Robbins LLP reminds investors that a shareholder filed a class action on behalf of persons and entities that purchased or otherwise acquired Hawaiian Electric Industries, Inc. securities between February 28, 2019 and August 16, 2023. Haw…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/Hawaiian-Electric-Industries-Inc-HE-Investor-Alert-Robbins-LLP-Reminds-Investors-of-Lead-Plaint-44781950/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdblanc.png
+----------------
+publishedAt
+2023-09-06T11:11:02Z
+----------------
+content
+Robbins LLP reminds investors that a shareholder filed a class action on behalf of persons and entities that purchased or otherwise acquired Hawaiian Electric Industries, Inc. (NYSE: HE) securities b… [+3913 chars]
+#------------------------------------------
+# 65
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+Reuters
+----------------
+title
+California escapes fire season mostly unharmed, but danger could lie ahead
+----------------
+description
+(marketscreener.com) California is on the verge of recording a second straight year of relatively mild wildfire damage, after historic rains put the state on track to avoid the calamities of recent fire seasons.https://www.marketscreener.com/news/latest/Calif…
+----------------
+url
+https://www.marketscreener.com/news/latest/California-escapes-fire-season-mostly-unharmed-but-danger-could-lie-ahead--44913681/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdnoir.png
+----------------
+publishedAt
+2023-09-25T10:06:03Z
+----------------
+content
+(Reuters) - California is on the verge of recording a second straight year of relatively mild wildfire damage, after historic rains put the state on track to avoid the calamities of recent fire seaso… [+2805 chars]
+#------------------------------------------
+# 66
+#------------------------------------------
+----------------
+source
+{'name': 'Investing.com'}
+----------------
+author
+Reuters
+----------------
+title
+California escapes fire season mostly unharmed, but danger could lie ahead
+----------------
+description
+California escapes fire season mostly unharmed, but danger could lie ahead
+----------------
+url
+https://www.investing.com/news/general/california-escapes-fire-season-mostly-unharmed-but-danger-could-lie-ahead-3181714
+----------------
+urlToImage
+https://i-invdn-com.investing.com/news/World_News_10_800x533_L_1420026292.jpg
+----------------
+publishedAt
+2023-09-25T10:11:22Z
+----------------
+content
+By Daniel Trotta
+(Reuters) - California is on the verge of recording a second straight year of relatively mild wildfire damage, after historic rains put the state on track to avoid the calamities of… [+2744 chars]
+#------------------------------------------
+# 67
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Robbins LLP
+----------------
+title
+HE Stock News: Investors with Significant Losses in Hawaiian Electric Industries, Inc. (HE) Should Contact Robbins LLP for Information About Class Action and Lead Plaintiff Deadline
+----------------
+description
+SAN DIEGO, Sept. 18, 2023 (GLOBE NEWSWIRE) -- Robbins LLP&nbsp;reminds investors that a shareholder filed a class action on behalf of persons and entities that purchased or otherwise acquired Hawaiian Electric Industries, Inc. (NYSE: HE) securities between Februar…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/18/2745113/32719/en/HE-Stock-News-Investors-with-Significant-Losses-in-Hawaiian-Electric-Industries-Inc-HE-Should-Contact-Robbins-LLP-for-Information-About-Class-Action-and-Lead-Plaintiff-Deadline.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/df31ba33-ed56-4425-9937-22b42e49bdb2
+----------------
+publishedAt
+2023-09-18T16:33:00Z
+----------------
+content
+SAN DIEGO, Sept. 18, 2023 (GLOBE NEWSWIRE) -- Robbins LLP&nbsp;reminds investors that a shareholder filed a class action on behalf of persons and entities that purchased or otherwise acquired Hawaiian Ele… [+3869 chars]
+#------------------------------------------
+# 68
+#------------------------------------------
+----------------
+source
+{'name': 'Americanthinker.com'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+Disaster and corruption in the Valley Isle of Maui
+----------------
+description
+“You never want a serious crisis to go to waste.” -Rahm Emanuel
+
+Rather than whining to Mother Nature, we need to hold people accountable for the destructiveness of the August 2023 Lahaina disaster.　
+
+Pointing at abstractions like &amp;...
+----------------
+url
+https://www.americanthinker.com/blog/2023/09/disaster_and_corruption_in_the_valley_isle_of_maui.html
+----------------
+urlToImage
+https://www.americanthinker.com/images/bucket/2023-09/248623.jpg
+----------------
+publishedAt
+2023-09-04T05:00:00Z
+----------------
+content
+“You never want a serious crisis to go to waste.” -Rahm Emanuel
+Rather than whining to Mother Nature, we need to hold people accountable for the destructiveness of the August 2023 Lahaina disaster.　… [+3962 chars]
+#------------------------------------------
+# 69
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Glancy Prongay &amp; Murray LLP
+----------------
+title
+Glancy Prongay &amp; Murray LLP Reminds Investors of Looming Deadline in the Class Action Lawsuit Against Hawaiian Electric Industries, Inc. (HE)
+----------------
+description
+LOS ANGELES, Sept. 08, 2023 (GLOBE NEWSWIRE) -- Glancy Prongay &amp; Murray LLP (“GPM”) reminds investors of the upcoming&nbsp;October 23, 2023 deadline to file a lead plaintiff motion in the class action filed on behalf of investors who purchased or otherwise acquire…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/08/2740253/34548/en/Glancy-Prongay-Murray-LLP-Reminds-Investors-of-Looming-Deadline-in-the-Class-Action-Lawsuit-Against-Hawaiian-Electric-Industries-Inc-HE.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/dca1d463-f40e-41ea-a1d6-f8a47b633445
+----------------
+publishedAt
+2023-09-08T16:30:00Z
+----------------
+content
+LOS ANGELES, Sept. 08, 2023 (GLOBE NEWSWIRE) -- 
+Glancy Prongay &amp;amp; Murray LLP (GPM) reminds investors of the upcoming&nbsp;October 23, 2023 deadline to file a lead plaintiff motion in the class action… [+3883 chars]
+#------------------------------------------
+# 70
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+Business Wire
+----------------
+title
+Glancy Prongay &amp; Murray LLP Reminds Investors of Looming Deadline in the Class Action Lawsuit Against Hawaiian Electric Industries, Inc. (HE)
+----------------
+description
+(marketscreener.com) 
+Glancy Prongay &amp; Murray LLP reminds investors of the upcoming October 23, 2023 deadline to file a lead plaintiff motion in the class action filed on behalf of investors who purchased or otherwise acquired Hawaiian Electric Industries, In…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/Glancy-Prongay-Murray-LLP-Reminds-Investors-of-Looming-Deadline-in-the-Class-Action-Lawsuit-Agains-44785910/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdnoir.png
+----------------
+publishedAt
+2023-09-06T17:11:01Z
+----------------
+content
+Glancy Prongay &amp;amp; Murray LLP (GPM) reminds investors of the upcoming October 23, 2023 deadline to file a lead plaintiff motion in the class action filed on behalf of investors who purchased or oth… [+3788 chars]
+#------------------------------------------
+# 71
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Glancy Prongay &amp; Murray LLP
+----------------
+title
+Glancy Prongay &amp; Murray LLP Reminds Investors of Looming Deadline in the Class Action Lawsuit Against Hawaiian Electric Industries, Inc. (HE)
+----------------
+description
+LOS ANGELES, Sept. 15, 2023 (GLOBE NEWSWIRE) -- Glancy Prongay &amp; Murray LLP (“GPM”) reminds investors of the upcoming&nbsp;October 23, 2023 deadline to file a lead plaintiff motion in the class action filed on behalf of investors who purchased or otherwise acquire…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/15/2744111/34548/en/Glancy-Prongay-Murray-LLP-Reminds-Investors-of-Looming-Deadline-in-the-Class-Action-Lawsuit-Against-Hawaiian-Electric-Industries-Inc-HE.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/dca1d463-f40e-41ea-a1d6-f8a47b633445
+----------------
+publishedAt
+2023-09-15T15:00:00Z
+----------------
+content
+LOS ANGELES, Sept. 15, 2023 (GLOBE NEWSWIRE) -- Glancy Prongay &amp;amp; Murray LLP (GPM) reminds investors of the upcoming&nbsp;October 23, 2023 deadline to file a lead plaintiff motion in the class action f… [+3881 chars]
+#------------------------------------------
+# 72
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Glancy Prongay &amp; Murray LLP
+----------------
+title
+Glancy Prongay &amp; Murray LLP Reminds Investors of Looming Deadline in the Class Action Lawsuit Against Hawaiian Electric Industries, Inc. (HE)
+----------------
+description
+LOS ANGELES, Sept. 21, 2023 (GLOBE NEWSWIRE) -- Glancy Prongay &amp; Murray LLP (“GPM”) reminds investors of the upcoming&nbsp;October 23, 2023 deadline to file a lead plaintiff motion in the class action filed on behalf of investors who purchased or otherwise acquire…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/21/2747529/34548/en/Glancy-Prongay-Murray-LLP-Reminds-Investors-of-Looming-Deadline-in-the-Class-Action-Lawsuit-Against-Hawaiian-Electric-Industries-Inc-HE.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/dca1d463-f40e-41ea-a1d6-f8a47b633445
+----------------
+publishedAt
+2023-09-21T16:27:00Z
+----------------
+content
+LOS ANGELES, Sept. 21, 2023 (GLOBE NEWSWIRE) -- Glancy Prongay &amp;amp; Murray LLP (GPM) reminds investors of the upcoming&nbsp;October 23, 2023 deadline to file a lead plaintiff motion in the class action f… [+3881 chars]
+#------------------------------------------
+# 73
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+Business Wire
+----------------
+title
+Deadline Reminder: Law Offices of Howard G. Smith Reminds Investors of Looming Deadline in the Class Action Lawsuit Against Hawaiian Electric Industries, Inc. (HE)
+----------------
+description
+(marketscreener.com) 
+Law Offices of Howard G. Smith reminds investors of the upcoming October 23, 2023 deadline to file a lead plaintiff motion in the case filed on behalf of investors who purchased Hawaiian Electric Industries, Inc. securities between Febru…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/Deadline-Reminder-Law-Offices-of-Howard-G-Smith-Reminds-Investors-of-Looming-Deadline-in-the-Class-44774723/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdblanc.png
+----------------
+publishedAt
+2023-09-05T16:41:01Z
+----------------
+content
+Law Offices of Howard G. Smith reminds investors of the upcoming October 23, 2023 deadline to file a lead plaintiff motion in the case filed on behalf of investors who purchased Hawaiian Electric Ind… [+3419 chars]
+#------------------------------------------
+# 74
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Glancy Prongay &amp; Murray LLP
+----------------
+title
+Glancy Prongay &amp; Murray LLP Reminds Investors of Looming Deadline in the Class Action Lawsuit Against Hawaiian Electric Industries, Inc. (HE)
+----------------
+description
+LOS ANGELES, Sept. 29, 2023 (GLOBE NEWSWIRE) -- Glancy Prongay &amp; Murray LLP (“GPM”) reminds investors of the upcoming&nbsp;October 23, 2023 deadline to file a lead plaintiff motion in the class action filed on behalf of investors who purchased or otherwise acquire…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/29/2752237/34548/en/Glancy-Prongay-Murray-LLP-Reminds-Investors-of-Looming-Deadline-in-the-Class-Action-Lawsuit-Against-Hawaiian-Electric-Industries-Inc-HE.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/dca1d463-f40e-41ea-a1d6-f8a47b633445
+----------------
+publishedAt
+2023-09-29T17:55:00Z
+----------------
+content
+LOS ANGELES, Sept. 29, 2023 (GLOBE NEWSWIRE) -- Glancy Prongay &amp;amp; Murray LLP (GPM) reminds investors of the upcoming&nbsp;October 23, 2023 deadline to file a lead plaintiff motion in the class action f… [+3881 chars]
+#------------------------------------------
+# 75
+#------------------------------------------
+----------------
+source
+{'name': 'The Conversation Africa'}
+----------------
+author
+Deren Pillay, Researcher and Advanced Trainee in Public Health Medicine, Menzies Institute for Medical Research, University of Tasmania, Bill Dodd, Knowledge Broker, Centre for Safe Air (NHMRC CRE), and Adjunct Researcher, Media School, University of Tasmania, Bin Jalaludin, Conjoint Professor, School of Population Health, UNSW Sydney
+----------------
+title
+3,200 deaths a year: 1 of many reasons air pollution in Australia demands urgent national action
+----------------
+description
+Reducing air pollution is one of the best investments for Australians’ health, the environment, the economy and social equity. But achieving cleaner air requires a new approach from government.
+----------------
+url
+https://theconversation.com/3-200-deaths-a-year-1-of-many-reasons-air-pollution-in-australia-demands-urgent-national-action-212973
+----------------
+urlToImage
+https://images.theconversation.com/files/546772/original/file-20230906-15-fxewci.jpg?ixlib=rb-1.1.0&amp;rect=0%2C249%2C3027%2C1513&amp;q=45&amp;auto=format&amp;w=1356&amp;h=668&amp;fit=crop
+----------------
+publishedAt
+2023-09-07T04:24:00Z
+----------------
+content
+Australia is holding its collective breath ahead of a bushfire season that may bring a return of the smoke linked to 400 deaths and 4,500 hospitalisations and emergency department visits during the 2… [+6087 chars]
+#------------------------------------------
+# 76
+#------------------------------------------
+----------------
+source
+{'name': 'Yahoo Entertainment'}
+----------------
+author
+Insider Monkey Transcripts
+----------------
+title
+Planet Labs PBC (NYSE:PL) Q2 2024 Earnings Call Transcript
+----------------
+description
+Planet Labs PBC (NYSE:PL) Q2 2024 Earnings Call Transcript September 7, 2023 Planet Labs PBC beats earnings expectations. Reported EPS is $0.07, expectations...
+----------------
+url
+https://finance.yahoo.com/news/planet-labs-pbc-nyse-pl-133554096.html
+----------------
+urlToImage
+https://s.yimg.com/ny/api/res/1.2/xyz_pn_UOU6g6jjIYx32YQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://media.zenfs.com/en/insidermonkey.com/b367a2db0bdf6871e040326d0fe1b372
+----------------
+publishedAt
+2023-09-08T13:35:54Z
+----------------
+content
+Planet Labs PBC (NYSE:PL) Q2 2024 Earnings Call Transcript September 7, 2023
+Planet Labs PBC beats earnings expectations. Reported EPS is $0.07, expectations were $-0.15.
+Operator: Good afternoon. … [+51400 chars]
+#------------------------------------------
+# 77
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+The Law Offices of Vincent Wong
+----------------
+title
+SHAREHOLDER ALERT: The Law Offices of Vincent Wong Remind Hawaiian Electric Investors of a Lead Plaintiff Deadline of October 23, 2023
+----------------
+description
+NEW YORK, Sept.  14, 2023  (GLOBE NEWSWIRE) -- Attention Hawaiian Electric Industries, Inc. ("Hawaiian Electric") (NYSE: HE) shareholders:    The Law......
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/14/2743572/31847/en/SHAREHOLDER-ALERT-The-Law-Offices-of-Vincent-Wong-Remind-Hawaiian-Electric-Investors-of-a-Lead-Plaintiff-Deadline-of-October-23-2023.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/9fbb047b-56d4-4aa2-82c8-d44e245362e2
+----------------
+publishedAt
+2023-09-14T16:49:00Z
+----------------
+content
+NEW YORK, Sept. 14, 2023 (GLOBE NEWSWIRE) -- Attention Hawaiian Electric Industries, Inc. ("Hawaiian Electric") (NYSE: HE) shareholders:
+The Law Offices of Vincent Wong announce that a class action … [+1614 chars]
+#------------------------------------------
+# 78
+#------------------------------------------
+----------------
+source
+{'name': 'Investing.com'}
+----------------
+author
+Reuters
+----------------
+title
+U.S. appeals court questions delay in PG&amp;E shareholder case
+----------------
+description
+U.S. appeals court questions delay in PG&amp;E shareholder case
+----------------
+url
+https://www.investing.com/news/stock-market-news/us-appeals-court-questions-delay-in-pge-shareholder-case-3173849
+----------------
+urlToImage
+https://i-invdn-com.investing.com/news/LYNXNPEC0D0AP_L.jpg
+----------------
+publishedAt
+2023-09-13T19:11:10Z
+----------------
+content
+By Jody Godoy
+(Reuters) - U.S. appeals court judges questioned a 2-1/2-year pause in a shareholder lawsuit against PG&amp;amp;E (NYSE:PCG) Corp officers and directors on Wednesday, suggesting they could… [+1795 chars]
+#------------------------------------------
+# 79
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+The Law Offices of Vincent Wong
+----------------
+title
+SHAREHOLDER ALERT: The Law Offices of Vincent Wong Remind Hawaiian Electric Investors of a Lead Plaintiff Deadline of October 23, 2023
+----------------
+description
+NEW YORK, Sept.  19, 2023  (GLOBE NEWSWIRE) -- Attention Hawaiian Electric Industries, Inc. ("Hawaiian Electric") (NYSE: HE) shareholders:    The Law......
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/19/2745954/31847/en/SHAREHOLDER-ALERT-The-Law-Offices-of-Vincent-Wong-Remind-Hawaiian-Electric-Investors-of-a-Lead-Plaintiff-Deadline-of-October-23-2023.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/9fbb047b-56d4-4aa2-82c8-d44e245362e2
+----------------
+publishedAt
+2023-09-19T17:04:00Z
+----------------
+content
+NEW YORK, Sept. 19, 2023 (GLOBE NEWSWIRE) -- Attention Hawaiian Electric Industries, Inc. ("Hawaiian Electric") (NYSE: HE) shareholders:
+The Law Offices of Vincent Wong announce that a class action … [+1614 chars]
+#------------------------------------------
+# 80
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+The Law Offices of Vincent Wong Remind Hawaiian Electric Investors of a Lead Plaintiff Deadline of October 23, 2023
+----------------
+description
+(marketscreener.com) 
+
+NEW YORK, Sept. 18, 2023 /PRNewswire/ -- Attention Hawaiian Electric Industries, Inc. shareholders:
+
+The Law Offices of Vincent Wong announce that a class action lawsuit has commenced on behalf of investors who purchased between Februar…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/The-Law-Offices-of-Vincent-Wong-Remind-Hawaiian-Electric-Investors-of-a-Lead-Plaintiff-Deadline-of-O-44864079/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdblanc.png
+----------------
+publishedAt
+2023-09-18T09:46:19Z
+----------------
+content
+NEW YORK, Sept. 18, 2023 /PRNewswire/ -- Attention Hawaiian Electric Industries, Inc. ("Hawaiian Electric") (NYSE: HE) shareholders:
+The Law Offices of Vincent Wong announce that a class action laws… [+1866 chars]
+#------------------------------------------
+# 81
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+The Law Offices of Vincent Wong Remind Hawaiian Electric Investors of a Lead Plaintiff Deadline of October 23, 2023
+----------------
+description
+(marketscreener.com) 
+
+NEW YORK, Sept. 11, 2023 /PRNewswire/ -- Attention Hawaiian Electric Industries, Inc. shareholders:
+The Law Offices of Vincent Wong announce that a class action lawsuit has commenced on behalf of investors who purchased between February…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/The-Law-Offices-of-Vincent-Wong-Remind-Hawaiian-Electric-Investors-of-a-Lead-Plaintiff-Deadline-of-O-44812331/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdnoir.png
+----------------
+publishedAt
+2023-09-11T09:46:17Z
+----------------
+content
+NEW YORK, Sept. 11, 2023 /PRNewswire/ -- Attention Hawaiian Electric Industries, Inc. ("Hawaiian Electric") (NYSE: HE) shareholders:
+The Law Offices of Vincent Wong announce that a class action laws… [+1866 chars]
+#------------------------------------------
+# 82
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+The Law Offices of Vincent Wong
+----------------
+title
+SHAREHOLDER ALERT: The Law Offices of Vincent Wong Remind Hawaiian Electric Investors of a Lead Plaintiff Deadline of October 23, 2023
+----------------
+description
+NEW YORK, Sept.  28, 2023  (GLOBE NEWSWIRE) -- Attention Hawaiian Electric Industries, Inc. ("Hawaiian Electric") (NYSE: HE) shareholders:  The Law...
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/28/2751531/31847/en/SHAREHOLDER-ALERT-The-Law-Offices-of-Vincent-Wong-Remind-Hawaiian-Electric-Investors-of-a-Lead-Plaintiff-Deadline-of-October-23-2023.html
+----------------
+urlToImage
+https://ml.globenewswire.com/Resource/Download/9fbb047b-56d4-4aa2-82c8-d44e245362e2
+----------------
+publishedAt
+2023-09-28T16:41:00Z
+----------------
+content
+NEW YORK, Sept. 28, 2023 (GLOBE NEWSWIRE) -- Attention Hawaiian Electric Industries, Inc. ("Hawaiian Electric") (NYSE: HE) shareholders:
+The Law Offices of Vincent Wong announce that a class action … [+1614 chars]
+#------------------------------------------
+# 83
+#------------------------------------------
+----------------
+source
+{'name': 'Grist'}
+----------------
+author
+The Center for Public Integrity
+----------------
+title
+A warming planet is creating a booming, and dangerous, disaster-restoration industry
+----------------
+description
+Fueled by immigrant labor, the loosely regulated industry exposes workers to lethal toxins that are making them sick long after the cleanup.
+----------------
+url
+http://grist.org/accountability/a-warming-planet-is-creating-a-booming-and-dangerous-disaster-restoration-industry/
+----------------
+urlToImage
+https://grist.org/wp-content/uploads/2023/09/FortMeyersRestoration.jpg
+----------------
+publishedAt
+2023-09-30T13:00:00Z
+----------------
+content
+by Janelle Retka, Samantha McCabe, Jiahui Huang and María Inés Zamudio, Columbia Journalism Investigations and The Center for Public Integrity
+This article was produced in partnership with Columbia … [+29336 chars]
+#------------------------------------------
+# 84
+#------------------------------------------
+----------------
+source
+{'name': 'Modern Farmer'}
+----------------
+author
+Naoki Nitta
+----------------
+title
+In Fire-Stricken Maui, Sustainable Land Management Is Key
+----------------
+description
+Surveying the aftermath of the Kula Upcountry Fire—one of three devastating wildfires that raged across Maui last month—Brendan Balthazar noticed a striking pattern emerge across his cattle ranch. Peppered throughout some 500 acres of charred pastureland, he …
+----------------
+url
+https://modernfarmer.com/2023/09/fire-maui-land-management/
+----------------
+urlToImage
+https://modernfarmer.com/wp-content/uploads/2023/09/DSC00313.jpg
+----------------
+publishedAt
+2023-09-07T12:00:36Z
+----------------
+content
+Surveying the aftermath of the Kula Upcountry Fireone of three devastating wildfires that raged across Maui last monthBrendan Balthazar noticed a striking pattern emerge across his cattle ranch. Pepp… [+10950 chars]
+#------------------------------------------
+# 85
+#------------------------------------------
+----------------
+source
+{'name': 'Trendhunter.com'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+Global Edge AI Platforms - Omdena is an Edge AI Platform that Connects Experts for Collaboration (TrendHunter.com)
+----------------
+description
+(TrendHunter.com) Omdena is a global platform that connects AI engineers, data scientists, and domain experts to collaborate on real-world problems using edge AI. Omdena has successfully completed over 40 projects in...
+----------------
+url
+https://www.trendhunter.com/trends/omdena
+----------------
+urlToImage
+https://cdn.trendhunterstatic.com/thumbs/515/omdena.jpeg?auto=webp
+----------------
+publishedAt
+2023-09-20T11:53:02Z
+----------------
+content
+Omdena is a global platform that connects AI engineers, data scientists, and domain experts to collaborate on real-world problems using edge AI. Omdena has successfully completed over 40 projects in … [+938 chars]
+#------------------------------------------
+# 86
+#------------------------------------------
+----------------
+source
+{'name': 'The Conversation Africa'}
+----------------
+author
+Mojtaba Sadegh, Associate Professor of Civil Engineering, Boise State University, John Abatzoglou, Professor of Engineering, University of California, Merced
+----------------
+title
+Wildfire risk is soaring for low-income, elderly and other vulnerable populations in California, Washington and Oregon
+----------------
+description
+Alarmingly, about half the people exposed to wildfires in Washington and Oregon were those least able to afford to protect their homes, evacuate safely and recover.
+----------------
+url
+https://theconversation.com/wildfire-risk-is-soaring-for-low-income-elderly-and-other-vulnerable-populations-in-california-washington-and-oregon-213455
+----------------
+urlToImage
+https://images.theconversation.com/files/548882/original/file-20230918-25-4fjeir.jpg?ixlib=rb-1.1.0&amp;rect=26%2C76%2C3000%2C1500&amp;q=45&amp;auto=format&amp;w=1356&amp;h=668&amp;fit=crop
+----------------
+publishedAt
+2023-09-20T18:00:02Z
+----------------
+content
+Many of the people caught in the wildfire that swept through Paradise, Calif., in 2018 were older adults. Justin Sullivan/Getty Images
+As wildfires burn across the Western U.S., the people in harm’s… [+5847 chars]
+#------------------------------------------
+# 87
+#------------------------------------------
+----------------
+source
+{'name': 'National Observer'}
+----------------
+author
+Sushant, Talha Awan
+----------------
+title
+In the fight to prevent extreme wildfires, nature can help
+----------------
+description
+Increasing investment in wildfire prevention strategies is crucial to minimize damages.
+----------------
+url
+https://www.nationalobserver.com/2023/09/06/opinion/fight-prevent-extreme-wildfires-nature-can-help
+----------------
+urlToImage
+https://www.nationalobserver.com/sites/nationalobserver.com/files/styles/nat_social/public/img/2023/09/03/wildfire_helicopter_shutterstock_2219974655.jpg?itok=A6at99jD
+----------------
+publishedAt
+2023-09-06T09:15:16Z
+----------------
+content
+Canada is in the midst of its most devastating wildfire season ever. With exponentially high costs to health, economy and nature, there is an urgent need to invest in wildfire prevention strategies i… [+7236 chars]
+#------------------------------------------
+# 88
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Pomerantz LLP
+----------------
+title
+SHAREHOLDER ALERT: Pomerantz Law Firm Reminds Shareholders with Losses on their Investment in Hawaiian Electric Industries, Inc. of Class Action Lawsuit and Upcoming Deadline – HE
+----------------
+description
+NEW YORK, Sept. 01, 2023 (GLOBE NEWSWIRE) -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. (“Hawaiian Electric” or the “Company”) (NYSE: HE) and certain officers.&nbsp;&nbsp; The class action, filed in the…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/01/2736142/1087/en/SHAREHOLDER-ALERT-Pomerantz-Law-Firm-Reminds-Shareholders-with-Losses-on-their-Investment-in-Hawaiian-Electric-Industries-Inc-of-Class-Action-Lawsuit-and-Upcoming-Deadline-HE.html
+----------------
+urlToImage
+nan
+----------------
+publishedAt
+2023-09-01T14:44:00Z
+----------------
+content
+NEW YORK, Sept. 01, 2023 (GLOBE NEWSWIRE) -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. (Hawaiian Electric or the Company) (NYSE: HE… [+5383 chars]
+#------------------------------------------
+# 89
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+HAWAIIAN ELECTRIC DEADLINE ALERT: Securities Litigation Partner James (Josh) Wilson Encourages Investors Who Suffered Losses Exceeding $100,000 In Hawaiian Electric To Contact Him Directly To Discuss Their Options
+----------------
+description
+(marketscreener.com) 
+
+NEW YORK, Sept. 2, 2023 /PRNewswire/ -- Faruqi &amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. and reminds investors of the October 23, 2023 deadline to…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/HAWAIIAN-ELECTRIC-DEADLINE-ALERT-Securities-Litigation-Partner-James-Josh-Wilson-Encourages-Inves-44761195/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdblanc.png
+----------------
+publishedAt
+2023-09-02T15:01:04Z
+----------------
+content
+NEW YORK, Sept. 2, 2023 /PRNewswire/ -- Faruqi &amp;amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. ("Hawaiian Elect… [+5445 chars]
+#------------------------------------------
+# 90
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Pomerantz LLP
+----------------
+title
+SHAREHOLDER ALERT: Pomerantz Law Firm Reminds Shareholders with Losses on their Investment in Hawaiian Electric Industries, Inc. of Class Action Lawsuit and Upcoming Deadline – HE
+----------------
+description
+NEW YORK, Sept. 17, 2023 (GLOBE NEWSWIRE) -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. (“Hawaiian Electric” or the “Company”) (NYSE: HE) and certain officers. The class action, filed in the U…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/17/2744318/1087/en/SHAREHOLDER-ALERT-Pomerantz-Law-Firm-Reminds-Shareholders-with-Losses-on-their-Investment-in-Hawaiian-Electric-Industries-Inc-of-Class-Action-Lawsuit-and-Upcoming-Deadline-HE.html
+----------------
+urlToImage
+nan
+----------------
+publishedAt
+2023-09-17T20:48:00Z
+----------------
+content
+NEW YORK, Sept. 17, 2023 (GLOBE NEWSWIRE) -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. (Hawaiian Electric or the Company) (NYSE: HE… [+5384 chars]
+#------------------------------------------
+# 91
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+HAWAIIAN ELECTRIC INVESTOR DEADLINE APPROACHING: Securities Litigation Partner James (Josh) Wilson Encourages Investors Who Suffered Losses Exceeding $100,000 In Hawaiian Electric To Contact Him Directly To Discuss Their Options
+----------------
+description
+(marketscreener.com) 
+
+NEW YORK, Sept. 23, 2023 /PRNewswire/ --Faruqi &amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. and reminds investors of the October 23, 2023 deadline to…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/HAWAIIAN-ELECTRIC-INVESTOR-DEADLINE-APPROACHING-Securities-Litigation-Partner-James-Josh-Wilson-E-44910357/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdblanc.png
+----------------
+publishedAt
+2023-09-23T15:01:03Z
+----------------
+content
+NEW YORK, Sept. 23, 2023 /PRNewswire/ --Faruqi &amp;amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. ("Hawaiian Elect… [+5468 chars]
+#------------------------------------------
+# 92
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+Pomerantz Law Firm Reminds Shareholders with Losses on their Investment in Hawaiian Electric Industries, Inc. of Class Action Lawsuit and Upcoming Deadline - HE
+----------------
+description
+(marketscreener.com) 
+
+NEW YORK, Sept. 21, 2023 /PRNewswire/ -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. and certain officers. The class action, filed in the United States District Court for…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/Pomerantz-Law-Firm-Reminds-Shareholders-with-Losses-on-their-Investment-in-Hawaiian-Electric-Industr-44898600/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdnoir.png
+----------------
+publishedAt
+2023-09-21T17:34:04Z
+----------------
+content
+NEW YORK, Sept. 21, 2023 /PRNewswire/ -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. ("Hawaiian Electric" or the "Company") (NYSE: HE… [+5683 chars]
+#------------------------------------------
+# 93
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+HAWAIIAN ELECTRIC DEADLINE ALERT: Securities Litigation Partner James (Josh) Wilson Encourages Investors Who Suffered Losses Exceeding $100,000 In Hawaiian Electric To Contact Him Directly To Discuss Their Options
+----------------
+description
+(marketscreener.com) 
+
+NEW YORK, Sept. 16, 2023 /PRNewswire/ -- Faruqi &amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. and reminds investors of the October 23, 2023 deadline t…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/HAWAIIAN-ELECTRIC-DEADLINE-ALERT-Securities-Litigation-Partner-James-Josh-Wilson-Encourages-Inves-44859092/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdnoir.png
+----------------
+publishedAt
+2023-09-16T15:01:04Z
+----------------
+content
+NEW YORK, Sept. 16, 2023 /PRNewswire/ -- Faruqi &amp;amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. ("Hawaiian Elec… [+5454 chars]
+#------------------------------------------
+# 94
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+HAWAIIAN ELECTRIC DEADLINE ALERT: Securities Litigation Partner James (Josh) Wilson Encourages Investors Who Suffered Losses Exceeding $100,000 In Hawaiian Electric To Contact Him Directly To Discuss Their Options
+----------------
+description
+(marketscreener.com) 
+
+NEW YORK, Sept. 9, 2023 /PRNewswire/ -- Faruqi &amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. and reminds investors of the October 23, 2023 deadline to…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/HAWAIIAN-ELECTRIC-DEADLINE-ALERT-Securities-Litigation-Partner-James-Josh-Wilson-Encourages-Inves-44809265/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdblanc.png
+----------------
+publishedAt
+2023-09-09T15:01:04Z
+----------------
+content
+NEW YORK, Sept. 9, 2023 /PRNewswire/ -- Faruqi &amp;amp; Faruqi, LLP, a leading national securities law firm, is investigating potential claims against Hawaiian Electric Industries, Inc. ("Hawaiian Elect… [+5445 chars]
+#------------------------------------------
+# 95
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+Pomerantz Law Firm Reminds Shareholders with Losses on their Investment in Hawaiian Electric Industries, Inc. of Class Action Lawsuit and Upcoming Deadline - HE
+----------------
+description
+(marketscreener.com) 
+
+NEW YORK, Sept. 5, 2023 /PRNewswire/ -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. and certain officers. The class action, filed in the United States District Court for …
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/Pomerantz-Law-Firm-Reminds-Shareholders-with-Losses-on-their-Investment-in-Hawaiian-Electric-Industr-44775199/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdnoir.png
+----------------
+publishedAt
+2023-09-05T18:37:03Z
+----------------
+content
+NEW YORK, Sept. 5, 2023 /PRNewswire/ -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. ("Hawaiian Electric" or the "Company") (NYSE: HE)… [+5682 chars]
+#------------------------------------------
+# 96
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Pomerantz LLP
+----------------
+title
+SHAREHOLDER ALERT: Pomerantz Law Firm Reminds Shareholders with Losses on their Investment in Hawaiian Electric Industries, Inc. of Class Action Lawsuit and Upcoming Deadline – HE
+----------------
+description
+NEW YORK, Sept. 09, 2023 (GLOBE NEWSWIRE) -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. (“Hawaiian Electric” or the “Company”) (NYSE: HE) and certain officers.&nbsp;&nbsp; The class action, filed in the…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/09/2740382/1087/en/SHAREHOLDER-ALERT-Pomerantz-Law-Firm-Reminds-Shareholders-with-Losses-on-their-Investment-in-Hawaiian-Electric-Industries-Inc-of-Class-Action-Lawsuit-and-Upcoming-Deadline-HE.html
+----------------
+urlToImage
+nan
+----------------
+publishedAt
+2023-09-09T16:31:00Z
+----------------
+content
+NEW YORK, Sept. 09, 2023 (GLOBE NEWSWIRE) -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. (Hawaiian Electric or the Company) (NYSE: HE… [+5383 chars]
+#------------------------------------------
+# 97
+#------------------------------------------
+----------------
+source
+{'name': 'GlobeNewswire'}
+----------------
+author
+Pomerantz LLP
+----------------
+title
+SHAREHOLDER ALERT: Pomerantz Law Firm Reminds Shareholders with Losses on their Investment in Hawaiian Electric Industries, Inc. of Class Action Lawsuit and Upcoming Deadline – HE
+----------------
+description
+NEW YORK, Sept. 25, 2023 (GLOBE NEWSWIRE) -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. (“Hawaiian Electric” or the “Company”) (NYSE: HE) and certain officers. The class action, filed in the U…
+----------------
+url
+https://www.globenewswire.com/news-release/2023/09/25/2749017/1087/en/SHAREHOLDER-ALERT-Pomerantz-Law-Firm-Reminds-Shareholders-with-Losses-on-their-Investment-in-Hawaiian-Electric-Industries-Inc-of-Class-Action-Lawsuit-and-Upcoming-Deadline-HE.html
+----------------
+urlToImage
+nan
+----------------
+publishedAt
+2023-09-25T20:55:00Z
+----------------
+content
+NEW YORK, Sept. 25, 2023 (GLOBE NEWSWIRE) -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. (Hawaiian Electric or the Company) (NYSE: HE… [+5377 chars]
+#------------------------------------------
+# 98
+#------------------------------------------
+----------------
+source
+{'name': 'Marketscreener.com'}
+----------------
+author
+PRNewswire
+----------------
+title
+Pomerantz Law Firm Reminds Shareholders with Losses on their Investment in Hawaiian Electric Industries, Inc. of Class Action Lawsuit and Upcoming Deadline - HE
+----------------
+description
+(marketscreener.com) 
+
+NEW YORK, Sept. 29, 2023 /PRNewswire/ -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. and certain officers. The class action, filed in the United States District Court for…
+----------------
+url
+https://www.marketscreener.com/quote/stock/HAWAIIAN-ELECTRIC-INDUSTR-12896/news/Pomerantz-Law-Firm-Reminds-Shareholders-with-Losses-on-their-Investment-in-Hawaiian-Electric-Industr-44955757/
+----------------
+urlToImage
+https://www.marketscreener.com/images/twitter_MS_fdnoir.png
+----------------
+publishedAt
+2023-09-29T17:29:04Z
+----------------
+content
+NEW YORK, Sept. 29, 2023 /PRNewswire/ -- Pomerantz LLP announces that a class action lawsuit has been filed against Hawaiian Electric Industries, Inc. ("Hawaiian Electric" or the "Company") (NYSE: HE… [+5683 chars]
+#------------------------------------------
+# 99
+#------------------------------------------
+----------------
+source
+{'name': '[Removed]'}
+----------------
+author
+nan
+ERROR
+----------------
+title
+[Removed]
+----------------
+description
+[Removed]
+----------------
+url
+https://removed.com
+----------------
+urlToImage
+nan
+----------------
+publishedAt
+1970-01-01T00:00:00Z
+----------------
+content
+[Removed]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vectorize(corpus,MAX_FEATURES):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    vectorizer<span class="op">=</span>CountVectorizer(max_features<span class="op">=</span>MAX_FEATURES)   </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># RUN COUNT VECTORIZER ON OUR COURPUS </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    Xs<span class="op">=</span>vectorizer.fit_transform(corpus)   </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    X<span class="op">=</span>np.array(Xs.todense())</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#CONVERT TO ONE-HOT VECTORS (can also be done with binary=true in CountVectorizer)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    maxs<span class="op">=</span>np.<span class="bu">max</span>(X,axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (np.ceil(X<span class="op">/</span>maxs),vectorizer.vocabulary_)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>content_data <span class="op">=</span> [article[<span class="dv">5</span>] <span class="cf">for</span> article <span class="kw">in</span> cleaned_data_filtered] </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>(x,vocab0)<span class="op">=</span>vectorize(content_data,MAX_FEATURES<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># DOUBLE CHECK SHAPES</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.shape,y.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(98, 500) (98,)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#swap keys and values (value --&gt; ley)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>vocab1 <span class="op">=</span> <span class="bu">dict</span>([(value, key) <span class="cf">for</span> key, value <span class="kw">in</span> vocab0.items()])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># CHECK VOCAB KEY-VALUE PAIRS</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(vocab1.keys())[<span class="dv">0</span>:<span class="dv">10</span>])</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(vocab1.values())[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[340, 190, 81, 234, 296, 453, 232, 460, 249, 417]
+['people', 'have', 'been', 'let', 'off', 'the', 'leash', 'thomas', 'mayo', 'says']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CHECK TO SEE IF COUNT-VECT COLUMNS ARE SORTED BY OCCURRENCE </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#RE-ORDER COLUMN SO IT IS SORTED FROM HIGH FREQ TERMS TO LOW </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df2<span class="op">=</span>pd.DataFrame(x)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> df2.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df2<span class="op">=</span>df2[s.sort_values(ascending<span class="op">=</span><span class="va">False</span>).index[:]]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2.head())</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># REMAP DICTIONARY TO CORRESPOND TO NEW COLUMN NUMBERS</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>i1<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>vocab2<span class="op">=</span>{}</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i2 <span class="kw">in</span> <span class="bu">list</span>(df2.columns):</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(i2)</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    vocab2[i1]<span class="op">=</span>vocab1[<span class="bu">int</span>(i2)]</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    i1<span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#DOUBLE CHECK </span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vocab2[<span class="dv">0</span>],vocab1[<span class="dv">104</span>])</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vocab2[<span class="dv">1</span>],vocab1[<span class="dv">453</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 4.  2.  2.  2.  2.  3.  2.  2.  2.  1.  3. 34.  2.  4.  8.  1.  1.  2.
+  1.  1.  1.  1.  1.  1.  1.  2.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.
+  3.  1.  1.  1.  1.  2.  2.  2.  2.  2.  2.  3.  7. 20.  7. 18.  2.  4.
+  2.  1.  3.  2.  2. 13.  6. 47.  2.  5.  9.  7.  2.  3.  9.  2.  8.  4.
+  2.  5.  2.  2.  2.  2.  3.  2.  2. 11.  6.  2.  4.  2.  2.  2.  4.  1.
+  2.  3. 12.  2.  3.  7.  2.  3.  5.  2.  2.  2.  3.  1. 98.  5. 20.  2.
+  5.  8.  1.  3.  2.  3.  3.  2.  5.  3.  3.  2.  2.  2.  2.  6.  2.  2.
+  3.  3.  2.  2.  5.  2.  5.  2.  3.  2.  3.  6.  2.  1.  2.  4. 19.  3.
+  2.  2.  2.  4.  2.  1.  3.  2.  4.  1.  5.  5.  3.  2.  6. 12.  5.  2.
+  2.  3.  5.  5.  2.  2.  2. 12.  3.  2.  2.  1.  9.  2.  2.  2.  5.  3.
+ 18.  2.  2.  3.  5.  3.  2.  2.  2. 21.  8.  2.  7. 21. 14.  5.  5.  2.
+  3.  4.  3.  4.  2.  2.  4.  2.  2.  3. 48. 18. 18.  2.  5.  9. 27.  3.
+ 10.  2.  2.  3.  1.  3.  1.  2.  3.  6.  3. 11.  2. 14.  6.  6.  2.  2.
+  2.  2.  3.  2.  2. 20.  3.  1.  5.  2.  4.  3.  2.  3.  3.  2.  2.  2.
+  2.  2.  2.  1.  1.  1.  6.  1.  5.  4.  1.  6.  1.  1.  1.  1.  1.  1.
+  5.  1.  6.  3.  2.  2.  1.  1.  2.  1.  1.  4.  1. 22.  3.  1. 17.  2.
+  1.  3.  1.  3.  1. 15.  8. 48.  2.  3.  6.  1.  1.  1. 23.  5.  1.  1.
+  1. 14.  1.  2.  1.  3.  3.  1.  1.  1.  5.  1.  1.  2.  1.  1.  1.  1.
+  1.  1.  1.  5.  2.  1.  1.  2.  1.  3.  1.  1.  1.  1.  1.  1.  7.  1.
+  1.  1.  2.  2.  4.  3.  1.  1.  1.  1.  1.  1.  7.  2.  2.  1.  7.  1.
+  6.  1.  2.  1.  1.  1.  2.  1.  6.  1.  1.  2.  2. 12.  1.  1.  2.  1.
+  1.  1.  5.  1.  1.  1.  1.  2.  1.  1.  5.  3.  5.  2.  1.  1.  3.  2.
+  2.  2.  2.  2.  1.  2.  3.  2.  2.  9.  2.  2.  2.  2. 10.  3.  4.  4.
+  2.  3.  1.  4.  2.  2.  4.  2.  6.  3.  4. 33.  2.  2.  2.  6.  5.  2.
+  2.  3.  3.  1.  2.  3.  1.  2.  5.  4.  2.  2.  3.  3.  1.  2.  2.  2.
+  4.  5. 37. 73.  3.  3.  2.  6.  1. 15.  2.  4.  8. 48.  2.  2.  2.  2.
+  3.  6.  9.  2.  1.  2.  5.  2.  5.  2.  4.  4.  4.  2.  4.  2.  9.  2.
+ 22. 11.  2.  3. 15.  5.  5.  3.  5.  3. 11. 19.  2.  1.]
+   104  453  295  208  463  61   452  11   425  214  ...  363  349  350  351  \
+0  1.0  1.0  0.0  0.0  0.0  1.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+1  1.0  1.0  1.0  1.0  1.0  1.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+2  1.0  1.0  0.0  0.0  1.0  1.0  0.0  0.0  0.0  1.0  ...  0.0  0.0  0.0  0.0   
+3  1.0  1.0  0.0  1.0  0.0  0.0  1.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+4  1.0  1.0  1.0  1.0  1.0  1.0  0.0  0.0  0.0  1.0  ...  0.0  0.0  0.0  0.0   
+
+   352  353  357  359  361  499  
+0  0.0  0.0  0.0  0.0  0.0  0.0  
+1  0.0  0.0  0.0  0.0  0.0  0.0  
+2  0.0  0.0  0.0  0.0  0.0  0.0  
+3  0.0  0.0  0.0  1.0  0.0  0.0  
+4  0.0  0.0  0.0  0.0  0.0  0.0  
+
+[5 rows x 500 columns]
+
+chars chars
+the the</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># RENAME COLUMNS 0,1,2,3 .. </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df2.columns <span class="op">=</span> <span class="bu">range</span>(df2.columns.size)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2.head())</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>df2.to_numpy()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># DOUBLE CHECK </span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.shape,y.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   0    1    2    3    4    5    6    7    8    9    ...  490  491  492  493  \
+0  1.0  1.0  0.0  0.0  0.0  1.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+1  1.0  1.0  1.0  1.0  1.0  1.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+2  1.0  1.0  0.0  0.0  1.0  1.0  0.0  0.0  0.0  1.0  ...  0.0  0.0  0.0  0.0   
+3  1.0  1.0  0.0  1.0  0.0  0.0  1.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+4  1.0  1.0  1.0  1.0  1.0  1.0  0.0  0.0  0.0  1.0  ...  0.0  0.0  0.0  0.0   
+
+   494  495  496  497  498  499  
+0  0.0  0.0  0.0  0.0  0.0  0.0  
+1  0.0  0.0  0.0  0.0  0.0  0.0  
+2  0.0  0.0  0.0  0.0  0.0  0.0  
+3  0.0  0.0  0.0  1.0  0.0  0.0  
+4  0.0  0.0  0.0  0.0  0.0  0.0  
+
+[5 rows x 500 columns]
+0      98.0
+1      73.0
+2      48.0
+3      48.0
+4      48.0
+       ... 
+495     1.0
+496     1.0
+497     1.0
+498     1.0
+499     1.0
+Length: 500, dtype: float64
+(98, 500) (98,)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1. 1. 0. ... 0. 0. 0.]
+ [1. 1. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]]
+[-1 -1  1 -1  1  1  1  1  0  0  0 -1 -1  0 -1 -1  1  1 -1  1  1 -1  1 -1
+ -1  0 -1  1  0  1 -1  0 -1  0 -1  1 -1  0  1 -1  1 -1 -1 -1 -1 -1 -1 -1
+  1 -1  1  1  1 -1 -1  1  1 -1 -1  1 -1 -1  0  1 -1 -1  0 -1  0  0  0  0
+  0  0 -1  1  0 -1  0  0  0  0  1 -1  1  1 -1 -1  1 -1  1 -1  1  1 -1 -1
+ -1 -1]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataset into training and testing sets</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Chi-Squared Feature Selection</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>k_best <span class="op">=</span> SelectKBest(score_func<span class="op">=</span>chi2, k<span class="op">=</span><span class="dv">500</span>)  </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>X_train_selected <span class="op">=</span> k_best.fit_transform(X_train, y_train)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>X_test_selected <span class="op">=</span> k_best.transform(X_test)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Model Building</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>mnb <span class="op">=</span> MultinomialNB()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>mnb.fit(X_train_selected, y_train)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Model Evaluation</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> mnb.predict(X_test_selected)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>confusion <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> classification_report(y_test, y_pred)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy:"</span>, accuracy)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confusion Matrix:"</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classification Report:"</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(report)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the feature names corresponding to the selected features</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>selected_feature_indices <span class="op">=</span> k_best.get_support(indices<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the selected_features variable using vocab2</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>selected_features <span class="op">=</span> [vocab2[i] <span class="cf">for</span> i <span class="kw">in</span> selected_feature_indices]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(98, 500)
+(20,)
+Accuracy: 0.9
+Confusion Matrix:
+[[9 0 1]
+ [0 5 0]
+ [1 0 4]]
+Classification Report:
+              precision    recall  f1-score   support
+
+          -1       0.90      0.90      0.90        10
+           0       1.00      1.00      1.00         5
+           1       0.80      0.80      0.80         5
+
+    accuracy                           0.90        20
+   macro avg       0.90      0.90      0.90        20
+weighted avg       0.90      0.90      0.90        20
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion Matrix</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>sns.heatmap(confusion, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">"d"</span>, cmap<span class="op">=</span><span class="st">"Blues"</span>, xticklabels<span class="op">=</span>[<span class="st">"Negative"</span>, <span class="st">"Neutral"</span>, <span class="st">"Positive"</span>], yticklabels<span class="op">=</span>[<span class="st">"Negative"</span>, <span class="st">"Neutral"</span>, <span class="st">"Positive"</span>])</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Predicted"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Actual"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Confusion Matrix Heatmap"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Text_NB_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

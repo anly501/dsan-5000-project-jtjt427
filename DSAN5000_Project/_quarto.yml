@@ -1,6 +1,9 @@
 project:
   type: website
-
+  render: 
+    - "*.qmd"
+    - "*.ipynb"
+    
 website:
   title: "DSAN5000_Project"
   navbar:

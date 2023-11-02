@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -105,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Data Cleaning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data_Exploration.ipynb" rel="" target="">
+    <a class="nav-link" href="./Data_Exploration.html" rel="" target="">
  <span class="menu-text">Data Exploration</span></a>
   </li>  
   <li class="nav-item">
@@ -165,6 +199,16 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#objectives-of-naive-bayes-classification" id="toc-objectives-of-naive-bayes-classification" class="nav-link" data-scroll-target="#objectives-of-naive-bayes-classification">Objectives of Naive Bayes Classification:</a></li>
   <li><a href="#different-variants-of-naive-bayes" id="toc-different-variants-of-naive-bayes" class="nav-link" data-scroll-target="#different-variants-of-naive-bayes">Different Variants of Naive Bayes:</a></li>
   </ul></li>
+  <li><a href="#naive-bayes-on-california-wildfire-statistics" id="toc-naive-bayes-on-california-wildfire-statistics" class="nav-link" data-scroll-target="#naive-bayes-on-california-wildfire-statistics">Naive Bayes on California Wildfire Statistics</a>
+  <ul class="collapse">
+  <li><a href="#code-overview" id="toc-code-overview" class="nav-link" data-scroll-target="#code-overview">Code Overview</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  <li><a href="#naive-bayes-on-wildfire-prevention-articles" id="toc-naive-bayes-on-wildfire-prevention-articles" class="nav-link" data-scroll-target="#naive-bayes-on-wildfire-prevention-articles">Naive Bayes on Wildfire Prevention Articles</a>
+  <ul class="collapse">
+  <li><a href="#code-overview-1" id="toc-code-overview-1" class="nav-link" data-scroll-target="#code-overview-1">Code Overview</a></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -190,7 +234,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Naive Bayes(NB) classification is a probabilistic machine learning technique based on Bayes’ theorem. It’s widely used for various classification tasks, such as spam detection, sentiment analysis, and more. Its primary objective is to predict the class or category of a given data point based on the observed features. For the purpose of this study, I will perform NB on a recorded dataset(<code>Cali20_climate_fire</code>) and a text dataset(<code>articles_with_sentiment</code>).</p>
+<p>Naive Bayes(NB) classification is a probabilistic machine learning technique based on Bayes’ theorem. It’s widely used for various classification tasks, such as spam detection, sentiment analysis, and more. Its primary objective is to predict the class or category of a given data point based on the observed features. For the purpose of this study, I will perform NB on a recorded dataset(<code>CA_climate_fire</code>) and a text dataset(<code>articles_with_sentiment</code>).</p>
 <section id="how-naive-bayes-works" class="level3">
 <h3 class="anchored" data-anchor-id="how-naive-bayes-works">How Naive Bayes Works:</h3>
 <ol type="1">
@@ -200,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="objectives-of-naive-bayes-classification" class="level3">
 <h3 class="anchored" data-anchor-id="objectives-of-naive-bayes-classification">Objectives of Naive Bayes Classification:</h3>
-<p>In both datasets, the objective is to classify or predict something based on the given features. In the first dataset, I aim to predict the occurrence of a fire based on weather variable precipitation. In the second dataset, I want to classify the sentiment of text based on the content of the article.</p>
+<p>In both datasets, the objective is to classify or predict something based on the given features. In the first dataset, we aim to predict the occurrence of a fire based on weather variable precipitation. In the second dataset, we want to classify the sentiment of text based on the content of the article.</p>
 </section>
 <section id="different-variants-of-naive-bayes" class="level3">
 <h3 class="anchored" data-anchor-id="different-variants-of-naive-bayes">Different Variants of Naive Bayes:</h3>
@@ -209,6 +253,570 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Multinomial Naive Bayes</strong>: Suitable for discrete data, often used for text classification with features like word counts. I am using this model predicting sentiments basing on the contents of the articles for the text dataset.</li>
 <li><strong>Bernoulli Naive Bayes</strong>: Appropriate when dealing with binary or Boolean features. It’s often used for binary text classification where the presence or absence of words matters.</li>
 </ol>
+</section>
+</section>
+<section id="naive-bayes-on-california-wildfire-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="naive-bayes-on-california-wildfire-statistics">Naive Bayes on California Wildfire Statistics</h2>
+<p>After having a basic idea on Naive Bayes concept, let’s predict the occurrence of fires in California based on climatic conditions using the Gaussian Naive Bayes classifier. The process involves data preprocessing, feature selection, model training, testing, and evaluation to determine the model’s performance in terms of accuracy and other metrics. The visualization of the confusion matrix further aids in understanding the model’s true positive, true negative, false positive, and false negative predictions.</p>
+<section id="code-overview" class="level3">
+<h3 class="anchored" data-anchor-id="code-overview">Code Overview</h3>
+<div class="cell" data-execution_count="19">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> MultinomialNB</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> chain, combinations</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, classification_report, confusion_matrix</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, auc</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectKBest, chi2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>CA_climate_fire <span class="op">=</span> pd.read_csv(<span class="st">'../data/cleaned-data/CA_climate_fire.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>CA_climate_fire_filtered <span class="op">=</span> CA_climate_fire[[<span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, <span class="st">'precip'</span>, <span class="st">'windspeed'</span>, <span class="st">'fire'</span>]]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataset into features and the target variable </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> CA_climate_fire_filtered.drop(columns<span class="op">=</span>[<span class="st">"fire"</span>]) </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> CA_climate_fire_filtered[<span class="st">"fire"</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into training and testing sets</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> powerset(iterable):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="bu">list</span>(iterable)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> chain.from_iterable(combinations(s, r) <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(s)<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize variables to keep track of the best feature set and its accuracy</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>best_feature_set <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>best_accuracy <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate all possible feature combinations using the powerset function</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>all_feature_combinations <span class="op">=</span> <span class="bu">list</span>(powerset(X.columns))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each feature combination</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> feature_set <span class="kw">in</span> all_feature_combinations:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(feature_set) <span class="op">&gt;</span> <span class="dv">0</span>:  <span class="co"># Skip the empty set</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Subset the training and testing data using the current feature set</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        X_train_subset <span class="op">=</span> X_train[<span class="bu">list</span>(feature_set)]</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        X_test_subset <span class="op">=</span> X_test[<span class="bu">list</span>(feature_set)]</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initialize and train a Gaussian Naïve Bayes classifier</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        gnb <span class="op">=</span> GaussianNB()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        gnb.fit(X_train_subset, y_train)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Make predictions on the testing data</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        y_pred <span class="op">=</span> gnb.predict(X_test_subset)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate accuracy</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update the best feature set if the current one is better</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> accuracy <span class="op">&gt;</span> best_accuracy:</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>            best_accuracy <span class="op">=</span> accuracy</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>            best_feature_set <span class="op">=</span> feature_set</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the best feature set and its accuracy</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best Feature Set:"</span>, best_feature_set)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best Accuracy:"</span>, best_accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Best Feature Set: ('tempmax', 'tempmin')
+Best Accuracy: 0.8773333333333333</code></pre>
+</div>
+</div>
+<ol type="1">
+<li><strong>Data Loading &amp; Preprocessing</strong>:
+<ul>
+<li>Necessary libraries for data handling, modeling, and visualization are imported.</li>
+<li>The <code>CA_climate_fire</code> dataset is loaded, which contains information about various climatic factors and their association with fire occurrences in California.</li>
+<li>A subset of the dataset, <code>CA_climate_fire_filtered</code>, is created to retain only the relevant columns for the study: ‘tempmax’, ‘tempmin’, ‘humidity’, ‘precip’, ‘windspeed’, and ‘fire’.</li>
+</ul></li>
+<li><strong>Data Splitting</strong>:
+<ul>
+<li>The dataset is split into features (<code>X</code>) and target labels (<code>y</code>). The goal is to predict the ‘fire’ occurrence based on the climatic factors.</li>
+<li>The data is further split into training and testing sets using an 80:20 ratio.</li>
+</ul></li>
+<li><strong>Feature Selection</strong>:
+<ul>
+<li>The <code>powerset</code> function is defined to generate all possible combinations of features.</li>
+<li>The best combination of features that gives the highest accuracy using the Gaussian Naive Bayes model is identified. The combination found to be best is ‘tempmax’ and ‘tempmin’.</li>
+</ul></li>
+</ol>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataset into features (X) and the target variable (y)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> CA_climate_fire_filtered[[<span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>]]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> CA_climate_fire_filtered[<span class="st">'fire'</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into training and testing sets</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize and train the Gaussian Naïve Bayes classifier</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>gnb <span class="op">=</span> GaussianNB()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>gnb.fit(X_train, y_train)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions on the testing data</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> gnb.predict(X_test)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Model Evaluation</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>confusion <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> classification_report(y_test, y_pred)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy:"</span>, accuracy)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confusion Matrix:"</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classification Report:"</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(report)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the confusion matrix</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>sns.heatmap(confusion, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>, </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>            xticklabels<span class="op">=</span>[<span class="st">'No Fire'</span>, <span class="st">'Fire'</span>], </span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>            yticklabels<span class="op">=</span>[<span class="st">'No Fire'</span>, <span class="st">'Fire'</span>])</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Predicted'</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Actual'</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Confusion Matrix'</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy: 0.8773333333333333
+Confusion Matrix:
+[[313  12]
+ [ 34  16]]
+Classification Report:
+              precision    recall  f1-score   support
+
+          No       0.90      0.96      0.93       325
+         Yes       0.57      0.32      0.41        50
+
+    accuracy                           0.88       375
+   macro avg       0.74      0.64      0.67       375
+weighted avg       0.86      0.88      0.86       375
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Naive_Bayes_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<ol start="4" type="1">
+<li><strong>Model Training &amp; Testing</strong>:
+<ul>
+<li>Using the best features (‘tempmax’ and ‘tempmin’), the Gaussian Naive Bayes model is trained on the training data.</li>
+<li>The trained model is then used to predict fire occurrences on the testing data.</li>
+</ul></li>
+<li><strong>Model Evaluation</strong>:
+<ul>
+<li>Various metrics such as accuracy, confusion matrix, precision, recall, and F1-score are calculated to evaluate the model’s performance on the testing data.</li>
+<li>A heatmap (visualization) of the confusion matrix is displayed to provide insights into the model’s predictions.</li>
+</ul></li>
+</ol>
+<p><strong>Findings</strong>: The Gaussian Naive Bayes model trained on the <code>CA_climate_fire</code> dataset, using the ‘tempmax’ and ‘tempmin’ features, achieved an accuracy of 87.73%. The confusion matrix provides detailed insights into the predictions, indicating that the model identified 313 true negatives and 16 true positives. However, there were 34 false negatives and 12 false positives.</p>
+<ol type="1">
+<li><strong>Accuracy</strong>: This is a ratio of correctly predicted observation to the total observations. In this case, it was 87.73%.</li>
+<li><strong>Precision</strong>: It is the ratio of correctly predicted positive observations to the total predicted positives. For class ‘No Fire’, it was 90%.</li>
+<li><strong>Recall</strong>: It is the ratio of correctly predicted positive observations to all the actual positives. For class ‘No Fire’, it was 96%.</li>
+<li><strong>F1-Score</strong>: It is the weighted average of precision and recall. For class ‘No Fire’, it was 93%.</li>
+</ol>
+<p>Overfitting occurs when a model learns the training data too well, capturing noise and outliers, making it perform poorly on unseen data. Underfitting is the opposite, where the model fails to capture the underlying trend of the data. Given the accuracy of 87.73%, it seems the model is performing decently. However, because the dataset is extremely unbalanced because of the occurence of fire is not as often, this precision, recall and F1 score for “No Fire” is not as important as that of “Fire”.</p>
+<ol type="1">
+<li><strong>Precision</strong> for the “Fire” class: 57.14%</li>
+<li><strong>Recall</strong> for the “Fire” class: 32%</li>
+<li><strong>F-1 Score</strong> for the “Fire” class: 41%</li>
+</ol>
+<p>The precision, recall, and F1-score for class ‘Fire’ are relatively low, suggesting the model struggles more with predicting fire occurrences compared to non-occurrences.</p>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict the probabilities of the testing data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y_prob <span class="op">=</span> gnb.predict_proba(X_test)[:, <span class="dv">1</span>]  <span class="co"># Only probabilities for 'Fire'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute ROC curve and ROC area (AUC)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fpr, tpr, _ <span class="op">=</span> roc_curve(y_test, y_prob, pos_label<span class="op">=</span><span class="st">'Yes'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>roc_auc <span class="op">=</span> auc(fpr, tpr)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the ROC curve</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>lw <span class="op">=</span> <span class="dv">2</span>  <span class="co"># Line width</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.plot(fpr, tpr, color<span class="op">=</span><span class="st">'darkorange'</span>, lw<span class="op">=</span>lw, label<span class="op">=</span><span class="st">'ROC curve (area = </span><span class="sc">%0.2f</span><span class="st">)'</span> <span class="op">%</span> roc_auc)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'navy'</span>, lw<span class="op">=</span>lw, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.xlim([<span class="fl">0.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="fl">0.0</span>, <span class="fl">1.05</span>])</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'False Positive Rate'</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'True Positive Rate'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Receiver Operating Characteristic (ROC) Curve'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Naive_Bayes_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ol type="1">
+<li><p><strong>ROC Curve Shape</strong>: The curve starts from the bottom-left corner and moves towards the top-right corner. It’s above the diagonal dashed line, which represents a random classifier. The further away the curve is from this diagonal line (towards the top-left corner), the better the classifier’s performance.</p></li>
+<li><p><strong>Area Under the Curve (AUC)</strong>: The area under the ROC curve is given as 0.87. AUC provides a single number summary of the classifier’s performance across all thresholds. The maximum AUC value is 1, which corresponds to a perfect classifier. An AUC of 0.5 corresponds to a random classifier (no discriminative power). The given AUC of 0.87 indicates a good classifier.</p></li>
+<li><p><strong>Ideal Point</strong>: The top-left corner of the ROC space, where TPR=1 and FPR=0, represents the ideal point where we have maximum true positives and no false positives. While the curve doesn’t touch this point, it does come relatively close, suggesting the classifier has a good trade-off between sensitivity and specificity.</p></li>
+</ol>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>So far, we have applied the Gaussian Naive Bayes classifier to predict fire occurrences based on climatic conditions in California. Using the features ‘tempmax’ and ‘tempmin’, the model achieved an accuracy of 87.73%. While this indicates a good overall fit, the model’s lower precision and recall for actual fire occurrences suggest there’s room for improvement.</p>
+<p>The main reason for the poor performance on the NB model on predicting the occurence of wildfire is that we are dealing with a highly unbalanced dataset. Classifying such dataset presents a challenge because our Gaussian Naive Bayes algorithm is biased towards the majority class (No Fire), leading to poor performance on the minority class (Fire), which is of higher interest. Here are some strategies and best practices for dealing with highly unbalanced datasets:</p>
+<ol type="1">
+<li><strong>Resampling Techniques</strong>:
+<ul>
+<li><strong>Upsampling (Over-sampling) the Minority Class</strong>: Create copies of instances from the minority class or generate synthetic samples using methods like SMOTE (Synthetic Minority Over-sampling Technique) or ADASYN.</li>
+<li><strong>Downsampling (Under-sampling) the Majority Class</strong>: Reduce the number of instances from the majority class to balance the class distribution. This can lead to loss of information.</li>
+<li><strong>Using Ensemble Resampling</strong>: Combine over- and under-sampling techniques with ensemble methods like bagging and boosting.</li>
+</ul></li>
+<li><strong>Cost-sensitive Learning</strong>:
+<ul>
+<li>Adjust the algorithm to penalize misclassifying the minority class more than the majority class.</li>
+<li>Many algorithms have a parameter that allows setting class weights (e.g., <code>class_weight</code> in scikit-learn algorithms).</li>
+</ul></li>
+<li><strong>Anomaly Detection Approach</strong>:
+<ul>
+<li>Treat the problem as an anomaly (or outlier) detection task rather than a classification task. This is especially useful when the minority class can be considered an “anomaly” relative to the majority class.</li>
+</ul></li>
+<li><strong>Using Different Evaluation Metrics</strong>:
+<ul>
+<li>Accuracy is not a good metric for unbalanced datasets.</li>
+<li>Focus on metrics like Precision, Recall, F1-score, Area Under the Precision-Recall Curve (AUPRC), and Area Under the Receiver Operating Characteristic Curve (AUROC).</li>
+</ul></li>
+<li><strong>Ensemble Methods</strong>:
+<ul>
+<li>Ensemble methods, such as Random Forest or Gradient Boosting, can improve performance on imbalanced datasets.</li>
+<li>Additionally, techniques like Balanced Random Forest and Easy Ensemble can be effective.</li>
+</ul></li>
+<li><strong>Using Different Algorithms</strong>:
+<ul>
+<li>Some algorithms, like k-Nearest Neighbors, might inherently handle imbalance better than others.</li>
+<li>Neural networks with appropriate architectures and loss functions can also be explored.</li>
+</ul></li>
+<li><strong>Analyze the Problem Domain</strong>:
+<ul>
+<li>Incorporate domain-specific knowledge to engineer relevant features.</li>
+<li>Sometimes, understanding the reasons behind the imbalance can provide insights into the right resampling or modeling approach.</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="naive-bayes-on-wildfire-prevention-articles" class="level2">
+<h2 class="anchored" data-anchor-id="naive-bayes-on-wildfire-prevention-articles">Naive Bayes on Wildfire Prevention Articles</h2>
+<p>In this section, we will perform Gaussian Naive Bayes on the wildfire prevention text dataset to build and evaluate a sentiment analysis model for the set of articles.</p>
+<section id="code-overview-1" class="level3">
+<h3 class="anchored" data-anchor-id="code-overview-1">Code Overview</h3>
+<div class="cell" data-execution_count="15">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> MultinomialNB</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectKBest, chi2</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, classification_report, confusion_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>articles_with_sentiment <span class="op">=</span> pd.read_csv(<span class="st">"../data/cleaned-data/articles_with_sentiment.csv"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 'sentiment' column based on the 'compound' values</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>articles_with_sentiment[<span class="st">'sentiment'</span>] <span class="op">=</span> articles_with_sentiment[<span class="st">'compound'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="st">'positive'</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> (<span class="st">'negative'</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'neutral'</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>[]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#ITERATE OVER ROWS</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,articles_with_sentiment.shape[<span class="dv">0</span>]):</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># CONVERT STRINGS TO INT TAGS</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(articles_with_sentiment[<span class="st">"sentiment"</span>][i]<span class="op">==</span><span class="st">"positive"</span>):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        y.append(<span class="dv">1</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(articles_with_sentiment[<span class="st">"sentiment"</span>][i]<span class="op">==</span><span class="st">"neutral"</span>):</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        y.append(<span class="dv">0</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(articles_with_sentiment[<span class="st">"sentiment"</span>][i]<span class="op">==</span><span class="st">"negative"</span>):</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        y.append(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(i<span class="op">&lt;</span><span class="dv">3</span>):</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(articles_with_sentiment[<span class="st">"content"</span>][i].replace(<span class="st">"&lt;br /&gt;"</span>,<span class="st">""</span>),<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(articles_with_sentiment[<span class="st">"sentiment"</span>][i],y[i])</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># CONVERT Y TO NUMPY ARRAY</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>np.array(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+"people have been let off the leash," thomas mayo says quietly, swiping through screenshots racist memes depicting first nations australians as "grifters", "wife beaters" and "primitives" flash ac… [+9064 chars] 
+
+negative -1
+1
+in 2019 and 2020, a megafire scorched eastern australia, destroying some 24 million hectares of land, and adding to the hole in the ozone layer another massive fire ate away parts of northern califo… [+7274 chars] 
+
+negative -1
+2
+all a wildfire needs is oxygen, an ignition to spark it, and fuel to burn its crackling embers and flickering flames dont know the difference between the california foothills, where residents are us… [+10837 chars] 
+
+positive 1</code></pre>
+</div>
+</div>
+<p>Here, we create a new <code>sentiment</code> column in the DataFrame based on the values in the <code>compound</code> column. This column categorizes sentiment as positive, neutral, or negative. Iterate over the rows of the DataFrame to convert string sentiments (“positive”, “neutral”, “negative”) into numerical labels (1, 0, -1) and store them in a list y. The first 3 rows are also printed for inspection. Lastly, we convert the list y to a numpy array for the subsequent modeling process.</p>
+<div class="cell" data-execution_count="12">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vectorize(corpus,MAX_FEATURES):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    vectorizer<span class="op">=</span>CountVectorizer(max_features<span class="op">=</span>MAX_FEATURES)   </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># RUN COUNT VECTORIZER ON OUR COURPUS </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    Xs<span class="op">=</span>vectorizer.fit_transform(corpus)   </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    X<span class="op">=</span>np.array(Xs.todense())</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#CONVERT TO ONE-HOT VECTORS (can also be done with binary=true in CountVectorizer)</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    maxs<span class="op">=</span>np.<span class="bu">max</span>(X,axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (np.ceil(X<span class="op">/</span>maxs),vectorizer.vocabulary_)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>content_data <span class="op">=</span> [article[<span class="dv">5</span>] <span class="cf">for</span> article <span class="kw">in</span> cleaned_data_filtered] </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>(x,vocab0)<span class="op">=</span>vectorize(content_data,MAX_FEATURES<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># DOUBLE CHECK SHAPES</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.shape,y.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(98, 500) (98,)</code></pre>
+</div>
+</div>
+<p>Extract content data from the cleaned text dataset gained from the previous process and vectorize it using a CountVectorizer. The resulting matrix x and its vocabulary vocab0 are then further processed to reorder columns based on word frequency and remap the vocabulary accordingly.</p>
+<div class="cell" data-execution_count="13">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#swap keys and values (value --&gt; ley)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>vocab1 <span class="op">=</span> <span class="bu">dict</span>([(value, key) <span class="cf">for</span> key, value <span class="kw">in</span> vocab0.items()])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># CHECK TO SEE IF COUNT-VECT COLUMNS ARE SORTED BY OCCURRENCE </span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#RE-ORDER COLUMN SO IT IS SORTED FROM HIGH FREQ TERMS TO LOW </span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>df2<span class="op">=</span>pd.DataFrame(x)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> df2.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>df2<span class="op">=</span>df2[s.sort_values(ascending<span class="op">=</span><span class="va">False</span>).index[:]]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2.head())</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># REMAP DICTIONARY TO CORRESPOND TO NEW COLUMN NUMBERS</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>i1<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>vocab2<span class="op">=</span>{}</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i2 <span class="kw">in</span> <span class="bu">list</span>(df2.columns):</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(i2)</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    vocab2[i1]<span class="op">=</span>vocab1[<span class="bu">int</span>(i2)]</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    i1<span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># RENAME COLUMNS 0,1,2,3 .. </span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>df2.columns <span class="op">=</span> <span class="bu">range</span>(df2.columns.size)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2.head())</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>df2.to_numpy()</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co"># DOUBLE CHECK </span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.shape,y.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 4.  2.  2.  2.  2.  3.  2.  2.  2.  1.  3. 34.  2.  4.  8.  1.  1.  2.
+  1.  1.  1.  1.  1.  1.  1.  2.  1.  1.  1.  1.  1.  1.  1.  1.  1.  1.
+  3.  1.  1.  1.  1.  2.  2.  2.  2.  2.  2.  3.  7. 20.  7. 18.  2.  4.
+  2.  1.  3.  2.  2. 13.  6. 47.  2.  5.  9.  7.  2.  3.  9.  2.  8.  4.
+  2.  5.  2.  2.  2.  2.  3.  2.  2. 11.  6.  2.  4.  2.  2.  2.  4.  1.
+  2.  3. 12.  2.  3.  7.  2.  3.  5.  2.  2.  2.  3.  1. 98.  5. 20.  2.
+  5.  8.  1.  3.  2.  3.  3.  2.  5.  3.  3.  2.  2.  2.  2.  6.  2.  2.
+  3.  3.  2.  2.  5.  2.  5.  2.  3.  2.  3.  6.  2.  1.  2.  4. 19.  3.
+  2.  2.  2.  4.  2.  1.  3.  2.  4.  1.  5.  5.  3.  2.  6. 12.  5.  2.
+  2.  3.  5.  5.  2.  2.  2. 12.  3.  2.  2.  1.  9.  2.  2.  2.  5.  3.
+ 18.  2.  2.  3.  5.  3.  2.  2.  2. 21.  8.  2.  7. 21. 14.  5.  5.  2.
+  3.  4.  3.  4.  2.  2.  4.  2.  2.  3. 48. 18. 18.  2.  5.  9. 27.  3.
+ 10.  2.  2.  3.  1.  3.  1.  2.  3.  6.  3. 11.  2. 14.  6.  6.  2.  2.
+  2.  2.  3.  2.  2. 20.  3.  1.  5.  2.  4.  3.  2.  3.  3.  2.  2.  2.
+  2.  2.  2.  1.  1.  1.  6.  1.  5.  4.  1.  6.  1.  1.  1.  1.  1.  1.
+  5.  1.  6.  3.  2.  2.  1.  1.  2.  1.  1.  4.  1. 22.  3.  1. 17.  2.
+  1.  3.  1.  3.  1. 15.  8. 48.  2.  3.  6.  1.  1.  1. 23.  5.  1.  1.
+  1. 14.  1.  2.  1.  3.  3.  1.  1.  1.  5.  1.  1.  2.  1.  1.  1.  1.
+  1.  1.  1.  5.  2.  1.  1.  2.  1.  3.  1.  1.  1.  1.  1.  1.  7.  1.
+  1.  1.  2.  2.  4.  3.  1.  1.  1.  1.  1.  1.  7.  2.  2.  1.  7.  1.
+  6.  1.  2.  1.  1.  1.  2.  1.  6.  1.  1.  2.  2. 12.  1.  1.  2.  1.
+  1.  1.  5.  1.  1.  1.  1.  2.  1.  1.  5.  3.  5.  2.  1.  1.  3.  2.
+  2.  2.  2.  2.  1.  2.  3.  2.  2.  9.  2.  2.  2.  2. 10.  3.  4.  4.
+  2.  3.  1.  4.  2.  2.  4.  2.  6.  3.  4. 33.  2.  2.  2.  6.  5.  2.
+  2.  3.  3.  1.  2.  3.  1.  2.  5.  4.  2.  2.  3.  3.  1.  2.  2.  2.
+  4.  5. 37. 73.  3.  3.  2.  6.  1. 15.  2.  4.  8. 48.  2.  2.  2.  2.
+  3.  6.  9.  2.  1.  2.  5.  2.  5.  2.  4.  4.  4.  2.  4.  2.  9.  2.
+ 22. 11.  2.  3. 15.  5.  5.  3.  5.  3. 11. 19.  2.  1.]
+   104  453  295  208  463  61   452  11   425  214  ...  363  349  350  351  \
+0  1.0  1.0  0.0  0.0  0.0  1.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+1  1.0  1.0  1.0  1.0  1.0  1.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+2  1.0  1.0  0.0  0.0  1.0  1.0  0.0  0.0  0.0  1.0  ...  0.0  0.0  0.0  0.0   
+3  1.0  1.0  0.0  1.0  0.0  0.0  1.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+4  1.0  1.0  1.0  1.0  1.0  1.0  0.0  0.0  0.0  1.0  ...  0.0  0.0  0.0  0.0   
+
+   352  353  357  359  361  499  
+0  0.0  0.0  0.0  0.0  0.0  0.0  
+1  0.0  0.0  0.0  0.0  0.0  0.0  
+2  0.0  0.0  0.0  0.0  0.0  0.0  
+3  0.0  0.0  0.0  1.0  0.0  0.0  
+4  0.0  0.0  0.0  0.0  0.0  0.0  
+
+[5 rows x 500 columns]
+
+   0    1    2    3    4    5    6    7    8    9    ...  490  491  492  493  \
+0  1.0  1.0  0.0  0.0  0.0  1.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+1  1.0  1.0  1.0  1.0  1.0  1.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+2  1.0  1.0  0.0  0.0  1.0  1.0  0.0  0.0  0.0  1.0  ...  0.0  0.0  0.0  0.0   
+3  1.0  1.0  0.0  1.0  0.0  0.0  1.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   
+4  1.0  1.0  1.0  1.0  1.0  1.0  0.0  0.0  0.0  1.0  ...  0.0  0.0  0.0  0.0   
+
+   494  495  496  497  498  499  
+0  0.0  0.0  0.0  0.0  0.0  0.0  
+1  0.0  0.0  0.0  0.0  0.0  0.0  
+2  0.0  0.0  0.0  0.0  0.0  0.0  
+3  0.0  0.0  0.0  1.0  0.0  0.0  
+4  0.0  0.0  0.0  0.0  0.0  0.0  
+
+[5 rows x 500 columns]
+0      98.0
+1      73.0
+2      48.0
+3      48.0
+4      48.0
+       ... 
+495     1.0
+496     1.0
+497     1.0
+498     1.0
+499     1.0
+Length: 500, dtype: float64
+(98, 500) (98,)</code></pre>
+</div>
+</div>
+<p>The code reorders the columns of the matrix based on term frequencies, updates the associated vocabulary to reflect this reordering, and checks data consistency at various steps.</p>
+<div class="cell" data-execution_count="16">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataset into training and testing sets</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Chi-Squared Feature Selection</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>k_best <span class="op">=</span> SelectKBest(score_func<span class="op">=</span>chi2, k<span class="op">=</span><span class="dv">500</span>)  </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>X_train_selected <span class="op">=</span> k_best.fit_transform(X_train, y_train)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>X_test_selected <span class="op">=</span> k_best.transform(X_test)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Model Building</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>mnb <span class="op">=</span> MultinomialNB()</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>mnb.fit(X_train_selected, y_train)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Model Evaluation</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> mnb.predict(X_test_selected)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>confusion <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> classification_report(y_test, y_pred)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy:"</span>, accuracy)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confusion Matrix:"</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classification Report:"</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(report)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the feature names corresponding to the selected features</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>selected_feature_indices <span class="op">=</span> k_best.get_support(indices<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the selected_features variable using vocab2</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>selected_features <span class="op">=</span> [vocab2[i] <span class="cf">for</span> i <span class="kw">in</span> selected_feature_indices]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy: 0.9
+Confusion Matrix:
+[[9 0 1]
+ [0 5 0]
+ [1 0 4]]
+Classification Report:
+              precision    recall  f1-score   support
+
+          -1       0.90      0.90      0.90        10
+           0       1.00      1.00      1.00         5
+           1       0.80      0.80      0.80         5
+
+    accuracy                           0.90        20
+   macro avg       0.90      0.90      0.90        20
+weighted avg       0.90      0.90      0.90        20
+</code></pre>
+</div>
+</div>
+<p><strong>Feature Selection &amp; Model Building</strong>:</p>
+<ul>
+<li>Split the dataset into training and testing sets using a 80-20 split ratio.</li>
+<li>Apply Chi-Squared feature selection to retain the top 500 best features from the data.</li>
+<li>Build a Multinomial Naive Bayes classifier using the selected features from the training set.</li>
+<li>Train the model on the training data and make predictions on the testing data.</li>
+</ul>
+<div class="cell" data-execution_count="17">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion Matrix</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(confusion, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">"d"</span>, cmap<span class="op">=</span><span class="st">"Blues"</span>, xticklabels<span class="op">=</span>[<span class="st">"Negative"</span>, <span class="st">"Neutral"</span>, <span class="st">"Positive"</span>], yticklabels<span class="op">=</span>[<span class="st">"Negative"</span>, <span class="st">"Neutral"</span>, <span class="st">"Positive"</span>])</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Predicted"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Actual"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Confusion Matrix Heatmap"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Naive_Bayes_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> classification_report(y_test, y_pred, output_dict<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> <span class="bu">list</span>(report.keys())[:<span class="op">-</span><span class="dv">3</span>]  <span class="co"># Exclude 'accuracy', 'macro avg', and 'weighted avg'</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>precision <span class="op">=</span> [report[label][<span class="st">'precision'</span>] <span class="cf">for</span> label <span class="kw">in</span> labels]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>recall <span class="op">=</span> [report[label][<span class="st">'recall'</span>] <span class="cf">for</span> label <span class="kw">in</span> labels]</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>f1_score <span class="op">=</span> [report[label][<span class="st">'f1-score'</span>] <span class="cf">for</span> label <span class="kw">in</span> labels]</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">range</span>(<span class="bu">len</span>(labels))</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>plt.bar(x, precision, width<span class="op">=</span><span class="fl">0.2</span>, label<span class="op">=</span><span class="st">'Precision'</span>, align<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.bar(x, recall, width<span class="op">=</span><span class="fl">0.2</span>, label<span class="op">=</span><span class="st">'Recall'</span>, bottom<span class="op">=</span>precision, align<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.bar(x, f1_score, width<span class="op">=</span><span class="fl">0.2</span>, label<span class="op">=</span><span class="st">'F1-score'</span>, bottom<span class="op">=</span>[i<span class="op">+</span>j <span class="cf">for</span> i,j <span class="kw">in</span> <span class="bu">zip</span>(precision, recall)], align<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Labels'</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Score'</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Precision, Recall, and F1-score per Label'</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.xticks(x, labels)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="Naive_Bayes_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>Findings</strong>:</p>
+<p><strong>1. Visualizations:</strong></p>
+<ol type="a">
+<li><p><strong>Confusion Matrix Heatmap:</strong> The heatmap shows the distribution of the model’s predictions against the actual sentiments. Each cell value represents the count of samples.</p></li>
+<li><p><strong>Precision, Recall, and F1-score Bar Chart:</strong> The visualization displays Precision, Recall, and F1-score for three sentiment labels. For Negative (-1) and Positive (1) sentiments, the model demonstrates strong precision nearing 1.0. However, there are inconsistencies in the Neutral (0) sentiment and recall values for all labels, as some metrics surpass the theoretical maximum of 1.0. This suggests possible data or visual errors that need further investigation.</p></li>
+</ol>
+<p><strong>2. Testing the Model:</strong> The trained model is tested using a separate dataset that it has never seen before, ensuring an unbiased performance evaluation. The test dataset consists of 20 articles, as inferred from the dimensions of the confusion matrix.</p>
+<p><strong>3. Evaluation Metrics:</strong> - <strong>Accuracy:</strong> This metric gives the proportion of correctly predicted sentiments out of all predictions. The accuracy of the model is 90%.</p>
+<ul>
+<li><p><strong>Precision:</strong> It denotes the correctness of the positive predictions. For instance, for negative sentiment, the precision is 0.90, meaning 90% of the articles predicted as negative were actually negative.</p></li>
+<li><p><strong>Recall:</strong> It represents the fraction of actual positives the model caught. For the negative sentiment, the recall is 0.90, which means the model caught 90% of actual negative articles.</p></li>
+<li><p><strong>F1-score:</strong> This is the harmonic mean of precision and recall. For the negative sentiment, it’s 0.90, highlighting a balanced precision and recall.</p></li>
+</ul>
+<p><strong>4. Model’s Performance:</strong> The model’s performance is commendable, with an accuracy of 90%. This means it predicts the sentiment of an article correctly 90% of the time. The model particularly shines in identifying neutral sentiments, with a perfect precision and recall. However, there’s some confusion between negative and positive classifications.</p>
+</section>
+<section id="conclusion-1" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion-1">Conclusion</h3>
+<p>The sentiment analysis model demonstrates a robust capability to classify articles into negative, neutral, and positive sentiments, achieving a 90% accuracy rate. Its impeccable performance on neutral articles and fairly good results on negative and positive sentiments highlight its utility. Nonetheless, there’s still room for improvement, particularly in distinguishing between negative and positive sentiments. Future work might involve optimizing feature selection, trying different classifiers, or incorporating more training data.</p>
 
 
 </section>

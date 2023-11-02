@@ -22,7 +22,7 @@ To obtain the data from NIFC, I followed these steps:
 
 ### Data Description
 
-I utilized the following datasets obtained from the NIFC for the analysis:
+We utilize the following datasets obtained from the NIFC for the analysis:
 
 - **HumanCausedAcres.csv**
   - This dataset contains information about the total acreage affected by human-caused wildfires. 
@@ -51,7 +51,7 @@ I utilized the following datasets obtained from the NIFC for the analysis:
 
 ---
 
-## California 2020 Wildfire Statistics
+## California Wildfire Statistics
 
 ### Data Source
 
@@ -71,7 +71,7 @@ To acquire the wildfire data from CAL FIRE, the following steps were taken:
 
 ### Data Description
 
-The dataset used for this analysis is sourced from CAL FIRE and provides information on large wildfires (greater than 400 acres) in California for the year 2020. The dataset includes the following key columns:
+The datasets used for this analysis is sourced from CAL FIRE and provides information on large wildfires (greater than 300 acres) in California for the year 2020, 2017, 2015, 2014 and 2010. The datasets includes the following key columns:
 
 - `Incident #`: A unique identifier for each wildfire incident.
 - `County`: The county in California where the wildfire occurred.
@@ -86,7 +86,7 @@ The dataset used for this analysis is sourced from CAL FIRE and provides informa
 - `FirePersonnelDeath`: The number of firefighting personnel deaths associated with the wildfire.
 - `CivilDeath`: The number of civilian deaths related to the wildfire.
 
-![](images/2023-10-05-23-26-02.png)
+![](images/images/2023-10-05-23-26-02.png.png)
 
 This dataset provides valuable insights into wildfires in California, including their locations, sizes, causes, and impact on structures and lives. It serves as a fundamental resource for understanding the climate influence on wildfires in California.
 
