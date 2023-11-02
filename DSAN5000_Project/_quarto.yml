@@ -12,7 +12,7 @@ website:
         text: About Me
       - href: https://github.com/anly501/dsan-5000-project-jtjt427/tree/main/codes
         text: Code
-      - href: Data.qmd
+      - href: https://github.com/anly501/dsan-5000-project-jtjt427/tree/main/data
         text: Data
       - href: Introduction.qmd
         text: Introduction
