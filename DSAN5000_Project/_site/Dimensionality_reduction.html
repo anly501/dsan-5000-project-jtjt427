@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DSAN5000_Project – dimensionality_reduction</title>
+<title>DSAN5000_Project - Dimensionality Reduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -89,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Code</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Data.html" rel="" target="">
+    <a class="nav-link" href="https://github.com/anly501/dsan-5000-project-jtjt427/tree/main/data" rel="" target="">
  <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item">
@@ -155,15 +189,240 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#project-proposal" id="toc-project-proposal" class="nav-link active" data-scroll-target="#project-proposal">Project Proposal</a></li>
+  <li><a href="#dataset-loading" id="toc-dataset-loading" class="nav-link" data-scroll-target="#dataset-loading">Dataset Loading</a></li>
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
+  <li><a href="#t-distributed-stochastic-neighbor-embedding-t-sne" id="toc-t-distributed-stochastic-neighbor-embedding-t-sne" class="nav-link" data-scroll-target="#t-distributed-stochastic-neighbor-embedding-t-sne">t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
+  <li><a href="#comparisons-and-insights" id="toc-comparisons-and-insights" class="nav-link" data-scroll-target="#comparisons-and-insights">Comparisons and Insights</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Dimensionality Reduction</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="project-proposal" class="level2">
+<h2 class="anchored" data-anchor-id="project-proposal">Project Proposal</h2>
+<p>The goal of this project is to predict and mitigate the occurance of wildfire. Under this tab, we will perform dimensionality reduction on the <code>CA_climate_fire</code> dataset.</p>
+<p>PCA seeks to capture the maximum variance in the data with the fewest number of principal components. By doing so, it aims to retain the most significant features that explain the patterns in the data.By reducing the number of features, PCA can help in mitigating the risk of overfitting in predictive models. The project can benefit from PCA by understanding which variables (like temperature, humidity, etc.) contribute most to the variance and possibly to wildfire occurrences.</p>
+<p>Unlike PCA, t-SNE is a non-linear technique, which makes it capable of capturing complex non-linear relationships between features. t-SNE excels at identifying clusters in data, which can be very useful for detecting patterns related to wildfire occurrences. t-SNE may reveal groupings and relationships in the data that PCA might not, due to its non-linear approach.</p>
+</section>
+<section id="dataset-loading" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-loading">Dataset Loading</h2>
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># GET DATASET</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>CA_climate_fire <span class="op">=</span> pd.read_csv(<span class="st">'../data/cleaned-data/CA_climate_fire.csv'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(CA_climate_fire.head())</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span> CA_climate_fire[[<span class="st">'tempmax'</span>, <span class="st">'tempmin'</span>, <span class="st">'humidity'</span>, <span class="st">'precip'</span>, <span class="st">'windspeed'</span>]]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Y<span class="op">=</span> CA_climate_fire[[<span class="st">'fire'</span>]]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     datetime  tempmax  tempmin  humidity  precip  windspeed  AcresBurned  \
+0  2020-01-01     14.3      5.4      85.7   0.000       11.2          NaN   
+1  2020-01-02     17.0      4.2      78.1   0.000       19.0          NaN   
+2  2020-01-03     15.0      3.8      83.0   0.000        9.0          NaN   
+3  2020-01-04     13.6      5.7      89.6   1.736       16.7          NaN   
+4  2020-01-05     15.1      3.2      80.9   0.000       16.2          NaN   
+
+  Cause  Fatalities  StructureDam fire  StructureDest.  StructureDam.  \
+0   NaN         NaN           NaN   No             NaN            NaN   
+1   NaN         NaN           NaN   No             NaN            NaN   
+2   NaN         NaN           NaN   No             NaN            NaN   
+3   NaN         NaN           NaN   No             NaN            NaN   
+4   NaN         NaN           NaN   No             NaN            NaN   
+
+   FirePersonnelDeath  CivilDeath  
+0                 NaN         NaN  
+1                 NaN         NaN  
+2                 NaN         NaN  
+3                 NaN         NaN  
+4                 NaN         NaN  
+(1872, 5)</code></pre>
+</div>
+</div>
+<p>We began by importing the `CA_climate_fire`` dataset and inspecting the initial few rows to understand the structure. The dataset includes features such as maximum and minimum temperatures, humidity, precipitation, and wind speed.</p>
+</section>
+<section id="principal-component-analysis-pca" class="level2">
+<h2 class="anchored" data-anchor-id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h2>
+<p>PCA was implemented to reduce the dimensionality of our feature set. We aimed to capture the most variance with the least number of components while enabling a 2D visualization of our high-dimensional data.</p>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#NORMALIZE</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>X<span class="op">/</span>np.<span class="bu">max</span>(X) </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#COMPUTE PCA</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Y_mapped <span class="op">=</span> Y[<span class="st">'fire'</span>].<span class="bu">map</span>({<span class="st">'No'</span>: <span class="dv">0</span>, <span class="st">'Yes'</span>: <span class="dv">1</span>}).values</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform PCA</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>cumulative_variance_threshold <span class="op">=</span> <span class="fl">0.95</span>  <span class="co"># 95% variance threshold</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, X.shape[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>):  <span class="co"># Loop from 1 to the number of features in X</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    pca <span class="op">=</span> PCA(n_components<span class="op">=</span>n)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    X1 <span class="op">=</span> pca.fit_transform(X)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    cumulative_variance <span class="op">=</span> np.<span class="bu">sum</span>(pca.explained_variance_ratio_)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"With </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> components, cumulative explained variance: </span><span class="sc">{</span>cumulative_variance<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> cumulative_variance <span class="op">&gt;=</span> cumulative_variance_threshold:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Optimal number of components: </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>color_map <span class="op">=</span> [<span class="st">'blue'</span>, <span class="st">'red'</span>]  <span class="co"># Define a list of colors</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the points with alpha blending for better visibility of overlapping points</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.scatter(X1[:, <span class="dv">0</span>], X1[:, <span class="dv">1</span>], c<span class="op">=</span>[color_map[label] <span class="cf">for</span> label <span class="kw">in</span> Y_mapped.flatten()], alpha<span class="op">=</span><span class="fl">0.7</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding labels and title for better understanding of the plot</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Principal Component 1'</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Principal Component 2'</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'2D PCA of CA Climate Fire Data'</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Display a color bar for reference</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>With 1 components, cumulative explained variance: 0.7356
+With 2 components, cumulative explained variance: 0.8772
+With 3 components, cumulative explained variance: 0.9599
+Optimal number of components: 3</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Dimensionality_Reduction_files/figure-html/cell-3-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We determined that three principal components captured over 95% of the variance within our dataset, which is a significant reduction from the five original features. The 2D scatter plot using the first two principal components revealed some degree of separation between days with wildfires (red) and without (blue), hinting at underlying patterns correlating with fire occurrences.</p>
+<p>The plot suggests that there may be identifiable patterns in the climate data that correlate with wildfire events. The components that carry the most weight in terms of variance might be the most relevant predictors for wildfires.</p>
+</section>
+<section id="t-distributed-stochastic-neighbor-embedding-t-sne" class="level2">
+<h2 class="anchored" data-anchor-id="t-distributed-stochastic-neighbor-embedding-t-sne">t-Distributed Stochastic Neighbor Embedding (t-SNE)</h2>
+<p>t-SNE was used to visualize the dataset in a 2D space to see if there are distinct clusters corresponding to the days with and without wildfires.</p>
+<p>Perplexity in t-SNE is a hyperparameter that determines how to balance attention between local and global aspects of our data. It’s akin to the number of nearest neighbors that each point considers when mapping the high-dimensional data to a lower-dimensional space. Higher perplexity values consider more neighbors for a broader context.</p>
+<p>In this case, we will explore the results of t-SNE with different perplexity values (30, 50, 1) in order to see how the data points cluster.</p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># DO DIMENSIONALITY REDUCTION</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>X_embedded <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">3</span>, learning_rate<span class="op">=</span><span class="st">'auto'</span>,init<span class="op">=</span><span class="st">'random'</span>, perplexity<span class="op">=</span><span class="dv">30</span>).fit_transform(X)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># EXPLORE RESULTS</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RESULTS"</span>) </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape : "</span>,X_embedded.shape)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First few points : </span><span class="ch">\n</span><span class="st">"</span>,X_embedded[<span class="dv">0</span>:<span class="dv">2</span>,:])</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_embedded[:,<span class="dv">0</span>],X_embedded[:,<span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>RESULTS
+shape :  (1872, 3)
+First few points : 
+ [[  8.744666    3.138517  -10.389686 ]
+ [  4.903321    0.0216501  -6.5611925]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Dimensionality_Reduction_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO DIMENSIONALITY REDUCTION</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X_embedded <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">3</span>, learning_rate<span class="op">=</span><span class="st">'auto'</span>,init<span class="op">=</span><span class="st">'random'</span>, perplexity<span class="op">=</span><span class="dv">50</span>).fit_transform(X)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># EXPLORE RESULTS</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RESULTS"</span>) </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape : "</span>,X_embedded.shape)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First few points : </span><span class="ch">\n</span><span class="st">"</span>,X_embedded[<span class="dv">0</span>:<span class="dv">2</span>,:])</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_embedded[:,<span class="dv">0</span>],X_embedded[:,<span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>RESULTS
+shape :  (1872, 3)
+First few points : 
+ [[ 7.0168204  -2.4403467   9.426487  ]
+ [ 5.094756   -0.08218412  5.409552  ]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Dimensionality_Reduction_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO DIMENSIONALITY REDUCTION</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>X_embedded <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">3</span>, learning_rate<span class="op">=</span><span class="st">'auto'</span>,init<span class="op">=</span><span class="st">'random'</span>, perplexity<span class="op">=</span><span class="dv">1</span>).fit_transform(X)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># EXPLORE RESULTS</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RESULTS"</span>) </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape : "</span>,X_embedded.shape)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First few points : </span><span class="ch">\n</span><span class="st">"</span>,X_embedded[<span class="dv">0</span>:<span class="dv">2</span>,:])</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_embedded[:,<span class="dv">0</span>],X_embedded[:,<span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>RESULTS
+shape :  (1872, 3)
+First few points : 
+ [[-6.296935  10.623576  27.319828 ]
+ [ 5.7153225  1.0619602 15.728415 ]]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Dimensionality_Reduction_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The t-SNE visualizations indicated that the dataset contains complex, non-linear relationships. While some clusters emerged, they were more diffuse than those in the PCA, especially at lower perplexities, reflecting the sensitivity of t-SNE to this hyperparameter.</p>
+</section>
+<section id="comparisons-and-insights" class="level2">
+<h2 class="anchored" data-anchor-id="comparisons-and-insights">Comparisons and Insights</h2>
+<p>Comparing PCA and t-SNE, we observed that PCA provided a clearer separation between classes, which might be beneficial for linear predictive modeling. However, t-SNE offered valuable insights into local structures and relationships that are not linearly separable.</p>
+<p>Both PCA and t-SNE have illuminated aspects of our data that could be crucial for predicting wildfire occurrences. PCA showed a promising direction for feature reduction in predictive modeling, while t-SNE provided a deeper understanding of data structure complexities.</p>
+<p>The next steps include using the insights from these dimensionality reduction techniques to inform the feature selection for machine learning models aimed at predicting wildfire occurrences. Additionally, we plan to investigate the specific climate features that most strongly predict wildfires, as indicated by their weights in the principal components.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

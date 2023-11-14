@@ -22,9 +22,9 @@ website:
         text: Data Cleaning
       - href: Data_Exploration.ipynb
         text: Data Exploration
-      - href: Clustering.qmd
+      - href: Clustering.ipynb
         text: Clustering
-      - href: Dimensionality_Reduction.qmd
+      - href: Dimensionality_Reduction.ipynb
         text: Dimensionality Reduction
       - text: Decision Trees
         menu: 
