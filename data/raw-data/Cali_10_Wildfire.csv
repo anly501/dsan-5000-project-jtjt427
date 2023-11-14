@@ -1,0 +1,21 @@
+﻿Incident # ,County ,FireName ,StartDate,EndDate,Acres Burned ,VegType ,Cause ,StructureDest. ,StructureDam. ,FirePersonnelDeath,CivilDeath
+CND-1112 ,San Luis Obispo ,COTTON ,5/15/10,5/17/10,"2,044",G ,Undetermined ,0,0,0,0
+MCP-2054 ,San Diego ,ALISO ,7/13/10,7/15/10,"3,225",BG ,Miscellaneous ,0,0,0,0
+CND-2466 ,Kern ,BODFISH ,7/15/10,7/18/10,552,BG ,Lightning ,0,0,0,0
+CDD-11051 ,Kern ,SAND 2 ,7/16/10,7/22/10,"1,254",B ,Lightning ,0,0,0,0
+KNP-0039 ,Fresno ,SHEEP ,7/16/10,10/25/10,"9,020",T ,Lightning ,0,0,0,0
+CDD-11175 ,Kern ,INDIAN ,7/18/10,7/24/10,"1,822",G ,Lightning ,0,0,0,0
+OVD-903 ,Mono ,PATATO ,7/24/10,7/27/10,686,B ,Lightning ,0,0,0,0
+YNP-2777 ,Tuolumne ,SLOPE ,7/25/10,1/23/10,"1,711",T ,Lightning ,0,0,0,0
+INF-934 ,Mono ,MONO ,7/26/10,7/29/10,"1,205",B ,Lightning ,0,0,0,0
+SQF-2701 ,Kern ,BULL ,7/26/10,8/10/10,"16,442",B ,Miscellaneous ,14,0,0,0
+NOD-3688 ,Lassen ,MCDONALD ,7/27/10,8/10/10,"9,408",BG ,Lightning ,0,0,0,0
+ANF-3201 ,Los Angeles ,BRIGGS ,7/29/10,7/30/10,510,B ,Undetermined ,0,0,0,0
+KNF-5561 ,Siskiyou ,DUTCH ,7/31/10,8/4/10,371,TG ,Undetermined ,0,0,0,0
+PNF-0700 ,Plumas ,BAR ,7/31/10,8/10/10,"1,040",T ,Undetermined ,0,0,0,0
+SNF-1497 ,Madera ,BUCKHORN ,8/7/10,10/30/10,466,T ,Lightning ,0,0,0,0
+YMP-3213 ,Tuolumne ,VERNON ,8/8/10,10/31/10,909,T ,Lightning ,0,0,0,0
+STF-2269 ,Tuolumne ,PINECREST ,8/9/10,10/15/10,799,T ,Lightning ,0,0,0,0
+TNF-1579 ,Yuba ,BULLARD ,8/27/10,8/31/10,"1,307",T ,Human ,0,0,0,0
+STF-35641 ,Kern ,CANYON ,9/12/10,9/19/10,"9,820",GB ,Undetermined ,1,0,0,0
+AFV-3344 ,Santa Barbara ,BEAR CREEK ,10/28/10,10/30/10,"1,253",T ,Powerline ,0,0,0,0

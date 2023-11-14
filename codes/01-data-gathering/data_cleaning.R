@@ -144,46 +144,46 @@ Cali_2001 <- read_csv("data/raw-data/Cali_2001.csv")
 Cali_2001 <- Cali_2001[ , c('datetime', 'tempmax', 'tempmin', 'humidity', 
                             'precip', 'windspeed')]
 
-Cali_MDY <- read_csv("data/raw-data/Cali_MDY.csv")
-Cali_MDY <- Cali_MDY %>%
+Cali_20_Wildfire <- read_csv("~/Desktop/DSAN5000/dsan-5000-project-jtjt427/data/raw-data/Cali_20_Wildfire.csv", show_col_types = FALSE)
+Cali_20_Wildfire <- Cali_20_Wildfire %>%
   rename(
     AcresBurned = `Acres Burned`
   )
-Cali_MDY <- Cali_MDY[ , c('StartDate', 'AcresBurned', 'Cause', 
+Cali_20_Wildfire <- Cali_20_Wildfire[ , c('StartDate', 'AcresBurned', 'Cause', 
                           'StructureDest.', 'StructureDam.', 
                           'FirePersonnelDeath', 'CivilDeath')]
 
 # Replace NA values with 0 in the columns
-Cali_MDY$StructureDest.[is.na(Cali_MDY$StructureDest.)] <- 0
-Cali_MDY$StructureDam.[is.na(Cali_MDY$StructureDam.)] <- 0
-Cali_MDY$FirePersonnelDeath[is.na(Cali_MDY$FirePersonnelDeath)] <- 0
-Cali_MDY$CivilDeath[is.na(Cali_MDY$CivilDeath)] <- 0
+Cali_20_Wildfire$StructureDest.[is.na(Cali_20_Wildfire$StructureDest.)] <- 0
+Cali_20_Wildfire$StructureDam.[is.na(Cali_20_Wildfire$StructureDam.)] <- 0
+Cali_20_Wildfire$FirePersonnelDeath[is.na(Cali_20_Wildfire$FirePersonnelDeath)] <- 0
+Cali_20_Wildfire$CivilDeath[is.na(Cali_20_Wildfire$CivilDeath)] <- 0
 
 # Add up 'StructureDest.' and 'StructureDam.' and name the new column 'StructureDam'
-Cali_MDY$StructureDam <- Cali_MDY$StructureDest. + Cali_MDY$StructureDam.
+Cali_20_Wildfire$StructureDam <- Cali_20_Wildfire$StructureDest. + Cali_20_Wildfire$StructureDam.
 
 # Add up 'FirePersonnelDeath' and 'CivilDeath' and name the new column 'Fatalities'
-Cali_MDY$Fatalities <- Cali_MDY$FirePersonnelDeath + Cali_MDY$CivilDeath
+Cali_20_Wildfire$Fatalities <- Cali_20_Wildfire$FirePersonnelDeath + Cali_20_Wildfire$CivilDeath
 
 # Delete the original four columns
-Cali_MDY <- Cali_MDY[, !names(Cali_MDY) %in% c('StructureDest.', 'StructureDam.', 'FirePersonnelDeath', 'CivilDeath')]
+Cali_20_Wildfire <- Cali_20_Wildfire[, !names(CCali_20_Wildfire %in% c('StructureDest.', 'StructureDam.', 'FirePersonnelDeath', 'CivilDeath')]
 
 # Identify NA values in the StartDate column
-na_rows <- is.na(Cali_MDY$StartDate)
+na_rows <- is.na(Cali_20_Wildfire$StartDate)
 
 # Convert date column to Date format
-Cali_MDY$StartDate <- as.Date(Cali_MDY$StartDate, format = "%m/%d/%y")
+Cali_20_Wildfire$StartDate <- as.Date(Cali_20_Wildfire$StartDate, format = "%m/%d/%y")
 
 # Remove rows with NA values in the StartDate column
-Cali_MDY <- Cali_MDY[!na_rows, ]
+Cali_20_Wildfire <- Cali_20_Wildfire[!na_rows, ]
 
 # Left merge the two datasets based on the 'datetime' and 'StartDate' columns
-Cali20_climate_fire <- merge(Cali_2020, Cali_MDY, by.x = "datetime", by.y = "StartDate", all.x = TRUE)
+Cali20_climate_fire <- merge(Cali_2020, Cali_20_Wildfire, by.x = "datetime", by.y = "StartDate", all.x = TRUE)
 
 # Create a new column 'fire' based on the 'AcresBurned' column
 Cali20_climate_fire$fire <- ifelse(!is.na(Cali20_climate_fire$AcresBurned), "Yes", "No")
 
-write.csv(Cali20_climate_fire, file = "data/cleaned-data/Cali20_climate_fire.csv", row.names = FALSE)
+write.csv(Cali20_climate_fire, file = "./data/cleaned-data/Cali20_climate_fire.csv", row.names = FALSE)
 
 
 

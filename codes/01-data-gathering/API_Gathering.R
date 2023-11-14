@@ -16,7 +16,8 @@ URLpost <- list(
   apiKey = API_KEY,
   q = paste('+', TOPIC),
   sortBy = 'relevancy',
-  totalRequests = total_requests
+  totalRequests = total_requests,
+  pageSize = 100
 )
 
 # GET DATA FROM API

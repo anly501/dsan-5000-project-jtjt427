@@ -33,7 +33,6 @@ LighteningAcres <- LighteningAcres[, c("Year", "Northern California",
                                        "Southern California", "Total")]
 LightingFires <- LightingFires[, c("Year", "Northern California",
                                    "Southern California", "Total")]
-SuppCosts <- SuppCosts[, c("Year", "Fires", "Acres", "Total")]
 
 HumanCausedFires$California_Fires <- HumanCausedFires$`Northern California` +
   HumanCausedFires$`Southern California`
@@ -84,7 +83,6 @@ head(LighteningCaused)
 
 Human_Lightening <- merge(HumanCaused, LighteningCaused, by = "Year", all = TRUE)
 
-# Assuming your data frame is called Human_Lightening
 Human_Lightening <- Human_Lightening %>%
   pivot_longer(cols = -Year, names_to = "Variable") %>%
   mutate(
@@ -96,6 +94,8 @@ Human_Lightening <- Human_Lightening %>%
 # Save Human_Lightening data to a CSV file
 write.csv(Human_Lightening, file = "data/cleaned-data/Human_Lightening.csv", row.names = FALSE)
 
+
+SuppCosts <- SuppCosts[, c("Year", "Fires", "Acres", "Total")]
 # Clean up the SuppCosts data set
 # Remove the rows below index 38
 SuppCosts <- SuppCosts[(1:38), ]
