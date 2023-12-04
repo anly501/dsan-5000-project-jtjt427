@@ -26,18 +26,14 @@ website:
         text: Clustering
       - href: Dimensionality_Reduction.ipynb
         text: Dimensionality Reduction
-      - text: Decision Trees
-        menu: 
-          - href: Classification.qmd
-            text: Classification
-          - href: Regression.qmd
-            text: Regression
-      - href: ARM.qmd
-        text: ARM
-      - href: Conclusions.qmd
-        text: Conclusions
       - href: Naive_Bayes.ipynb
         text: Naive_Bayes
+      - text: Decision Trees
+        menu: 
+          - href: classification.ipynb
+            text: Classification
+      - href: Conclusions.ipynb
+        text: Conclusions
 bibliography: references.bib
       
 

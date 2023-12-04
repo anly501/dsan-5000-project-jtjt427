@@ -34,13 +34,32 @@ In this study, I aim to address several key questions related to wildfires. Our 
 
 To achieve my research goals, I will address the following questions:
 
-- How can historical wildfire data be used to train and validate predictive models?
-- What are the most influential climate and weather factors in predicting wildfire occurrence and behavior?
-- How can machine learning and data analytics techniques be applied to improve prediction accuracy?
-- What are the strengths and limitations of existing early warning systems for wildfires?
-- How can remote sensing and satellite imagery assist in real-time monitoring and detection?
-- What are the economic and ecological consequences of wildfires in different regions?
-- What mitigation strategies have been most effective in reducing the impact of wildfires?
-- How can community engagement and public awareness initiatives enhance wildfire prevention efforts?
-- What ethical considerations are involved in wildfire prediction and mitigation research?
-- What are the implications of our findings for policymakers and forest management practices?
+1. **How can historical wildfire and climate data be effectively cleaned and prepared for predictive modeling?**
+   - The project demonstrates thorough data cleaning methods, preparing datasets for accurate analysis.
+
+2. **What are the main characteristics and patterns in wildfire data?**
+   - Through exploratory data analysis, the project identifies key patterns, anomalies, and insights in wildfire occurrences and their contributing factors.
+
+3. **How can clustering algorithms identify patterns in climate data related to wildfires?**
+   - The application of K-Means, DBSCAN, and Agglomerative Clustering reveals intrinsic groupings in the data, highlighting environmental conditions that might influence wildfire risks.
+
+4. **Which dimensionality reduction techniques best simplify complex climate data while retaining essential information?**
+   - The project utilizes PCA and t-SNE to reduce data complexity, uncovering significant features and non-linear relationships crucial for understanding wildfire occurrences.
+
+5. **How can Decision Trees and Random Forest algorithms be employed to predict wildfires?**
+   - The project uses these classification models to analyze climate data and predict high-risk and low-risk days for wildfires, demonstrating their effectiveness in handling such complex prediction tasks.
+
+6. **What impact does dataset imbalance have on classification models in wildfire prediction?**
+   - Addressing the challenge of dataset imbalance, the project assesses the impact on model performance, particularly in predicting the less frequent, yet critical, occurrences of wildfires.
+
+7. **How does adjusting hyperparameters in clustering and classification algorithms affect their performance in wildfire prediction?**
+   - The project explores the optimization of hyperparameters, such as the silhouette score in clustering and the perplexity in t-SNE, to enhance model accuracy.
+
+8. **Can non-linear dimensionality reduction techniques reveal hidden patterns in wildfire data?**
+   - The use of t-SNE demonstrates how non-linear techniques can identify complex patterns not discernible through linear methods like PCA.
+
+9. **How effective are ensemble methods like Random Forests compared to single models like Decision Trees in predicting wildfires?**
+   - The project compares these methods, highlighting the increased accuracy and reliability of ensemble methods in handling diverse and complex datasets.
+
+10. **What insights can be gained from visualizing high-dimensional wildfire data in lower-dimensional spaces?**
+    - By implementing dimensionality reduction techniques, the project successfully visualizes complex data in a more interpretable form, aiding in the identification of key variables and their relationships.
